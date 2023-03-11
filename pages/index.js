@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import Link from 'next/link'
 import Container from 'react-bootstrap/Container'
@@ -35,215 +35,209 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/effect-fade'
 
+const rooms = [
+  {name: '1', value: '1'},
+  {name: '2', value: '2'},
+  {name: '3', value: '3'},
+  {name: '4', value: '4'},
+  {name: '5+', value: '5+'}
+]
+// Categories array
+const categories = [
+  [
+    {
+      href: '/real-estate/catalog?category=rent',
+      media: 'fi-real-estate-house',
+      title: 'Houses'
+    },
+    {
+      href: '/real-estate/catalog?category=sale',
+      media: 'fi-apartment',
+      title: 'Apartments'
+    },
+    {
+      href: '/real-estate/catalog?category=rent',
+      media: 'fi-shop',
+      title: 'Commercial'
+    },
+    {
+      href: '/real-estate/catalog?category=rent',
+      media: 'fi-rent',
+      title: 'Daily rental'
+    },
+    {
+      href: '/real-estate/catalog?category=sale',
+      media: 'fi-house-chosen',
+      title: 'New buildings'
+    }
+  ],
+  [
+    {
+      href: '/real-estate/catalog?category=rent',
+      media: 'fi-single-bed',
+      title: 'Room'
+    },
+    {
+      href: '/real-estate/catalog?category=sale',
+      media: 'fi-computer',
+      title: 'Office'
+    },
+    {
+      href: '/real-estate/catalog?category=rent',
+      media: 'fi-real-estate-buy',
+      title: 'Land'
+    },
+    {
+      href: '/real-estate/catalog?category=sale',
+      media: 'fi-parking',
+      title: 'Parking lot'
+    }
+  ]
+]
+// Properties (Top offers) array
+const properties = [
+  {
+    href: '/real-estate/single-v1',
+    images: [['/images/real-estate/catalog/01.jpg', 467, 305, 'Image']],
+    title: '3-bed Apartment | 67 sq.m',
+    category: 'For rent',
+    location: '3811 Ditmars Blvd Astoria, NY 11105',
+    price: '$1,629',
+    badges: [['success', 'Verified'], ['info', 'New']],
+    footer: [3, 2, 2]
+  },
+  {
+    href: '/real-estate/single-v1',
+    images: [['/images/real-estate/catalog/02.jpg', 467, 305, 'Image']],
+    title: 'Family Home| 120 sq.m',
+    category: 'For sale',
+    location: '67-04 Myrtle Ave Glendale, NY 11385',
+    price: '$84,000',
+    badges: [['success', 'Verified'], ['danger', 'Featured']],
+    footer: [4, 2, 2]
+  },
+  {
+    href: '/real-estate/single-v1',
+    images: [['/images/real-estate/catalog/03.jpg', 467, 305, 'Image']],
+    title: 'Greenpoint Rentals | 85 sq.m',
+    category: 'For rent',
+    location: '1510 Castle Hill Ave Bronx, NY 10462',
+    price: '$1,330',
+    badges: [['success', 'Verified']],
+    footer: [1, 1, 1]
+  },
+  {
+    href: '/real-estate/single-v1',
+    images: [['/images/real-estate/catalog/04.jpg', 467, 305, 'Image']],
+    title: 'Studio | 32 sq.m',
+    category: 'For sale',
+    location: '140-60 Beech Ave Flushing, NY 11355',
+    price: '$65,000',
+    badges: [['success', 'Verified'], ['info', 'New']],
+    footer: [1, 1, 2]
+  },
+  {
+    href: '/real-estate/single-v1',
+    images: [['/images/real-estate/catalog/05.jpg', 467, 305, 'Image']],
+    title: 'Cottage | 120 sq.m',
+    category: 'For sale',
+    location: '42 Broadway New York, NY 10004',
+    price: '$184,000',
+    badges: [['success', 'Verified']],
+    footer: [4, 2, 1]
+  }
+]
+// Cities array
+const cities = [
+  {
+    href: '/real-estate/catalog?category=sale',
+    img: '/images/real-estate/city/new-york.jpg',
+    city: 'New York',
+    forSale: [893, 20],
+    forRent: [3756, 80]
+  },
+  {
+    href: '/real-estate/catalog?category=rent',
+    img: '/images/real-estate/city/chicago.jpg',
+    city: 'Chicago',
+    forSale: [268, 15],
+    forRent: [1540, 85]
+  },
+  {
+    href: '/real-estate/catalog?category=sale',
+    img: '/images/real-estate/city/los-angeles.jpg',
+    city: 'Los Angeles',
+    forSale: [2750, 80],
+    forRent: [692, 20]
+  },
+  {
+    href: '/real-estate/catalog?category=rent',
+    img: '/images/real-estate/city/san-diego.jpg',
+    city: 'San Diego',
+    forSale: [1739, 48],
+    forRent: [1854, 52]
+  },
+  {
+    href: '/real-estate/catalog?category=sale',
+    img: '/images/real-estate/city/dallas.jpg',
+    city: 'Dallas',
+    forSale: [2567, 68],
+    forRent: [1204, 32]
+  }
+]
+// Partners (brands) array
+const partners = [
+  {
+    href: '#',
+    img: ['/images/real-estate/brands/01_gray.svg', '/images/real-estate/brands/01_color.svg']
+  },
+  {
+    href: '#',
+    img: ['/images/real-estate/brands/02_gray.svg', '/images/real-estate/brands/02_color.svg']
+  },
+  {
+    href: '#',
+    img: ['/images/real-estate/brands/03_gray.svg', '/images/real-estate/brands/03_color.svg']
+  },
+  {
+    href: '#',
+    img: ['/images/real-estate/brands/04_gray.svg', '/images/real-estate/brands/04_color.svg']
+  },
+  {
+    href: '#',
+    img: ['/images/real-estate/brands/05_gray.svg', '/images/real-estate/brands/05_color.svg']
+  },
+  {
+    href: '#',
+    img: ['/images/real-estate/brands/06_gray.svg', '/images/real-estate/brands/06_color.svg']
+  }
+]
+
+
 const IndexPage = () => {
-
   // Property cost calculator modal
-  const [modalShow, setModalShow] = useState(false)
-  const handleModalClose = () => setModalShow(false)
-  const handleModalShow = () => setModalShow(true)
-
+  const [modalShow, setModalShow] = useState(false);
   // Form validation
-  const [validated, setValidated] = useState(false)
-  const handleSubmit = (event) => {
+  const [validated, setValidated] = useState(false);
+  // Number of rooms radios buttons (Cost calculator modal)
+  const [roomsValue, setRoomsValue] = useState('');
+
+  const handleModalClose = useCallback(() => setModalShow(false), []);
+  const handleModalShow = useCallback(() => setModalShow(true), []);
+  const handleSubmit = useCallback((event) => {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
       event.preventDefault()
       event.stopPropagation()
     }
     setValidated(true);
-  }
-
-  // Number of rooms radios buttons (Cost calculator modal)
-  const [roomsValue, setRoomsValue] = useState('')
-  const rooms = [
-    {name: '1', value: '1'},
-    {name: '2', value: '2'},
-    {name: '3', value: '3'},
-    {name: '4', value: '4'},
-    {name: '5+', value: '5+'}
-  ]
-
-  // Categories array
-  const categories = [
-    [
-      {
-        href: '/real-estate/catalog?category=rent',
-        media: 'fi-real-estate-house',
-        title: 'Houses'
-      },
-      {
-        href: '/real-estate/catalog?category=sale',
-        media: 'fi-apartment',
-        title: 'Apartments'
-      },
-      {
-        href: '/real-estate/catalog?category=rent',
-        media: 'fi-shop',
-        title: 'Commercial'
-      },
-      {
-        href: '/real-estate/catalog?category=rent',
-        media: 'fi-rent',
-        title: 'Daily rental'
-      },
-      {
-        href: '/real-estate/catalog?category=sale',
-        media: 'fi-house-chosen',
-        title: 'New buildings'
-      }
-    ],
-    [
-      {
-        href: '/real-estate/catalog?category=rent',
-        media: 'fi-single-bed',
-        title: 'Room'
-      },
-      {
-        href: '/real-estate/catalog?category=sale',
-        media: 'fi-computer',
-        title: 'Office'
-      },
-      {
-        href: '/real-estate/catalog?category=rent',
-        media: 'fi-real-estate-buy',
-        title: 'Land'
-      },
-      {
-        href: '/real-estate/catalog?category=sale',
-        media: 'fi-parking',
-        title: 'Parking lot'
-      }
-    ]
-  ]
-
-  // Properties (Top offers) array
-  const properties = [
-    {
-      href: '/real-estate/single-v1',
-      images: [['/images/real-estate/catalog/01.jpg', 467, 305, 'Image']],
-      title: '3-bed Apartment | 67 sq.m',
-      category: 'For rent',
-      location: '3811 Ditmars Blvd Astoria, NY 11105',
-      price: '$1,629',
-      badges: [['success', 'Verified'], ['info', 'New']],
-      footer: [3, 2, 2]
-    },
-    {
-      href: '/real-estate/single-v1',
-      images: [['/images/real-estate/catalog/02.jpg', 467, 305, 'Image']],
-      title: 'Family Home| 120 sq.m',
-      category: 'For sale',
-      location: '67-04 Myrtle Ave Glendale, NY 11385',
-      price: '$84,000',
-      badges: [['success', 'Verified'], ['danger', 'Featured']],
-      footer: [4, 2, 2]
-    },
-    {
-      href: '/real-estate/single-v1',
-      images: [['/images/real-estate/catalog/03.jpg', 467, 305, 'Image']],
-      title: 'Greenpoint Rentals | 85 sq.m',
-      category: 'For rent',
-      location: '1510 Castle Hill Ave Bronx, NY 10462',
-      price: '$1,330',
-      badges: [['success', 'Verified']],
-      footer: [1, 1, 1]
-    },
-    {
-      href: '/real-estate/single-v1',
-      images: [['/images/real-estate/catalog/04.jpg', 467, 305, 'Image']],
-      title: 'Studio | 32 sq.m',
-      category: 'For sale',
-      location: '140-60 Beech Ave Flushing, NY 11355',
-      price: '$65,000',
-      badges: [['success', 'Verified'], ['info', 'New']],
-      footer: [1, 1, 2]
-    },
-    {
-      href: '/real-estate/single-v1',
-      images: [['/images/real-estate/catalog/05.jpg', 467, 305, 'Image']],
-      title: 'Cottage | 120 sq.m',
-      category: 'For sale',
-      location: '42 Broadway New York, NY 10004',
-      price: '$184,000',
-      badges: [['success', 'Verified']],
-      footer: [4, 2, 1]
-    }
-  ]
-
-  // Cities array
-  const cities = [
-    {
-      href: '/real-estate/catalog?category=sale',
-      img: '/images/real-estate/city/new-york.jpg',
-      city: 'New York',
-      forSale: [893, 20],
-      forRent: [3756, 80]
-    },
-    {
-      href: '/real-estate/catalog?category=rent',
-      img: '/images/real-estate/city/chicago.jpg',
-      city: 'Chicago',
-      forSale: [268, 15],
-      forRent: [1540, 85]
-    },
-    {
-      href: '/real-estate/catalog?category=sale',
-      img: '/images/real-estate/city/los-angeles.jpg',
-      city: 'Los Angeles',
-      forSale: [2750, 80],
-      forRent: [692, 20]
-    },
-    {
-      href: '/real-estate/catalog?category=rent',
-      img: '/images/real-estate/city/san-diego.jpg',
-      city: 'San Diego',
-      forSale: [1739, 48],
-      forRent: [1854, 52]
-    },
-    {
-      href: '/real-estate/catalog?category=sale',
-      img: '/images/real-estate/city/dallas.jpg',
-      city: 'Dallas',
-      forSale: [2567, 68],
-      forRent: [1204, 32]
-    }
-  ]
-
-  // Partners (brands) array
-  const partners = [
-    {
-      href: '#',
-      img: ['/images/real-estate/brands/01_gray.svg', '/images/real-estate/brands/01_color.svg']
-    },
-    {
-      href: '#',
-      img: ['/images/real-estate/brands/02_gray.svg', '/images/real-estate/brands/02_color.svg']
-    },
-    {
-      href: '#',
-      img: ['/images/real-estate/brands/03_gray.svg', '/images/real-estate/brands/03_color.svg']
-    },
-    {
-      href: '#',
-      img: ['/images/real-estate/brands/04_gray.svg', '/images/real-estate/brands/04_color.svg']
-    },
-    {
-      href: '#',
-      img: ['/images/real-estate/brands/05_gray.svg', '/images/real-estate/brands/05_color.svg']
-    },
-    {
-      href: '#',
-      img: ['/images/real-estate/brands/06_gray.svg', '/images/real-estate/brands/06_color.svg']
-    }
-  ]
-
+  }, []);
 
   return (
     <RealEstatePageLayout
       pageTitle='Home v.1'
       activeNav='Home'
     >
-
       {/* Property cost calculator modal */}
       <Modal
         centered
@@ -291,7 +285,7 @@ const IndexPage = () => {
             </Form.Group>
             <Form.Group controlId='property-address' className='pt-2 mb-3'>
               <Form.Label className='fw-bold mb-2'>Address</Form.Label>
-              <Form.Control placeholder='Enter your address' required />
+              <Form.Control placeholder='Enter your address' required/>
               <Form.Control.Feedback type='invalid'>
                 Please provide your property&apos;s address.
               </Form.Control.Feedback>
@@ -315,7 +309,7 @@ const IndexPage = () => {
             </Form.Group>
             <Form.Group controlId='property-area' className='pt-2 mb-4'>
               <Form.Label className='fw-bold mb-2'>Total area, sq.m.</Form.Label>
-              <Form.Control placeholder='Enter your property area' required />
+              <Form.Control placeholder='Enter your property area' required/>
               <Form.Control.Feedback type='invalid'>
                 Please enter your property&apos;s area.
               </Form.Control.Feedback>
@@ -341,8 +335,11 @@ const IndexPage = () => {
             />
           </Col>
           <Col md={{span: 7, order: 1}} lg={6} xl={5} className='pt-xl-5 pe-lg-0 mb-3 text-md-start text-center'>
-            <h1 className='display-4 mt-lg-5 mb-md-4 mb-3 pt-md-4 pb-lg-2'>Easy way to find <br/> a perfect property</h1>
-            <p className='position-relative lead me-lg-n5'>We provide a complete service for the sale, purchase or rental of real estate. We have been operating more than 10 years. Search millions of apartments and houses on Finder.</p>
+            <h1 className='display-4 mt-lg-5 mb-md-4 mb-3 pt-md-4 pb-lg-2'>Easy way to find <br/> a perfect property
+            </h1>
+            <p className='position-relative lead me-lg-n5'>We provide a complete service for the sale, purchase or
+              rental of real estate. We have been operating more than 10 years. Search millions of apartments and houses
+              on Finder.</p>
           </Col>
 
           {/* Search property form group */}
@@ -360,7 +357,7 @@ const IndexPage = () => {
                     variant='link ps-2 ps-sm-3'
                     className='w-sm-50 border-end-sm'
                   />
-                  <hr className='d-sm-none my-2' />
+                  <hr className='d-sm-none my-2'/>
                   <DropdownSelect
                     defaultValue='Location'
                     icon='fi-map-pin'
@@ -373,7 +370,7 @@ const IndexPage = () => {
                     variant='link ps-2 ps-sm-3'
                     className='w-sm-50 border-end-sm'
                   />
-                  <hr className='d-sm-none my-2' />
+                  <hr className='d-sm-none my-2'/>
                   <DropdownSelect
                     defaultValue='Property type'
                     icon='fi-list'
@@ -388,7 +385,7 @@ const IndexPage = () => {
                     className='w-sm-50 border-end-md'
                   />
                 </Col>
-                <hr className='d-md-none mt-2' />
+                <hr className='d-md-none mt-2'/>
                 <Col md={4} className='d-sm-flex align-items-center pt-4 pt-md-0'>
                   <div className='d-flex align-items-center w-100 pt-2 pb-4 py-sm-0 ps-2 ps-sm-3'>
                     <i className='fi-cash fs-lg text-muted me-2'></i>
@@ -403,9 +400,11 @@ const IndexPage = () => {
                       ariaLabel={['Handle']}
                       ariaValuetext={state => `Handle value ${state.valueNow}`}
                       step={1}
-                      renderThumb={(props, state) => (<div {...props}>
-                        <div className='range-slider-tooltip'>$ {state.valueNow}</div>
-                      </div>)}
+                      renderThumb={(props, state) => (
+                        <div {...props}>
+                          <div className='range-slider-tooltip'>$ {state.valueNow}</div>
+                        </div>
+                      )}
                     />
                   </div>
                   <Button variant='primary btn-icon px-3 w-100 w-sm-auto flex-shrink-0'>
@@ -470,51 +469,66 @@ const IndexPage = () => {
           }}
           spaceBetween={24}
           breakpoints={{
-            0: { slidesPerView: 1 },
-            500: { slidesPerView: 2 },
-            768: { slidesPerView: 3 }
+            0: {slidesPerView: 1},
+            500: {slidesPerView: 2},
+            768: {slidesPerView: 3}
           }}
           className='py-3 mx-n2'
         >
           <SwiperSlide>
             <Card className='card-hover border-0 h-100 pb-2 pb-sm-3 px-sm-3 text-center mx-2'>
               <div className='d-flex justify-content-center my-3'>
-                <ImageLoader src='/images/real-estate/illustrations/buy.svg' width={256} height={201} alt='Image' />
+                <ImageLoader src='/images/real-estate/illustrations/buy.svg' width={256} height={201} alt='Image'/>
               </div>
               <Card.Body>
                 <h2 className='h4 card-title'>Buy a property</h2>
-                <p className='card-text fs-sm'>Blandit lorem dictum in velit. Et nisi at faucibus mauris pretium enim. Risus sapien nisi aliquam egestas leo dignissim.</p>
+                <p className='card-text fs-sm'>
+                  Blandit lorem dictum in velit. Et nisi at faucibus mauris pretium enim.
+                  Risus sapien nisi aliquam egestas leo dignissim.
+                </p>
               </Card.Body>
               <Card.Footer className='pt-0 border-0'>
-                <Button as={Link} href='/real-estate/catalog?category=sale' variant='outline-primary stretched-link'>Find a home</Button>
+                <Button as={Link} href='/real-estate/catalog?category=sale' variant='outline-primary stretched-link'>
+                  Find a home
+                </Button>
               </Card.Footer>
             </Card>
           </SwiperSlide>
           <SwiperSlide>
             <Card className='card-hover border-0 h-100 pb-2 pb-sm-3 px-sm-3 text-center mx-2'>
               <div className='d-flex justify-content-center my-3'>
-                <ImageLoader src='/images/real-estate/illustrations/sell.svg' width={256} height={201} alt='Image' />
+                <ImageLoader src='/images/real-estate/illustrations/sell.svg' width={256} height={201} alt='Image'/>
               </div>
               <Card.Body>
                 <h2 className='h4 card-title'>Sell a property</h2>
-                <p className='card-text fs-sm'>Amet, cras orci justo, tortor nisl aliquet. Enim tincidunt tellus nunc, nulla arcu posuere quis. Velit turpis orci venenatis.</p>
+                <p className='card-text fs-sm'>
+                  Amet, cras orci justo, tortor nisl aliquet. Enim tincidunt tellus nunc,
+                  nulla arcu posuere quis. Velit turpis orci venenatis.
+                </p>
               </Card.Body>
               <Card.Footer className='pt-0 border-0'>
-                <Button as={Link} href='/real-estate/add-property' variant='outline-primary stretched-link'>Place an ad</Button>
+                <Button as={Link} href='/real-estate/add-property' variant='outline-primary stretched-link'>
+                  Place an ad
+                </Button>
               </Card.Footer>
             </Card>
           </SwiperSlide>
           <SwiperSlide>
             <Card className='card-hover border-0 h-100 pb-2 pb-sm-3 px-sm-3 text-center mx-2'>
               <div className='d-flex justify-content-center my-3'>
-                <ImageLoader src='/images/real-estate/illustrations/rent.svg' width={256} height={201} alt='Image' />
+                <ImageLoader src='/images/real-estate/illustrations/rent.svg' width={256} height={201} alt='Image'/>
               </div>
               <Card.Body>
                 <h2 className='h4 card-title'>Rent a property</h2>
-                <p className='card-text fs-sm'>Sed sed aliquet sed id purus malesuada congue viverra. Habitant quis lacus, volutpat natoque ipsum iaculis cursus.</p>
+                <p className='card-text fs-sm'>
+                  Sed sed aliquet sed id purus malesuada congue viverra. Habitant quis
+                  lacus, volutpat natoque ipsum iaculis cursus.
+                </p>
               </Card.Body>
               <Card.Footer className='pt-0 border-0'>
-                <Button as={Link} href='/real-estate/catalog?category=rent' variant='outline-primary stretched-link'>Find a rental</Button>
+                <Button as={Link} href='/real-estate/catalog?category=rent' variant='outline-primary stretched-link'>
+                  Find a rental
+                </Button>
               </Card.Footer>
             </Card>
           </SwiperSlide>
@@ -550,10 +564,10 @@ const IndexPage = () => {
             loop
             spaceBetween={8}
             breakpoints={{
-              0: { slidesPerView: 1 },
-              500: { slidesPerView: 2 },
-              768: { slidesPerView: 3 },
-              992: { slidesPerView: 4 }
+              0: {slidesPerView: 1},
+              500: {slidesPerView: 2},
+              768: {slidesPerView: 3},
+              992: {slidesPerView: 4}
             }}
             className='pt-3 pb-4 mx-n2'
           >
@@ -585,8 +599,8 @@ const IndexPage = () => {
           </Swiper>
 
           {/* External Prev/Next buttons */}
-          <Button id='prevProperties' variant='prev' className='d-none d-xxl-block mt-n5 ms-n5' />
-          <Button id='nextProperties' variant='next' className='d-none d-xxl-block mt-n5 me-n5' />
+          <Button id='prevProperties' variant='prev' className='d-none d-xxl-block mt-n5 ms-n5'/>
+          <Button id='nextProperties' variant='next' className='d-none d-xxl-block mt-n5 me-n5'/>
         </div>
 
         {/* External pagination (bullets) buttons */}
@@ -728,7 +742,11 @@ const IndexPage = () => {
           </Col>
           <Col md={7} xxl={6} className='text-md-start text-center'>
             <h2>Calculate the cost of your property</h2>
-            <p className='pb-3 fs-lg'>Real estate appraisal is a procedure that allows you to determine the average market value of real estate (apartment, house, land, etc.). Calculate the cost of your property with our new Calculation Service.</p>
+            <p className='pb-3 fs-lg'>
+              Real estate appraisal is a procedure that allows you to determine the average
+              market value of real estate (apartment, house, land, etc.). Calculate the cost of your property with our
+              new Calculation Service.
+            </p>
             <Button size='lg' onClick={handleModalShow}>
               <i className='fi-calculator me-2'></i>
               Calculate
@@ -763,10 +781,10 @@ const IndexPage = () => {
             loop
             spaceBetween={8}
             breakpoints={{
-              0: { slidesPerView: 1 },
-              500: { slidesPerView: 2 },
-              768: { slidesPerView: 3 },
-              992: { slidesPerView: 4 }
+              0: {slidesPerView: 1},
+              500: {slidesPerView: 2},
+              768: {slidesPerView: 3},
+              992: {slidesPerView: 4}
             }}
             className='pt-3 pb-4 mx-n2'
           >
@@ -786,7 +804,7 @@ const IndexPage = () => {
                         Property for sale
                       </h4>
                       <div className='d-flex align-items-center'>
-                        <ProgressBar variant='danger' now={city.forSale[1]} className='progress-light w-100' />
+                        <ProgressBar variant='danger' now={city.forSale[1]} className='progress-light w-100'/>
                         <span className='text-light fs-sm ps-1 ms-2'>{city.forSale[0]}</span>
                       </div>
                     </div>
@@ -796,7 +814,7 @@ const IndexPage = () => {
                         Property for rent
                       </h4>
                       <div className='d-flex align-items-center'>
-                        <ProgressBar variant='success' now={city.forRent[1]} className='progress-light w-100' />
+                        <ProgressBar variant='success' now={city.forRent[1]} className='progress-light w-100'/>
                         <span className='text-light fs-sm ps-1 ms-2'>{city.forRent[0]}</span>
                       </div>
                     </div>
@@ -810,8 +828,8 @@ const IndexPage = () => {
           </Swiper>
 
           {/* External Prev/Next buttons */}
-          <Button id='prevCity' variant='prev' className='d-none d-xxl-block mt-n5 ms-n5' />
-          <Button id='nextCity' variant='next' className='d-none d-xxl-block mt-n5 me-n5' />
+          <Button id='prevCity' variant='prev' className='d-none d-xxl-block mt-n5 ms-n5'/>
+          <Button id='nextCity' variant='next' className='d-none d-xxl-block mt-n5 me-n5'/>
         </div>
 
         {/* External pagination (bullets) */}
@@ -819,7 +837,7 @@ const IndexPage = () => {
       </Container>
 
 
-      {/* Partners (carousen on screens < 1200px) */}
+      {/* Partners (carousel on screens < 1200px) */}
       <Container as='section' className='mb-5 pb-2 pb-lg-4'>
         <h2 className='h3 mb-4 text-center text-md-start'>Our partners</h2>
         <Swiper
@@ -829,10 +847,10 @@ const IndexPage = () => {
             clickable: true
           }}
           breakpoints={{
-            0: { slidesPerView: 2 },
-            500: { slidesPerView: 4 },
-            992: { slidesPerView: 5, spaceBetween: 16 },
-            1200: { slidesPerView: 6, spaceBetween: 24 }
+            0: {slidesPerView: 2},
+            500: {slidesPerView: 4},
+            992: {slidesPerView: 5, spaceBetween: 16},
+            1200: {slidesPerView: 6, spaceBetween: 24}
           }}
         >
           {partners.map((partner, indx) => (
@@ -899,17 +917,21 @@ const IndexPage = () => {
                 <Card className='border-0 shadow-sm ms-sm-n5'>
                   <Card.Body as='blockquote' className='blockquote'>
                     <h4 style={{maxWidth: '22rem'}}>&quot;I will select the best accommodation for you&quot;</h4>
-                    <p className='d-sm-none d-lg-block'>Amet libero morbi venenatis ut est. Iaculis leo ultricies nunc id ante adipiscing. Vel metus odio at faucibus ac. Neque id placerat et id ut. Scelerisque eu mi ullamcorper sit urna. Est volutpat dignissim elementum nec.</p>
+                    <p className='d-sm-none d-lg-block'>
+                      Amet libero morbi venenatis ut est. Iaculis leo ultricies nunc
+                      id ante adipiscing. Vel metus odio at faucibus ac. Neque id placerat et id ut. Scelerisque eu mi
+                      ullamcorper sit urna. Est volutpat dignissim elementum nec.
+                    </p>
                     <footer className='d-flex justify-content-between'>
                       <div className='pe3'>
                         <h6 className='mb-0'>Floyd Miles</h6>
                         <div className='text-muted fw-normal fs-sm mb-3'>Imperial Property Group Agent</div>
-                        <SocialButton href='#' variant='solid' brand='facebook' roundedCircle className='mb-2 me-2' />
-                        <SocialButton href='#' variant='solid' brand='twitter' roundedCircle className='mb-2 me-2' />
-                        <SocialButton href='#' variant='solid' brand='linkedin' roundedCircle className='mb-2' />
+                        <SocialButton href='#' variant='solid' brand='facebook' roundedCircle className='mb-2 me-2'/>
+                        <SocialButton href='#' variant='solid' brand='twitter' roundedCircle className='mb-2 me-2'/>
+                        <SocialButton href='#' variant='solid' brand='linkedin' roundedCircle className='mb-2'/>
                       </div>
                       <div>
-                        <StarRating rating='4.9' />
+                        <StarRating rating='4.9'/>
                         <div className='text-muted fs-sm mt-1'>45 reviews</div>
                       </div>
                     </footer>
@@ -943,18 +965,24 @@ const IndexPage = () => {
               <Col sm={8} md={7} xl={4} className='px-4 px-sm-3 px-md-0 ms-md-n4 mt-n5 mt-sm-0 py-3'>
                 <Card className='border-0 shadow-sm ms-sm-n5'>
                   <Card.Body as='blockquote' className='blockquote'>
-                    <h4 style={{maxWidth: '22rem'}}>&quot;I don&apos;t say no, I just figure out a way to make it work&quot;</h4>
-                    <p className='d-sm-none d-lg-block'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+                    <h4 style={{maxWidth: '22rem'}}>
+                      &quot;I don&apos;t say no, I just figure out a way to make it work&quot;
+                    </h4>
+                    <p className='d-sm-none d-lg-block'>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                      exercitation ullamco laboris nisi ut aliquip.
+                    </p>
                     <footer className='d-flex justify-content-between'>
                       <div className='pe3'>
                         <h6 className='mb-0'>Guy Hawkins</h6>
                         <div className='text-muted fw-normal fs-sm mb-3'>Imperial Property Group Agent</div>
-                        <SocialButton href='#' variant='solid' brand='facebook' roundedCircle className='mb-2 me-2' />
-                        <SocialButton href='#' variant='solid' brand='twitter' roundedCircle className='mb-2 me-2' />
-                        <SocialButton href='#' variant='solid' brand='linkedin' roundedCircle className='mb-2' />
+                        <SocialButton href='#' variant='solid' brand='facebook' roundedCircle className='mb-2 me-2'/>
+                        <SocialButton href='#' variant='solid' brand='twitter' roundedCircle className='mb-2 me-2'/>
+                        <SocialButton href='#' variant='solid' brand='linkedin' roundedCircle className='mb-2'/>
                       </div>
                       <div>
-                        <StarRating rating='4.7' />
+                        <StarRating rating='4.7'/>
                         <div className='text-muted fs-sm mt-1'>16 reviews</div>
                       </div>
                     </footer>
@@ -989,17 +1017,21 @@ const IndexPage = () => {
                 <Card className='border-0 shadow-sm ms-sm-n5'>
                   <Card.Body as='blockquote' className='blockquote'>
                     <h4 style={{maxWidth: '22rem'}}>&quot;Over 10 years of experience as a real estate agent&quot;</h4>
-                    <p className='d-sm-none d-lg-block'>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae.</p>
+                    <p className='d-sm-none d-lg-block'>
+                      Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                      accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis
+                      et quasi architecto beatae vitae.
+                    </p>
                     <footer className='d-flex justify-content-between'>
                       <div className='pe3'>
                         <h6 className='mb-0'>Kristin Watson</h6>
                         <div className='text-muted fw-normal fs-sm mb-3'>Imperial Property Group Agent</div>
-                        <SocialButton href='#' variant='solid' brand='facebook' roundedCircle className='mb-2 me-2' />
-                        <SocialButton href='#' variant='solid' brand='twitter' roundedCircle className='mb-2 me-2' />
-                        <SocialButton href='#' variant='solid' brand='linkedin' roundedCircle className='mb-2' />
+                        <SocialButton href='#' variant='solid' brand='facebook' roundedCircle className='mb-2 me-2'/>
+                        <SocialButton href='#' variant='solid' brand='twitter' roundedCircle className='mb-2 me-2'/>
+                        <SocialButton href='#' variant='solid' brand='linkedin' roundedCircle className='mb-2'/>
                       </div>
                       <div>
-                        <StarRating rating='4.8' />
+                        <StarRating rating='4.8'/>
                         <div className='text-muted fs-sm mt-1'>24 reviews</div>
                       </div>
                     </footer>
@@ -1012,8 +1044,8 @@ const IndexPage = () => {
 
         {/* External Prev/Next buttons */}
         <div className='d-flex justify-content-center justify-content-md-start pb-2'>
-          <Button id='prevAgents' variant='prev position-relative mx-2' />
-          <Button id='nextAgents' variant='next position-relative mx-2' />
+          <Button id='prevAgents' variant='prev position-relative mx-2'/>
+          <Button id='nextAgents' variant='next position-relative mx-2'/>
         </div>
       </Container>
     </RealEstatePageLayout>
