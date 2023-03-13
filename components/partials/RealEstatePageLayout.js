@@ -15,6 +15,7 @@ import SocialButton from '../SocialButton'
 import MarketButton from '../MarketButton'
 import SignInModalLight from '../partials/SignInModalLight'
 import SignUpModalLight from '../partials/SignUpModalLight'
+import ScheduleTourButton from "../ScheduleTourButton";
 
 const RealEstatePageLayout = (props) => {
 
@@ -65,7 +66,7 @@ const RealEstatePageLayout = (props) => {
   return (
     <>
       <Head>
-        <title>{`Finder | Real Estate - ${props.pageTitle}`}</title>
+        <title>{`MedicalBoulevard | ${props.pageTitle}`}</title>
       </Head>
 
       {/* Sign in modal */}
@@ -93,220 +94,147 @@ const RealEstatePageLayout = (props) => {
 
         {/* Navbar (main site header with branding and navigation) */}
         <Navbar as={StickyNavbar}
-          expand='lg'
-          bg='light'
-          className={`fixed-top${props.navbarExtraClass ? ` ${props.navbarExtraClass}` : ''}`}
+                expand='lg'
+                bg='light'
+                className={`fixed-top${props.navbarExtraClass ? ` ${props.navbarExtraClass}` : ''}`}
         >
           <Container>
-            <Navbar.Brand as={Link} href='/real-estate' className='me-3 me-xl-4'>
-              <ImageLoader priority src='/images/logo/logo-dark.svg' width={116} height={32} placeholder={false} alt='Finder' />
+            <Navbar.Brand as={Link} href='/' className='me-3 me-xl-4'>
+              <ImageLoader priority src='/images/logo/logo-dark.png' width={257} height={58} placeholder={false}
+                           alt='MedicalBoulevard'/>
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls='navbarNav' className='ms-auto' />
+            <Navbar.Toggle aria-controls='navbarNav' className='ms-auto'/>
 
-            {/* Display content depending on user auth satus  */}
-            {props.userLoggedIn ? <Dropdown className='d-none d-lg-block order-lg-3 my-n2 me-3'>
-              <Dropdown.Toggle as={Link} href='/real-estate/account-info' className='nav-link dropdown-toggle-flush d-flex py-1 px-0' style={{width: '40px'}}>
-                <ImageLoader src='/images/avatars/30.jpg' width={80} height={80} placeholder={false} className='rounded-circle' alt='Annette Black' />
-              </Dropdown.Toggle>
-              <Dropdown.Menu renderOnMount align='end'>
-                <div className='d-flex align-items-start border-bottom px-3 py-1 mb-2' style={{width: '16rem'}}>
-                  <ImageLoader src='/images/avatars/03.jpg' width={48} height={48} placeholder={false} className='rounded-circle' alt='Annette Black' />
-                  <div className='ps-2'>
-                    <h6 className='fs-base mb-0'>Annette Black</h6>
-                    <StarRating size='sm' rating={5} />
-                    <div className='fs-xs py-2'>
-                      (302) 555-0107<br/>annette_black@email.com
-                    </div>
-                  </div>
-                </div>
-                <Dropdown.Item as={Link} href='/real-estate/account-info'>
-                  <i className='fi-lock opacity-60 me-2'></i>
-                  Personal Info
-                </Dropdown.Item>
-                <Dropdown.Item as={Link} href='/real-estate/account-security'>
-                  <i className='fi-heart opacity-60 me-2'></i>
-                  Password &amp; Security
-                </Dropdown.Item>
-                <Dropdown.Item as={Link} href='/real-estate/account-properties'>
-                  <i className='fi-home opacity-60 me-2'></i>
-                  My Properties
-                </Dropdown.Item>
-                <Dropdown.Item as={Link} href='/real-estate/account-wishlist'>
-                  <i className='fi-heart opacity-60 me-2'></i>
-                  Wishlist
-                </Dropdown.Item>
-                <Dropdown.Item as={Link} href='/real-estate/account-reviews'>
-                  <i className='fi-star opacity-60 me-2'></i>
-                  Reviews
-                </Dropdown.Item>
-                <Dropdown.Item as={Link} href='/real-estate/account-notifications'>
-                  <i className='fi-bell opacity-60 me-2'></i>
-                  Notifications
-                </Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item as={Link} href='/real-estate/help-center'>Help</Dropdown.Item>
-                <Dropdown.Item as={Link} href='/signin-light'>Sign Out</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown> :
-            
-              <Button variant='sm text-primary d-none d-lg-block order-lg-3' onClick={handleSigninShow}>
-                <i className='fi-user me-2'></i>
-                Sign in
-              </Button>
-            }
-
-            <Button as={Link} href='/real-estate/add-property' size='sm' className='order-lg-3 ms-2'>
-              <i className='fi-plus me-2'></i>
-              Add <span className='d-none d-sm-inline'>property</span>
-            </Button>
-            
-            <Navbar.Collapse id='navbarNav' className='order-md-2'>
-              <Nav navbarScroll style={{maxHeight: '35rem'}}>
-                <Nav.Item as={Dropdown} className='me-lg-2'>
-                  <Dropdown.Toggle as={Nav.Link} className='align-items-center pe-lg-4'>
-                    <i className='fi-layers me-2'></i>
-                    Demos
-                    <span className='d-none d-lg-block position-absolute top-50 end-0 translate-middle-y border-end' style={{width: '1px', height: '30px'}}></span>
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu renderOnMount>
-                    <Dropdown.Item as={Link} href='/real-estate'>
-                      <i className='fi-building fs-base opacity-50 me-2'></i>
-                      Real Estate Demo
-                    </Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Item as={Link} href='/car-finder'>
-                      <i className='fi-car fs-base opacity-50 me-2'></i>
-                      Car Finder Demo
-                    </Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Item as={Link} href='/job-board'>
-                      <i className='fi-briefcase fs-base opacity-50 me-2'></i>
-                      Job Board Demo
-                    </Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Item as={Link} href='/city-guide'>
-                      <i className='fi-map-pin fs-base opacity-50 me-2'></i>
-                      City Guide Demo
-                    </Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Item as={Link} href='/'>
-                      <i className='fi-home fs-base opacity-50 me-2'></i>
-                      Main Page
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/components/typography'>
-                      <i className='fi-list fs-base opacity-50 me-2'></i>
-                      Components
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/docs'>
-                      <i className='fi-file fs-base opacity-50 me-2'></i>
-                      Documentation
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Nav.Item>
-                <Nav.Item as={Dropdown}>
-                  <Dropdown.Toggle as={Nav.Link} active={props.activeNav==='Home'}>Home</Dropdown.Toggle>
-                  <Dropdown.Menu renderOnMount>
-                    <Dropdown.Item as={Link} href='/real-estate'>Homepage v.1</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/index-2'>Homepage v.2</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Nav.Item>
-                <Nav.Item as={Dropdown}>
-                  <Dropdown.Toggle as={Nav.Link} active={props.activeNav==='Catalog'}>Catalog</Dropdown.Toggle>
-                  <Dropdown.Menu renderOnMount>
-                    <Dropdown.Item as={Link} href='/real-estate/catalog?category=rent'>Property for Rent</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/catalog?category=sale'>Property for Sale</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/single-v1'>Single Property v.1</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/single-v2'>Single Property v.2</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Nav.Item>
-                <Nav.Item as={Dropdown}>
-                  <Dropdown.Toggle as={Nav.Link} active={props.activeNav==='Account'}>Account</Dropdown.Toggle>
-                  <Dropdown.Menu renderOnMount>
-                    <Dropdown.Item as={Link} href='/real-estate/account-info'>Personal Info</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/account-security'>Password &amp; Security</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/account-properties'>My Properties</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/account-wishlist'>Wishlist</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/account-reviews'>Reviews</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/account-notifications'>Notifications</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/signin-light'>Sign In</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/signup-light'>Sign Up</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Nav.Item>
-                <Nav.Item as={Dropdown}>
-                  <Dropdown.Toggle as={Nav.Link} active={props.activeNav==='Vendor'}>Vendor</Dropdown.Toggle>
-                  <Dropdown.Menu renderOnMount>
-                    <Dropdown.Item as={Link} href='/real-estate/add-property'>Add Property</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/property-promotion'>Property Promotion</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/vendor-properties'>Vendor Page: Properties</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/vendor-reviews'>Vendor Page: Reviews</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Nav.Item>
-                <Nav.Item as={Dropdown}>
-                  <Dropdown.Toggle as={Nav.Link} active={props.activeNav==='Pages'}>Pages</Dropdown.Toggle>
-                  <Dropdown.Menu renderOnMount>
-                    <Dropdown.Item as={Link} href='/real-estate/about'>About</Dropdown.Item>
-                    <Dropdown>
-                      <Dropdown.Toggle as={Dropdown.Item}>Blog</Dropdown.Toggle>
-                      <Dropdown.Menu renderOnMount>
-                        <Dropdown.Item as={Link} href='/real-estate/blog'>Blog Grid</Dropdown.Item>
-                        <Dropdown.Item as={Link} href='/real-estate/blog-single'>Single Post</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    <Dropdown.Item as={Link} href='/real-estate/contacts'>Contacts</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/help-center'>Help Center</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/404-not-found'>404 Not Found</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Nav.Item>
-
-                {/* Display content depending on user auth satus  */}
-                {props.userLoggedIn ?<Nav.Item as={Dropdown} className='d-lg-none'>
-                  <Dropdown.Toggle as={Nav.Link} className='d-flex align-items-center'>
-                    <ImageLoader src='/images/avatars/30.jpg' width={30} height={30} placeholder={false} className='rounded-circle' alt='Annette Black' />
-                    <span className='ms-2'>Annette Black</span>
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <div className='ps-3'>
-                      <StarRating size='sm' rating={5} />
+            {/* Display content depending on user auth status  */}
+            {props.userLoggedIn ? (
+              <Dropdown className='d-none d-lg-block order-lg-3 my-n2 me-3'>
+                <Dropdown.Toggle as={Link} href='/real-estate/account-info'
+                                 className='nav-link dropdown-toggle-flush d-flex py-1 px-0' style={{width: '40px'}}>
+                  <ImageLoader src='/images/avatars/30.jpg' width={80} height={80} placeholder={false}
+                               className='rounded-circle' alt='Annette Black'/>
+                </Dropdown.Toggle>
+                <Dropdown.Menu renderOnMount align='end'>
+                  <div className='d-flex align-items-start border-bottom px-3 py-1 mb-2' style={{width: '16rem'}}>
+                    <ImageLoader src='/images/avatars/03.jpg' width={48} height={48} placeholder={false}
+                                 className='rounded-circle' alt='Annette Black'/>
+                    <div className='ps-2'>
+                      <h6 className='fs-base mb-0'>Annette Black</h6>
+                      <StarRating size='sm' rating={5}/>
                       <div className='fs-xs py-2'>
                         (302) 555-0107<br/>annette_black@email.com
                       </div>
                     </div>
-                    <Dropdown.Item as={Link} href='/real-estate/account-info'>
-                      <i className='fi-user opacity-60 me-2'></i>
-                      Personal Info
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/account-security'>
-                      <i className='fi-heart opacity-60 me-2'></i>
-                      Password &amp; Security
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/account-properties'>
-                      <i className='fi-home opacity-60 me-2'></i>
-                      My Properties
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/account-wishlist'>
-                      <i className='fi-heart opacity-60 me-2'></i>
-                      Wishlist
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/account-reviews'>
-                      <i className='fi-star opacity-60 me-2'></i>
-                      Reviews
-                    </Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/real-estate/account-notifications'>
-                      <i className='fi-bell opacity-60 me-2'></i>
-                      Notifications
-                    </Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Item as={Link} href='/real-estate/help-center'>Help</Dropdown.Item>
-                    <Dropdown.Item as={Link} href='/signin-light'>Sign Out</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Nav.Item> : 
-                
-                <Nav.Item className='d-lg-none'>
-                  <Nav.Link onClick={handleSigninShow}>
-                    <i className='fi-user me-2'></i>
-                    Sign in
-                  </Nav.Link>
-                </Nav.Item>}
+                  </div>
+                  <Dropdown.Item as={Link} href='/real-estate/account-info'>
+                    <i className='fi-lock opacity-60 me-2'></i>
+                    Personal Info
+                  </Dropdown.Item>
+                  <Dropdown.Item as={Link} href='/real-estate/account-security'>
+                    <i className='fi-heart opacity-60 me-2'></i>
+                    Password &amp; Security
+                  </Dropdown.Item>
+                  <Dropdown.Item as={Link} href='/real-estate/account-properties'>
+                    <i className='fi-home opacity-60 me-2'></i>
+                    My Properties
+                  </Dropdown.Item>
+                  <Dropdown.Item as={Link} href='/real-estate/account-wishlist'>
+                    <i className='fi-heart opacity-60 me-2'></i>
+                    Wishlist
+                  </Dropdown.Item>
+                  <Dropdown.Item as={Link} href='/real-estate/account-reviews'>
+                    <i className='fi-star opacity-60 me-2'></i>
+                    Reviews
+                  </Dropdown.Item>
+                  <Dropdown.Item as={Link} href='/real-estate/account-notifications'>
+                    <i className='fi-bell opacity-60 me-2'></i>
+                    Notifications
+                  </Dropdown.Item>
+                  <Dropdown.Divider/>
+                  <Dropdown.Item as={Link} href='/real-estate/help-center'>Help</Dropdown.Item>
+                  <Dropdown.Item as={Link} href='/signin-light'>Sign Out</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            ) : (
+              <Button variant='sm text-primary d-none d-lg-block order-lg-3' onClick={handleSigninShow}>
+                <i className='fi-user me-2'></i>
+                Sign in
+              </Button>
+            )}
+
+            <ScheduleTourButton className={"order-lg-3"}/>
+
+            <Navbar.Collapse id='navbarNav' className='order-md-2'>
+              <Nav navbarScroll style={{maxHeight: '35rem'}}>
+                <Nav.Item>
+                  <Nav.Link active={props.activeNav === '/'} href="/">Home</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link active={props.activeNav === '/medical-rooms'} href="/medical-rooms">Medical Rooms</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link active={props.activeNav === '/services'} href="/services">Services</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link active={props.activeNav === '/directory'} href="/directory">Directory</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link active={props.activeNav === '/blog'} href="/blog">Blog</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link active={props.activeNav === '/contacts'} href="/contacts">Contact</Nav.Link>
+                </Nav.Item>
+
+                {props.userLoggedIn ? (
+                  <Nav.Item as={Dropdown} className='d-lg-none'>
+                    <Dropdown.Toggle as={Nav.Link} className='d-flex align-items-center'>
+                      <ImageLoader src='/images/avatars/30.jpg' width={30} height={30} placeholder={false}
+                                   className='rounded-circle' alt='Annette Black'/>
+                      <span className='ms-2'>Annette Black</span>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <div className='ps-3'>
+                        <StarRating size='sm' rating={5}/>
+                        <div className='fs-xs py-2'>
+                          (302) 555-0107<br/>annette_black@email.com
+                        </div>
+                      </div>
+                      <Dropdown.Item as={Link} href='/real-estate/account-info'>
+                        <i className='fi-user opacity-60 me-2'></i>
+                        Personal Info
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} href='/real-estate/account-security'>
+                        <i className='fi-heart opacity-60 me-2'></i>
+                        Password &amp; Security
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} href='/real-estate/account-properties'>
+                        <i className='fi-home opacity-60 me-2'></i>
+                        My Properties
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} href='/real-estate/account-wishlist'>
+                        <i className='fi-heart opacity-60 me-2'></i>
+                        Wishlist
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} href='/real-estate/account-reviews'>
+                        <i className='fi-star opacity-60 me-2'></i>
+                        Reviews
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} href='/real-estate/account-notifications'>
+                        <i className='fi-bell opacity-60 me-2'></i>
+                        Notifications
+                      </Dropdown.Item>
+                      <Dropdown.Divider/>
+                      <Dropdown.Item as={Link} href='/real-estate/help-center'>Help</Dropdown.Item>
+                      <Dropdown.Item as={Link} href='/signin-light'>Sign Out</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Nav.Item>
+                ) : (
+                  <Nav.Item className='d-lg-none'>
+                    <Nav.Link onClick={handleSigninShow}>
+                      <i className='fi-user me-2'></i>
+                      Sign in
+                    </Nav.Link>
+                  </Nav.Item>
+                )}
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -327,7 +255,8 @@ const RealEstatePageLayout = (props) => {
                 {/* Logo + contacts */}
                 <div className='mb-sm-0 mb-4 px-2'>
                   <Link href='/real-estate' className='d-inline-flex mb-4'>
-                    <ImageLoader priority src='/images/logo/logo-dark.svg' width={116} height={32} placeholder={false} alt='Finder' />
+                    <ImageLoader priority src='/images/logo/logo-dark.png' width={116} height={32} placeholder={false}
+                                 alt='MedicalBoulevard'/>
                   </Link>
                   <Nav className='flex-column mb-sm-4 mb-2'>
                     <Nav.Item className='mb-2'>
@@ -344,10 +273,10 @@ const RealEstatePageLayout = (props) => {
                     </Nav.Item>
                   </Nav>
                   <div className='pt-2'>
-                    <SocialButton href='#' variant='solid' brand='facebook' roundedCircle className='me-2 mb-2' />
-                    <SocialButton href='#' variant='solid' brand='twitter' roundedCircle className='me-2 mb-2' />
-                    <SocialButton href='#' variant='solid' brand='viber' roundedCircle className='me-2 mb-2' />
-                    <SocialButton href='#' variant='solid' brand='telegram' roundedCircle className='mb-2' />
+                    <SocialButton href='#' variant='solid' brand='facebook' roundedCircle className='me-2 mb-2'/>
+                    <SocialButton href='#' variant='solid' brand='twitter' roundedCircle className='me-2 mb-2'/>
+                    <SocialButton href='#' variant='solid' brand='viber' roundedCircle className='me-2 mb-2'/>
+                    <SocialButton href='#' variant='solid' brand='telegram' roundedCircle className='mb-2'/>
                   </div>
                 </div>
 
@@ -365,7 +294,8 @@ const RealEstatePageLayout = (props) => {
                       <Nav.Link as={Link} href='#' active={false} className='p-0 fw-normal'>Rent a property</Nav.Link>
                     </Nav.Item>
                     <Nav.Item className='mb-2'>
-                      <Nav.Link as={Link} href='#' active={false} className='p-0 fw-normal'>Calculate  your property</Nav.Link>
+                      <Nav.Link as={Link} href='#' active={false} className='p-0 fw-normal'>Calculate your
+                        property</Nav.Link>
                     </Nav.Item>
                     <Nav.Item className='mb-2'>
                       <Nav.Link as={Link} href='#' active={false} className='p-0 fw-normal'>Top offers</Nav.Link>
@@ -387,7 +317,8 @@ const RealEstatePageLayout = (props) => {
                       <Nav.Link as={Link} href='#' active={false} className='p-0 fw-normal'>Our agents</Nav.Link>
                     </Nav.Item>
                     <Nav.Item className='mb-2'>
-                      <Nav.Link as={Link} href='#' active={false} className='p-0 fw-normal'>Help &amp; support</Nav.Link>
+                      <Nav.Link as={Link} href='#' active={false}
+                                className='p-0 fw-normal'>Help &amp; support</Nav.Link>
                     </Nav.Item>
                     <Nav.Item className='mb-2'>
                       <Nav.Link as={Link} href='#' active={false} className='p-0 fw-normal'>Contacts</Nav.Link>
@@ -406,8 +337,9 @@ const RealEstatePageLayout = (props) => {
               {footerPosts.map((post, indx) => (
                 <div key={indx}>
                   <article className='d-flex align-items-start' style={{maxWidth: '640px'}}>
-                    <Link href={post.href} className='d-none d-sm-flex flex-shrink-0 mb-sm-0 mb-3' style={{width: '100px', height: '100px'}}>
-                      <ImageLoader src={post.img} width={200} height={200} className='rounded-3' alt='Thumbnail' />
+                    <Link href={post.href} className='d-none d-sm-flex flex-shrink-0 mb-sm-0 mb-3'
+                          style={{width: '100px', height: '100px'}}>
+                      <ImageLoader src={post.img} width={200} height={200} className='rounded-3' alt='Thumbnail'/>
                     </Link>
                     <div className='ps-sm-4'>
                       <h6 className='mb-1 fs-xs fw-normal text-uppercase text-primary'>{post.category}</h6>
@@ -418,14 +350,14 @@ const RealEstatePageLayout = (props) => {
                       <Link href='#' className='nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal'>
                         <i className='fi-calendar mt-n1 me-1 fs-sm align-middle opacity-70'></i>
                         {post.date}
-\                      </Link>
+                        \ </Link>
                       <Link href='#' className='nav-link nav-link-muted d-inline-block p-0 fs-xs fw-normal'>
                         <i className='fi-chat-circle mt-n1 me-1 fs-sm align-middle opacity-70'></i>
                         {`${post.comments} comments`}
                       </Link>
                     </div>
                   </article>
-                  {indx < footerPosts.length - 1 && <hr className='text-dark opacity-10 my-4' />}
+                  {indx < footerPosts.length - 1 && <hr className='text-dark opacity-10 my-4'/>}
                 </div>
               ))}
             </Col>
@@ -433,31 +365,36 @@ const RealEstatePageLayout = (props) => {
 
           {/* Mobile app CTA */}
           <div className='bg-dark rounded-3'>
-            <Col xs={10} md={11} xxl={10} className='d-flex flex-md-row flex-column-reverse align-items-md-end align-items-center mx-auto px-0'>
+            <Col xs={10} md={11} xxl={10}
+                 className='d-flex flex-md-row flex-column-reverse align-items-md-end align-items-center mx-auto px-0'>
               <div className='d-flex flex-shrink-0 mt-md-n5 me-md-5'>
                 <ImageLoader
                   priority
                   src='/images/real-estate/illustrations/mobile.svg'
                   width={240}
                   height={237}
-                  alt='Illustration' />
+                  alt='Illustration'/>
               </div>
-              <div className='align-self-center d-flex flex-lg-row flex-column align-items-lg-center pt-md-3 pt-5 ps-xxl-4 text-md-start text-center'>
+              <div
+                className='align-self-center d-flex flex-lg-row flex-column align-items-lg-center pt-md-3 pt-5 ps-xxl-4 text-md-start text-center'>
                 <div className='me-md-5'>
                   <h4 className='text-light'>Download Our App</h4>
-                  <p className='mb-lg-0 text-light'>Find everything you need for buying, selling &amp; renting property in our new Finder App!</p>
+                  <p className='mb-lg-0 text-light'>Find everything you need for buying, selling &amp; renting property
+                    in our new Finder App!</p>
                 </div>
                 <div className='flex-shrink-0'>
-                  <MarketButton href='#' market='apple' className='mx-2 ms-sm-0 me-sm-4 mb-3' />
-                  <MarketButton href='#' market='google' className='mb-3' />
-                </div> 
+                  <MarketButton href='#' market='apple' className='mx-2 ms-sm-0 me-sm-4 mb-3'/>
+                  <MarketButton href='#' market='google' className='mb-3'/>
+                </div>
               </div>
             </Col>
           </div>
 
           {/* Copyright */}
           <div className='text-center fs-sm pt-4 mt-3 pb-2'>
-            &copy; All rights reserved. Made by <a href='https://createx.studio/' className='d-inline-block nav-link p-0' target='_blank' rel='noreferrer'>Createx Studio</a>
+            &copy; All rights reserved. Made by <a href='https://createx.studio/'
+                                                   className='d-inline-block nav-link p-0' target='_blank'
+                                                   rel='noreferrer'>Createx Studio</a>
           </div>
         </Container>
       </footer>

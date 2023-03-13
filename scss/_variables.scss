@@ -26,10 +26,10 @@ $black:                 #000 !default;
 
 
 // Brand colors
-$primary:               #fd5631 !default;
+$primary:               #689EA3 !default;
 $accent:                #5d3cf2 !default;
 $secondary:             $gray-200 !default;
-$info:		              #3c76f2 !default;
+$info:		            #3c76f2 !default;
 $success:               #07c98b !default;
 $warning:               #fdbc31 !default;
 $danger:                #f23c49 !default;
@@ -351,10 +351,10 @@ $btn-transition:              color .2s ease-in-out, background-color .2s ease-i
 
 // Icon buttons
 
-$btn-icon-size:               2.75rem !default; 
-$btn-icon-sm-size:            2.25rem !default;  
-$btn-icon-xs-size:            2rem !default;  
-$btn-icon-xxs-size:           1.5rem !default;  
+$btn-icon-size:               2.75rem !default;
+$btn-icon-sm-size:            2.25rem !default;
+$btn-icon-xs-size:            2rem !default;
+$btn-icon-xxs-size:           1.5rem !default;
 
 
 // Market buttons
@@ -632,7 +632,7 @@ $nav-fixed-body-padding-x:                1.5rem !default;
 // Navbar
 
 $navbar-padding-y:                    $spacer !default;
-$navbar-transition:                   background-color .1s ease-in-out, box-shadow .1s ease-in-out !default;  
+$navbar-transition:                   background-color .1s ease-in-out, box-shadow .1s ease-in-out !default;
 
 $navbar-nav-link-padding-y:           .6875rem !default;
 $navbar-nav-link-padding-x:           1rem !default;
@@ -984,7 +984,7 @@ $carousel-thumbnail-transition:           opacity .2s ease-in-out, border-color 
 $icon-box-media-font-size:            1.5rem !default;
 $icon-box-media-width:                3rem !default;
 $icon-box-media-border-radius:        $border-radius !default;
-$icon-box-media-transition:           background-color .22s ease-in-out, color .22s ease-in-out !default;  
+$icon-box-media-transition:           background-color .22s ease-in-out, color .22s ease-in-out !default;
 
 $icon-box-title-color:                $headings-color !default;
 
@@ -1011,7 +1011,7 @@ $accordion-padding-x:                     1rem !default;
 $accordion-border-radius:                 $border-radius-lg !default;
 $accordion-border-color:                  $border-color !default;
 
-$accordion-button-color:                  $gray-800 !default; 
+$accordion-button-color:                  $gray-800 !default;
 $accordion-button-font-weight:            bold !default;
 
 $accordion-button-active-bg:              transparent !default;
