@@ -8,7 +8,6 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import ImageLoader from "./ImageLoader";
 
 const SubscribeHero = () => {
   return (
