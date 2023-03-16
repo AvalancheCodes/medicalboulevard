@@ -16,6 +16,10 @@ import MarketButton from '../MarketButton'
 import SignInModalLight from '../partials/SignInModalLight'
 import SignUpModalLight from '../partials/SignUpModalLight'
 import ScheduleTourButton from "../ScheduleTourButton";
+import Badge from "react-bootstrap/Badge";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Cart from "../Cart";
+import Popover from "react-bootstrap/Popover";
 
 const RealEstatePageLayout = (props) => {
 
@@ -160,6 +164,33 @@ const RealEstatePageLayout = (props) => {
                 Sign in
               </Button>
             )}
+
+
+            <OverlayTrigger
+              trigger='click'
+              placement='auto'
+              overlay={
+                <Popover style={{maxWidth: "479px"}}>
+                  <Popover.Body>
+                    <Cart/>
+                  </Popover.Body>
+                </Popover>
+              }
+            >
+              <Button variant='outline-primary btn-icon border-0 mx-2 position-relative'
+                      className='order-lg-3'>
+                <i className='fi-cart'></i>
+                <Badge pill bg="warning" className='position-absolute'
+                       style={{
+                         fontSize: '0.4rem',
+                         right: '5px',
+                         top: '7px'
+                       }}
+                > 1 </Badge>
+              </Button>
+            </OverlayTrigger>
+
+
 
             <ScheduleTourButton className={"order-lg-3"}/>
 

@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { RecurringType } from "../utils/constants";
 
 const RoomTypesFilter = ({className}) => {
   const roomTypes = useMemo(() => {
@@ -58,10 +59,10 @@ const RepeatFilters = ({className}) => {
 
   const repeatOptions = useMemo(() => {
     return [
-      {id: "none", label: "None"},
-      {id: "every-day", label: "Every Day"},
-      {id: "every-week", label: "Every Week"},
-      {id: "every-month", label: "Every Month"},
+      {id: RecurringType.None, label: "None"},
+      {id: RecurringType.EveryDay, label: "Every Day"},
+      {id: RecurringType.EveryWeek, label: "Every Week"},
+      {id: RecurringType.EveryMonth, label: "Every Month"},
     ]
   }, [])
 

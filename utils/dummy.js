@@ -1,3 +1,5 @@
+import { RecurringType } from "./constants";
+
 export const HOMEPAGE_CATEGORIES = [
   {
     href: '/real-estate/catalog?category=rent',
@@ -108,3 +110,70 @@ export const MEDICAL_ROOMS_PROPERTIES = [
     badges: ['Furnished']
   },
 ];
+
+export const CART_LINE_ITEMS = [
+  {
+    title: 'The Glamour Suite 1',
+    price: 1629,
+    recurringType: RecurringType.None,
+    dateStart: "2023-03-16",
+    hoursStart: "13:00:00",
+    hoursEnd: "16:00:00",
+  },
+  {
+    title: 'The Glamour Suite 2',
+    price: 1629,
+    recurringType: RecurringType.EveryDay,
+    dateStart: "2023-03-16",
+    hoursStart: "13:00:00",
+    hoursEnd: "16:00:00",
+    endRepeatDate: "2023-03-22", // either
+  },
+  {
+    title: 'The Glamour Suite 3',
+    price: 1629,
+    recurringType: RecurringType.EveryDay,
+    dateStart: "2023-03-16",
+    hoursStart: "13:00:00",
+    hoursEnd: "16:00:00",
+    endRepeatTimes: 10 // either
+  },
+  {
+    title: 'The Glamour Suite 4',
+    price: 1629,
+    recurringType: RecurringType.EveryWeek,
+    dateStart: "2023-03-16",
+    hoursStart: "13:00:00",
+    hoursEnd: "16:00:00",
+
+    endRepeatDate: "2023-05-22",
+  },
+  {
+    title: 'The Glamour Suite 5',
+    price: 1629,
+    recurringType: RecurringType.EveryWeek,
+    dateStart: "2023-03-16",
+    hoursStart: "13:00:00",
+    hoursEnd: "16:00:00",
+    endRepeatTimes: 7
+  },
+  {
+    title: 'The Glamour Suite 6',
+    price: 1629,
+    recurringType: RecurringType.EveryMonth,
+    dateStart: "2023-03-16",
+    hoursStart: "07:00:00",
+    hoursEnd: "16:00:00",
+
+    endRepeatDate: "2023-09-22", // either
+  },
+  {
+    title: 'The Glamour Suite 7',
+    price: 1629,
+    recurringType: RecurringType.EveryMonth,
+    dateStart: "2023-03-16",
+    hoursStart: "13:00:00",
+    hoursEnd: "16:00:00",
+    endRepeatTimes: 4
+  }
+]
