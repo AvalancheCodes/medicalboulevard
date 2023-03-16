@@ -1,3 +1,6 @@
+import icon1 from "../public/images/services/features/icon1.svg";
+import icon2 from "../public/images/services/features/icon2.svg";
+import icon3 from "../public/images/services/features/icon3.svg";
 import { RecurringType } from "./constants";
 
 export const HOMEPAGE_CATEGORIES = [
@@ -177,3 +180,73 @@ export const CART_LINE_ITEMS = [
     endRepeatTimes: 4
   }
 ]
+
+export const SERVICE_FEATURES = [
+  {
+    img: icon1,
+    title: 'Billing and Coding:',
+    description: 'Our team ensures accurate coding and timely submission of claims to maximise revenue for healthcare providers. We provide:',
+    liLines: [
+      'Comprehensive billing and coding services',
+      'Detailed claim submission and follow-up',
+      'Continuous training and updates for billing regulations',
+      'Assistance with patient billing and collections',
+      'Customized reports and analytics for financial management'
+    ]
+  },
+  {
+    img: icon2,
+    title: 'Marketing and Branding',
+    description: 'Our team provides comprehensive marketing solutions to help you stand out in a crowded market and reach your ideal clients.',
+    liLines: [
+      'Social Media Management- Our team manages your social media accounts to increase engagement and grow your audience',
+      'Customer Experience',
+      'Procurement',
+      'Mergers and Acquisitions'
+    ]
+  },
+  {
+    img: icon3,
+    title: 'Human Resources:',
+    description: 'We offer all kinds of programming services from developing to maintaining the existed.',
+    liLines: [
+      'Advanced Analytics',
+      'Digital Marketing',
+      'Organization',
+      'New Business Innovation'
+    ]
+  },
+  {
+    img: icon1,
+    title: 'Training and Education',
+    description: 'We actively pursue the right balance between functionality and aesthetics.',
+    liLines: [
+      'Enterprise Technology',
+      'Private Equity',
+      'Learning & Development',
+      'Sustainability'
+    ]
+  },
+  {
+    img: icon2,
+    title: 'Facility Management',
+    description: 'We stay lean and help your product do one thing well - buy and sell.',
+    liLines: [
+      'Cost Transformation',
+      'Customer Experience',
+      'Procurement',
+      'Mergers and Acquisitions'
+    ]
+  },
+  {
+    img: icon3,
+    title: 'IT Support',
+    description: 'We offer all kinds of programming services from developing to maintaining the existed.',
+    liLines: [
+      'Advanced Analytics',
+      'Digital Marketing',
+      'Organization',
+      'New Business Innovation'
+    ]
+  }
+];

@@ -63,7 +63,7 @@ const HomePage = () => {
       pageTitle={pageTitle}
       activeNav={activeNav}
     >
-      <Container fluid as='section' className={"pt-5 my-5"}>
+      <Container fluid as='section' className={"my-5"}>
         <Row>
           <Col xs={3}>
             <FindReservationFilters/>

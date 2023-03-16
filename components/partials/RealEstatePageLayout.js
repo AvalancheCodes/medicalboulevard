@@ -191,7 +191,6 @@ const RealEstatePageLayout = (props) => {
             </OverlayTrigger>
 
 
-
             <ScheduleTourButton className={"order-lg-3"}/>
 
             <Navbar.Collapse id='navbarNav' className='order-md-2'>
@@ -271,8 +270,10 @@ const RealEstatePageLayout = (props) => {
           </Container>
         </Navbar>
 
-        {/* Page content */}
-        {props.children}
+        {/* Page content, py-5 to skip navbar */}
+        <div className={'py-5'}>
+          {props.children}
+        </div>
       </main>
 
 

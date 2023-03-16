@@ -25,7 +25,7 @@ const IndexPage = () => {
       activeNav='/'
     >
       {/* Hero */}
-      <Container as='section' className='pt-5 my-5'>
+      <Container as='section' className='my-5'>
         <Row className='pt-0 pt-md-2 pt-lg-0'>
           <Col md={7} lg={6} xl={5} className='pt-xl-5 pe-lg-0 mb-3 text-md-start text-center'>
             <h1 className='display-4 mt-lg-5 mb-md-4 mb-3 pt-md-4 pb-lg-2'>
