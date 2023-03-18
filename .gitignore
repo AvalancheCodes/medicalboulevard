@@ -30,3 +30,8 @@ coverage/
 babel.config.js
 jest.config.js
 tsconfig.json
+
+# Dotenv config files
+!.env.example
+.env
+.env.*

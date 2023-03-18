@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Container from 'react-bootstrap/Container'
@@ -20,9 +20,10 @@ import Badge from "react-bootstrap/Badge";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Cart from "../Cart";
 import Popover from "react-bootstrap/Popover";
+import { useAuthContext } from "../../state/AuthStateProvider/useAuthContext";
 
 const RealEstatePageLayout = (props) => {
-
+  const {user, isAuthReady, logout} = useAuthContext()
   // Sign in modal
   const [signinShow, setSigninShow] = useState(false)
   const handleSigninClose = () => setSigninShow(false)
@@ -66,7 +67,6 @@ const RealEstatePageLayout = (props) => {
     }
   ]
 
-
   return (
     <>
       <Head>
@@ -74,7 +74,7 @@ const RealEstatePageLayout = (props) => {
       </Head>
 
       {/* Sign in modal */}
-      {!props.userLoggedIn && <SignInModalLight
+      {!user && <SignInModalLight
         centered
         size='lg'
         show={signinShow}
@@ -83,7 +83,7 @@ const RealEstatePageLayout = (props) => {
       />}
 
       {/* Sign up modal */}
-      {!props.userLoggedIn && <SignUpModalLight
+      {!user && <SignUpModalLight
         centered
         size='lg'
         show={signupShow}
@@ -110,61 +110,65 @@ const RealEstatePageLayout = (props) => {
             <Navbar.Toggle aria-controls='navbarNav' className='ms-auto'/>
 
             {/* Display content depending on user auth status  */}
-            {props.userLoggedIn ? (
-              <Dropdown className='d-none d-lg-block order-lg-3 my-n2 me-3'>
-                <Dropdown.Toggle as={Link} href='/real-estate/account-info'
-                                 className='nav-link dropdown-toggle-flush d-flex py-1 px-0' style={{width: '40px'}}>
-                  <ImageLoader src='/images/avatars/30.jpg' width={80} height={80} placeholder={false}
-                               className='rounded-circle' alt='Annette Black'/>
-                </Dropdown.Toggle>
-                <Dropdown.Menu renderOnMount align='end'>
-                  <div className='d-flex align-items-start border-bottom px-3 py-1 mb-2' style={{width: '16rem'}}>
-                    <ImageLoader src='/images/avatars/03.jpg' width={48} height={48} placeholder={false}
-                                 className='rounded-circle' alt='Annette Black'/>
-                    <div className='ps-2'>
-                      <h6 className='fs-base mb-0'>Annette Black</h6>
-                      <StarRating size='sm' rating={5}/>
-                      <div className='fs-xs py-2'>
-                        (302) 555-0107<br/>annette_black@email.com
+            {isAuthReady && (
+              <>
+                {user ? (
+                  <Dropdown className='d-none d-lg-block order-lg-3 my-n2 me-3'>
+                    <Dropdown.Toggle as={Link} href='/real-estate/account-info'
+                                     className='nav-link dropdown-toggle-flush d-flex py-1 px-0'
+                                     style={{width: '40px'}}>
+                      <ImageLoader src='/images/avatars/30.jpg' width={80} height={80} placeholder={false}
+                                   className='rounded-circle' alt='Annette Black'/>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu renderOnMount align='end'>
+                      <div className='d-flex align-items-start border-bottom px-3 py-1 mb-2' style={{width: '16rem'}}>
+                        <ImageLoader src='/images/avatars/03.jpg' width={48} height={48} placeholder={false}
+                                     className='rounded-circle' alt='Annette Black'/>
+                        <div className='ps-2'>
+                          <h6 className='fs-base mb-0'>Annette Black</h6>
+                          <StarRating size='sm' rating={5}/>
+                          <div className='fs-xs py-2'>
+                            (302) 555-0107<br/>annette_black@email.com
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <Dropdown.Item as={Link} href='/real-estate/account-info'>
-                    <i className='fi-lock opacity-60 me-2'></i>
-                    Personal Info
-                  </Dropdown.Item>
-                  <Dropdown.Item as={Link} href='/real-estate/account-security'>
-                    <i className='fi-heart opacity-60 me-2'></i>
-                    Password &amp; Security
-                  </Dropdown.Item>
-                  <Dropdown.Item as={Link} href='/real-estate/account-properties'>
-                    <i className='fi-home opacity-60 me-2'></i>
-                    My Properties
-                  </Dropdown.Item>
-                  <Dropdown.Item as={Link} href='/real-estate/account-wishlist'>
-                    <i className='fi-heart opacity-60 me-2'></i>
-                    Wishlist
-                  </Dropdown.Item>
-                  <Dropdown.Item as={Link} href='/real-estate/account-reviews'>
-                    <i className='fi-star opacity-60 me-2'></i>
-                    Reviews
-                  </Dropdown.Item>
-                  <Dropdown.Item as={Link} href='/real-estate/account-notifications'>
-                    <i className='fi-bell opacity-60 me-2'></i>
-                    Notifications
-                  </Dropdown.Item>
-                  <Dropdown.Divider/>
-                  <Dropdown.Item as={Link} href='/real-estate/help-center'>Help</Dropdown.Item>
-                  <Dropdown.Item as={Link} href='/signin-light'>Sign Out</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            ) : (
-              <Button variant='sm text-primary d-none d-lg-block order-lg-3' onClick={handleSigninShow}>
-                <i className='fi-user me-2'></i>
-                Sign in
-              </Button>
+                      <Dropdown.Item as={Link} href='/real-estate/account-info'>
+                        <i className='fi-lock opacity-60 me-2'></i>
+                        Personal Info
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} href='/real-estate/account-security'>
+                        <i className='fi-heart opacity-60 me-2'></i>
+                        Password &amp; Security
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} href='/real-estate/account-properties'>
+                        <i className='fi-home opacity-60 me-2'></i>
+                        My Properties
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} href='/real-estate/account-wishlist'>
+                        <i className='fi-heart opacity-60 me-2'></i>
+                        Wishlist
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} href='/real-estate/account-reviews'>
+                        <i className='fi-star opacity-60 me-2'></i>
+                        Reviews
+                      </Dropdown.Item>
+                      <Dropdown.Item as={Link} href='/real-estate/account-notifications'>
+                        <i className='fi-bell opacity-60 me-2'></i>
+                        Notifications
+                      </Dropdown.Item>
+                      <Dropdown.Divider/>
+                      <Dropdown.Item as={Link} href='/real-estate/help-center'>Help</Dropdown.Item>
+                      <Dropdown.Item as={Button} onClick={logout}>Sign Out</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                ) : (
+                  <Button variant='sm text-primary d-none d-lg-block order-lg-3' onClick={handleSigninShow}>
+                    <i className='fi-user me-2'></i>
+                    Sign in
+                  </Button>
+                )}
+              </>
             )}
-
 
             <OverlayTrigger
               trigger='click'
@@ -214,56 +218,62 @@ const RealEstatePageLayout = (props) => {
                   <Nav.Link active={props.activeNav === '/contacts'} href="/contacts">Contact</Nav.Link>
                 </Nav.Item>
 
-                {props.userLoggedIn ? (
-                  <Nav.Item as={Dropdown} className='d-lg-none'>
-                    <Dropdown.Toggle as={Nav.Link} className='d-flex align-items-center'>
-                      <ImageLoader src='/images/avatars/30.jpg' width={30} height={30} placeholder={false}
-                                   className='rounded-circle' alt='Annette Black'/>
-                      <span className='ms-2'>Annette Black</span>
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <div className='ps-3'>
-                        <StarRating size='sm' rating={5}/>
-                        <div className='fs-xs py-2'>
-                          (302) 555-0107<br/>annette_black@email.com
-                        </div>
-                      </div>
-                      <Dropdown.Item as={Link} href='/real-estate/account-info'>
-                        <i className='fi-user opacity-60 me-2'></i>
-                        Personal Info
-                      </Dropdown.Item>
-                      <Dropdown.Item as={Link} href='/real-estate/account-security'>
-                        <i className='fi-heart opacity-60 me-2'></i>
-                        Password &amp; Security
-                      </Dropdown.Item>
-                      <Dropdown.Item as={Link} href='/real-estate/account-properties'>
-                        <i className='fi-home opacity-60 me-2'></i>
-                        My Properties
-                      </Dropdown.Item>
-                      <Dropdown.Item as={Link} href='/real-estate/account-wishlist'>
-                        <i className='fi-heart opacity-60 me-2'></i>
-                        Wishlist
-                      </Dropdown.Item>
-                      <Dropdown.Item as={Link} href='/real-estate/account-reviews'>
-                        <i className='fi-star opacity-60 me-2'></i>
-                        Reviews
-                      </Dropdown.Item>
-                      <Dropdown.Item as={Link} href='/real-estate/account-notifications'>
-                        <i className='fi-bell opacity-60 me-2'></i>
-                        Notifications
-                      </Dropdown.Item>
-                      <Dropdown.Divider/>
-                      <Dropdown.Item as={Link} href='/real-estate/help-center'>Help</Dropdown.Item>
-                      <Dropdown.Item as={Link} href='/signin-light'>Sign Out</Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Nav.Item>
-                ) : (
-                  <Nav.Item className='d-lg-none'>
-                    <Nav.Link onClick={handleSigninShow}>
-                      <i className='fi-user me-2'></i>
-                      Sign in
-                    </Nav.Link>
-                  </Nav.Item>
+                {isAuthReady && (
+                  <>
+                    {
+                      user ? (
+                        <Nav.Item as={Dropdown} className='d-lg-none'>
+                          <Dropdown.Toggle as={Nav.Link} className='d-flex align-items-center'>
+                            <ImageLoader src='/images/avatars/30.jpg' width={30} height={30} placeholder={false}
+                                         className='rounded-circle' alt='Annette Black'/>
+                            <span className='ms-2'>Annette Black</span>
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu>
+                            <div className='ps-3'>
+                              <StarRating size='sm' rating={5}/>
+                              <div className='fs-xs py-2'>
+                                (302) 555-0107<br/>annette_black@email.com
+                              </div>
+                            </div>
+                            <Dropdown.Item as={Link} href='/real-estate/account-info'>
+                              <i className='fi-user opacity-60 me-2'></i>
+                              Personal Info
+                            </Dropdown.Item>
+                            <Dropdown.Item as={Link} href='/real-estate/account-security'>
+                              <i className='fi-heart opacity-60 me-2'></i>
+                              Password &amp; Security
+                            </Dropdown.Item>
+                            <Dropdown.Item as={Link} href='/real-estate/account-properties'>
+                              <i className='fi-home opacity-60 me-2'></i>
+                              My Properties
+                            </Dropdown.Item>
+                            <Dropdown.Item as={Link} href='/real-estate/account-wishlist'>
+                              <i className='fi-heart opacity-60 me-2'></i>
+                              Wishlist
+                            </Dropdown.Item>
+                            <Dropdown.Item as={Link} href='/real-estate/account-reviews'>
+                              <i className='fi-star opacity-60 me-2'></i>
+                              Reviews
+                            </Dropdown.Item>
+                            <Dropdown.Item as={Link} href='/real-estate/account-notifications'>
+                              <i className='fi-bell opacity-60 me-2'></i>
+                              Notifications
+                            </Dropdown.Item>
+                            <Dropdown.Divider/>
+                            <Dropdown.Item as={Link} href='/real-estate/help-center'>Help</Dropdown.Item>
+                            <Dropdown.Item as={Button} onClick={logout}>Sign Out</Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Nav.Item>
+                      ) : (
+                        <Nav.Item className='d-lg-none'>
+                          <Nav.Link onClick={handleSigninShow}>
+                            <i className='fi-user me-2'></i>
+                            Sign in
+                          </Nav.Link>
+                        </Nav.Item>
+                      )
+                    }
+                  </>
                 )}
               </Nav>
             </Navbar.Collapse>

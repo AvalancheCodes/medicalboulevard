@@ -15,6 +15,7 @@ const SubscribeHero = () => {
       <Card.Img
         as={Image}
         src={happyDoctors}
+        alt={'Happy Doctors hero image'}
         sizes="100vw"/>
       <Card.ImgOverlay
         className={"d-flex flex-column"}

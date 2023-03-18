@@ -4,20 +4,44 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import CloseButton from 'react-bootstrap/CloseButton'
+import Alert from "react-bootstrap/Alert";
 import ImageLoader from '../ImageLoader'
 import PasswordToggle from '../PasswordToggle'
+import { useAuthContext } from "../../state/AuthStateProvider/useAuthContext";
 
-const SignInModalLight = ({ onSwap, pillButtons, ...props }) => {
 
+const SignInModalLight = ({onSwap, pillButtons, ...props}) => {
+  const {loginEmailPassword} = useAuthContext();
+  const [formData, setFormData] = useState({email: "", password: "",});
+
+  const [errorText, setErrorText] = useState(null);
   // Form validation
   const [validated, setValidated] = useState(false)
   const handleSubmit = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    setValidated(true);
+
+    setErrorText(null);
+
     const form = event.currentTarget
     if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
+      setErrorText('Invalid input');
+      return;
     }
-    setValidated(true);
+    loginEmailPassword(formData.email, formData.password)
+      .then((userCredential) => {
+        console.log(`User logged in: ${JSON.stringify(userCredential)}`);
+        props.onHide()
+      })
+      .catch(e => setErrorText(e.message));
+  }
+
+  const handleChange = (e) => {
+    setFormData(curr => ({
+      ...curr,
+      [e.target.name]: e.target.value
+    }));
   }
 
   return (
@@ -30,16 +54,17 @@ const SignInModalLight = ({ onSwap, pillButtons, ...props }) => {
         />
         <div className='row mx-0 align-items-center'>
           <div className='col-md-6 border-end-md p-4 p-sm-5'>
-            <h2 className='h3 mb-4 mb-sm-5'>Hey there!<br />Welcome back.</h2>
+            <h2 className='h3 mb-4 mb-sm-5'>Hey there!<br/>Welcome back.</h2>
             <div className='d-flex justify-content-center'>
               <ImageLoader
                 src='/images/signin-modal/signin.svg'
                 width={344}
                 height={292}
-                alt='Illusration'
+                alt='Illustration'
               />
             </div>
-            <div className='mt-4 mt-sm-5'>Don&apos;t have an account? <a href='#' onClick={onSwap}>Sign up here</a></div>
+            <div className='mt-4 mt-sm-5'>Don&apos;t have an account? <a href='#' onClick={onSwap}>Sign up here</a>
+            </div>
           </div>
           <div className='col-md-6 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5'>
             <Button variant={`outline-info ${pillButtons ? 'rounded-pill' : ''} w-100 mb-3`}>
@@ -51,9 +76,9 @@ const SignInModalLight = ({ onSwap, pillButtons, ...props }) => {
               Sign in with Facebook
             </Button>
             <div className='d-flex align-items-center py-3 mb-3'>
-              <hr className='w-100' />
+              <hr className='w-100'/>
               <div className='px-3'>Or</div>
-              <hr className='w-100' />
+              <hr className='w-100'/>
             </div>
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
               <Form.Group controlId='si-email' className='mb-4'>
@@ -61,6 +86,8 @@ const SignInModalLight = ({ onSwap, pillButtons, ...props }) => {
                 <Form.Control
                   type='email'
                   placeholder='Enter your email'
+                  name='email'
+                  value={formData.email} onChange={handleChange}
                   required
                 />
               </Form.Group>
@@ -69,9 +96,17 @@ const SignInModalLight = ({ onSwap, pillButtons, ...props }) => {
                   <Form.Label htmlFor='si-password' className='mb-0'>Password</Form.Label>
                   <Link href='#' className='fs-sm'>Forgot password?</Link>
                 </div>
-                <PasswordToggle id='si-password' placeholder='Enter password' required />
+                <PasswordToggle
+                  id='si-password'
+                  placeholder='Enter password'
+                  name='password'
+                  value={formData.password} onChange={handleChange}
+                  required/>
               </Form.Group>
-              <Button type='submit' size='lg' variant={`primary ${pillButtons ? 'rounded-pill' : ''} w-100`}>Sign in</Button>
+              {errorText && (<Alert variant="danger">{errorText}</Alert>)}
+              <Button type='submit' size='lg' variant={`primary ${pillButtons ? 'rounded-pill' : ''} w-100`}>
+                Sign in
+              </Button>
             </Form>
           </div>
         </div>

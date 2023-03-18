@@ -4,20 +4,60 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import CloseButton from 'react-bootstrap/CloseButton'
+import Alert from "react-bootstrap/Alert";
 import ImageLoader from '../ImageLoader'
 import PasswordToggle from '../PasswordToggle'
+import { useAuthContext } from "../../state/AuthStateProvider/useAuthContext";
 
-const SignUpModalLight = ({ onSwap, pillButtons, ...props }) => {
+const SignUpModalLight = ({onSwap, pillButtons, ...props}) => {
+  const {signUpEmailPassword} = useAuthContext();
+  const [formData, setFormData] = useState(
+    {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
+    }
+  );
 
+  const [errorText, setErrorText] = useState(null);
   // Form validation
   const [validated, setValidated] = useState(false)
+
   const handleSubmit = (event) => {
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
+    const form = event.currentTarget;
+    event.preventDefault();
+    event.stopPropagation();
     setValidated(true);
+
+    setErrorText(null);
+
+    if (form.checkValidity() === false) {
+      setErrorText('Invalid input');
+      return;
+    }
+    if (formData.password !== formData.confirmPassword) {
+      setErrorText('Passwords do not match');
+      return;
+    }
+    signUpEmailPassword(formData.email, formData.password, {
+      firstName: formData.firstName,
+      lastName: formData.lastName
+    })
+      .then((uid) => {
+        debugger;
+        console.log(`User created: ${uid}`);
+        props.onHide()
+      })
+      .catch(e => setErrorText(e.message));
+  }
+
+  const handleChange = (e) => {
+    setFormData(curr => ({
+      ...curr,
+      [e.target.name]: e.target.value
+    }));
   }
 
   return (
@@ -30,7 +70,7 @@ const SignUpModalLight = ({ onSwap, pillButtons, ...props }) => {
         />
         <div className='row mx-0 align-items-center'>
           <div className='col-md-6 border-end-md p-4 p-sm-5'>
-            <h2 className='h3 mb-4 mb-sm-5'>Join Finder.<br />Get premium benefits:</h2>
+            <h2 className='h3 mb-4 mb-sm-5'>Join Finder.<br/>Get premium benefits:</h2>
             <ul className='list-unstyled mb-4 mb-sm-5'>
               <li className='d-flex mb-2'>
                 <i className='fi-check-circle text-primary mt-1 me-2'></i>
@@ -50,7 +90,7 @@ const SignUpModalLight = ({ onSwap, pillButtons, ...props }) => {
                 src='/images/signin-modal/signup.svg'
                 width={344}
                 height={404}
-                alt='Illusration'
+                alt='Illustration'
               />
             </div>
             <div className='mt-sm-4 pt-md-3'>Already have an account? <a href='#' onClick={onSwap}>Sign in</a></div>
@@ -65,15 +105,26 @@ const SignUpModalLight = ({ onSwap, pillButtons, ...props }) => {
               Sign in with Facebook
             </Button>
             <div className='d-flex align-items-center py-3 mb-3'>
-              <hr className='w-100' />
+              <hr className='w-100'/>
               <div className='px-3'>Or</div>
-              <hr className='w-100' />
+              <hr className='w-100'/>
             </div>
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
-              <Form.Group controlId='su-name' className='mb-4'>
-                <Form.Label>Full name</Form.Label>
+              <Form.Group controlId='su-firstName' className='mb-4'>
+                <Form.Label>First name</Form.Label>
                 <Form.Control
-                  placeholder='Enter your full name'
+                  placeholder='Enter your first name'
+                  name='firstName'
+                  value={formData.firstName} onChange={handleChange}
+                  required
+                />
+              </Form.Group>
+              <Form.Group controlId='su-lastName' className='mb-4'>
+                <Form.Label>Last name</Form.Label>
+                <Form.Control
+                  placeholder='Enter your last name'
+                  name='lastName'
+                  value={formData.lastName} onChange={handleChange}
                   required
                 />
               </Form.Group>
@@ -82,6 +133,8 @@ const SignUpModalLight = ({ onSwap, pillButtons, ...props }) => {
                 <Form.Control
                   type='email'
                   placeholder='Enter your email'
+                  name='email'
+                  value={formData.email} onChange={handleChange}
                   required
                 />
               </Form.Group>
@@ -89,20 +142,34 @@ const SignUpModalLight = ({ onSwap, pillButtons, ...props }) => {
                 <Form.Label htmlFor='su-password'>
                   Password <span className='fs-sm text-muted'>min. 8 char</span>
                 </Form.Label>
-                <PasswordToggle id='su-password' minLength='8' required />
+                <PasswordToggle id='su-password' minLength='8'
+                                name='password'
+                                value={formData.password} onChange={handleChange}
+                                required/>
               </Form.Group>
               <Form.Group className='mb-4'>
                 <Form.Label htmlFor='su-confirm-password'>Confirm password</Form.Label>
-                <PasswordToggle id='su-confirm-password' minLength='8' required />
+                <PasswordToggle id='su-confirm-password' minLength='8'
+                                name='confirmPassword'
+                                value={formData.confirmPassword} onChange={handleChange}
+                                required/>
               </Form.Group>
               <Form.Check
                 type='checkbox'
                 id='terms-agree'
-                label={[<span key={1}>By joining, I agree to the </span>, <Link key={2} href='#'>Terms of use</Link>, <span key={3}> and </span>, <Link key={4} href='#'>Privacy policy</Link>]}
+                label={[
+                  <span key={1}>By joining, I agree to the </span>,
+                  <Link key={2} href='#'>Terms of use</Link>,
+                  <span key={3}> and </span>,
+                  <Link key={4} href='#'>Privacy policy</Link>
+                ]}
                 required
                 className='mb-4'
               />
-              <Button type='submit' size='lg' variant={`primary ${pillButtons ? 'rounded-pill' : ''} w-100`}>Sign up</Button>
+              {errorText && (<Alert variant="danger">{errorText}</Alert>)}
+              <Button type='submit' size='lg' variant={`primary ${pillButtons ? 'rounded-pill' : ''} w-100`}>
+                Sign up
+              </Button>
             </Form>
           </div>
         </div>
