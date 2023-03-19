@@ -8,7 +8,7 @@ import {
 } from 'firebase/auth';
 import { setDoc, Timestamp } from 'firebase/firestore';
 import { FirebaseServiceBase } from "./FirebaseServiceBase";
-import { normalizeBeforeSave } from "../../utils/normalizeBeforeSave";
+import registerUserProfileSchema from "../../utils/yup/registerUserProfileSchema";
 
 export class FirebaseAuthService extends FirebaseServiceBase {
   _auth = null;
@@ -47,13 +47,16 @@ export class FirebaseAuthService extends FirebaseServiceBase {
    */
   async createUserWithEmailAndPassword(email, password, {firstName, lastName}) {
     try {
+      const userProfileData = {
+        firstName: firstName?.trim(),
+        lastName: lastName?.trim()
+      }
+      await registerUserProfileSchema.validate(userProfileData, {strict: true});
       const credentials = await createUserWithEmailAndPassword(this._auth, email, password);
-      const dataToSave = normalizeBeforeSave({
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
+      const dataToSave = {
+        ...userProfileData,
         createdAt: Timestamp.now()
-      });
+      };
       await setDoc(this._referencesService.getUserProfileDocumentReference(credentials.user.uid), dataToSave);
       return credentials.user.uid;
     } catch (e) {

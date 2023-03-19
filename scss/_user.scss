@@ -23,3 +23,15 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
+
+.circle {
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  padding: 10px;
+  background: rgba(104, 158, 163, 0.1);
+  border: 3px solid rgba(104, 158, 163, 0.1);
+  color: #689EA3;
+  text-align: center;
+  font: 32px Arial, sans-serif;
+}

@@ -1,10 +1,9 @@
-import Container from 'react-bootstrap/Container'
 import Image from 'next/image'
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Container from 'react-bootstrap/Container'
 import RealEstatePageLayout from '../../components/partials/RealEstatePageLayout'
 import { SERVICE_FEATURES } from "../../utils/dummy";
-import HireUsForm from "../../components/partials/HireUsForm";
 import greetingImg from "../../public/images/services/receptionest-greeting-1.png";
 
 const FeatureItem = ({img, title, description, liLines}) => {
@@ -36,8 +35,6 @@ const FeatureItem = ({img, title, description, liLines}) => {
 const pageTitle = 'Services';
 const activeNav = '/services';
 const HomePage = () => {
-  const features = SERVICE_FEATURES;
-
   return (
     <RealEstatePageLayout
       pageTitle={pageTitle}
@@ -65,19 +62,11 @@ const HomePage = () => {
         </div>
 
         <Row className='pt-4'>
-          {features.map(x => (
+          {SERVICE_FEATURES.map(x => (
             <Col xs={6} md={4} key={x.title} className='my-3'>
               <FeatureItem title={x.title} description={x.description} img={x.img} liLines={x.liLines}/>
             </Col>
           ))}
-        </Row>
-      </Container>
-
-      <Container as='section' className='pt-5'>
-        <Row className='justify-content-center'>
-          <Col xs={12} md={6}>
-            <HireUsForm/>
-          </Col>
         </Row>
       </Container>
 

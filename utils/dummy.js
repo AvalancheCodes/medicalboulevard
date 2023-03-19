@@ -250,3 +250,54 @@ export const SERVICE_FEATURES = [
     ]
   }
 ];
+
+export const SERVICES_FLEXIBLE_SPACE_AND_SCHEDULING_STEPS_ITEMS = [
+  {
+    title: "Discovery Phase",
+    description: "In the initial discovery phase, we'll work with you to understand your practice's unique values, personality, and target audience. This will help us develop a customised branding and marketing strategy that reflects your practice's vision and resonates with your ideal patients"
+  },
+  {
+    title: "Website Design and Development",
+    description: "A well-designed website is essential for establishing your practice's online presence. We'll create a custom website that showcases your unique offerings and provides a seamless user experience for your patients"
+  },
+  {
+    title: "Search Engine Optimization (SEO)",
+    description: "Our SEO services will improve your practice's visibility on search engines, making it easier for potential patients to find you online. We'll optimise your website for relevant keywords, build quality backlinks, and continuously monitor and refine your SEO strategy to keep you ahead of the competition"
+  },
+  {
+    title: "Social Media Marketing",
+    description: "Social media is a powerful tool for building brand awareness and engaging with your audience. We'll create and manage your social media accounts, post engaging content, and interact with your followers to increase your online visibility"
+  },
+  {
+    title: "Branding and Identity",
+    description: "A strong brand identity sets your practice apart from your competitors and creates a lasting impression on your patients. We'll work with you to develop a brand strategy that reflects your practice's values and personality and resonates with your target audience"
+  },
+  {
+    title: "Analytics and Reporting",
+    description: "Our analytics and reporting services will provide you with valuable insights into your practice's online performance. We'll track your website traffic, social media engagement, and other key metrics, and use this data to refine your branding and marketing strategy over time"
+  },
+]
+
+export const SERVICES_FLEXIBLE_SPACE_AND_SCHEDULING_FEEDBACK_ITEMS = [
+  {
+    quote: "As a physician with over 20 years of experience, I can say with confidence that Medical Boulevard has been an invaluable resource in helping me build and grow my practice. From the cutting-edge facilities to the exceptional support staff, every aspect of the service is top-notch.",
+    authorName: "Andrea",
+    authorJobTitle: "Product Manager",
+    authorCompany: "Mailchimp",
+    authorPhoto: "/images/avatars/30.jpg"
+  },
+  {
+    quote: "I was thrilled to discover Medical Boulevard's MSO services. As a nurse practitioner just starting out, I needed affordable and flexible options for renting space and using medical equipment. Thanks to Medical Boulevard, I was able to build my practice and expand my services much faster than I ever thought possible",
+    authorName: "John",
+    authorJobTitle: "Director of Sales",
+    authorCompany: "Vidados",
+    authorPhoto: "/images/avatars/30.jpg"
+  },
+  {
+    quote: "As an aesthetician, I know how important it is to have a strong brand and a compelling online presence. That's why I turned to Medical Boulevard for their expert branding and marketing services. They created a beautiful website, helped me optimize my social media accounts, and provided me with ongoing support to ensure my success.",
+    authorName: "Alex",
+    authorJobTitle: "Product Designer",
+    authorCompany: "Capsule",
+    authorPhoto: "/images/avatars/30.jpg"
+  },
+]

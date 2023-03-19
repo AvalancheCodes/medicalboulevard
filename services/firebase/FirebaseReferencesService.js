@@ -5,6 +5,7 @@ export class FirebaseReferencesService extends FirebaseServiceBase {
   _db = null;
 
   _userProfilesCollectionName = "UserProfiles";
+  _hireUsCollectionName = "HireUs"
 
   constructor(firebaseApp) {
     super(firebaseApp);
@@ -22,4 +23,15 @@ export class FirebaseReferencesService extends FirebaseServiceBase {
   }
 
   //#endregion UserProfiles
+
+  //#region HireUs
+  getHireUsCollectionReference() {
+    return collection(this._db, this._hireUsCollectionName);
+  }
+
+  getHireUsDocumentReference(itemId) {
+    return doc(this.getHireUsCollectionReference(), itemId);
+  }
+
+  //#endregion HireUs
 }

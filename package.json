@@ -40,7 +40,8 @@
     "react-slider": "~2.0.4",
     "rellax": "~1.12.1",
     "simplebar-react": "~2.4.3",
-    "swiper": "~8.4.5"
+    "swiper": "~8.4.5",
+    "yup": "~1.0.2"
   },
   "devDependencies": {
     "autoprefixer": "~10.4.14",

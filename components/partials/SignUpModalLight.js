@@ -8,6 +8,11 @@ import Alert from "react-bootstrap/Alert";
 import ImageLoader from '../ImageLoader'
 import PasswordToggle from '../PasswordToggle'
 import { useAuthContext } from "../../state/AuthStateProvider/useAuthContext";
+import {
+  USER_PROFILE_FIRST_NAME_MINLEN, USER_PROFILE_FIRST_NAME_MAXLEN,
+  USER_PROFILE_LAST_NAME_MINLEN, USER_PROFILE_LAST_NAME_MAXLEN,
+  USER_PROFILE_PASSWORD_MINLEN
+} from "../../utils/constants";
 
 const SignUpModalLight = ({onSwap, pillButtons, ...props}) => {
   const {signUpEmailPassword} = useAuthContext();
@@ -23,7 +28,8 @@ const SignUpModalLight = ({onSwap, pillButtons, ...props}) => {
 
   const [errorText, setErrorText] = useState(null);
   // Form validation
-  const [validated, setValidated] = useState(false)
+  const [validated, setValidated] = useState(false);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -41,6 +47,7 @@ const SignUpModalLight = ({onSwap, pillButtons, ...props}) => {
       setErrorText('Passwords do not match');
       return;
     }
+    setIsSubmitDisabled(true);
     signUpEmailPassword(formData.email, formData.password, {
       firstName: formData.firstName,
       lastName: formData.lastName
@@ -48,9 +55,10 @@ const SignUpModalLight = ({onSwap, pillButtons, ...props}) => {
       .then((uid) => {
         debugger;
         console.log(`User created: ${uid}`);
-        props.onHide()
+        props.onHide();
       })
-      .catch(e => setErrorText(e.message));
+      .catch(e => setErrorText(e.message))
+      .finally(() => setIsSubmitDisabled(false));
   }
 
   const handleChange = (e) => {
@@ -109,13 +117,15 @@ const SignUpModalLight = ({onSwap, pillButtons, ...props}) => {
               <div className='px-3'>Or</div>
               <hr className='w-100'/>
             </div>
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form validated={validated} onSubmit={handleSubmit}>
               <Form.Group controlId='su-firstName' className='mb-4'>
                 <Form.Label>First name</Form.Label>
                 <Form.Control
                   placeholder='Enter your first name'
                   name='firstName'
                   value={formData.firstName} onChange={handleChange}
+                  minLength={USER_PROFILE_FIRST_NAME_MINLEN}
+                  maxLength={USER_PROFILE_FIRST_NAME_MAXLEN}
                   required
                 />
               </Form.Group>
@@ -125,6 +135,8 @@ const SignUpModalLight = ({onSwap, pillButtons, ...props}) => {
                   placeholder='Enter your last name'
                   name='lastName'
                   value={formData.lastName} onChange={handleChange}
+                  minLength={USER_PROFILE_LAST_NAME_MINLEN}
+                  maxLength={USER_PROFILE_LAST_NAME_MAXLEN}
                   required
                 />
               </Form.Group>
@@ -142,17 +154,21 @@ const SignUpModalLight = ({onSwap, pillButtons, ...props}) => {
                 <Form.Label htmlFor='su-password'>
                   Password <span className='fs-sm text-muted'>min. 8 char</span>
                 </Form.Label>
-                <PasswordToggle id='su-password' minLength='8'
-                                name='password'
-                                value={formData.password} onChange={handleChange}
-                                required/>
+                <PasswordToggle
+                  id='su-password'
+                  name='password'
+                  value={formData.password} onChange={handleChange}
+                  minLength={USER_PROFILE_PASSWORD_MINLEN}
+                  required/>
               </Form.Group>
               <Form.Group className='mb-4'>
                 <Form.Label htmlFor='su-confirm-password'>Confirm password</Form.Label>
-                <PasswordToggle id='su-confirm-password' minLength='8'
-                                name='confirmPassword'
-                                value={formData.confirmPassword} onChange={handleChange}
-                                required/>
+                <PasswordToggle
+                  id='su-confirm-password'
+                  name='confirmPassword'
+                  value={formData.confirmPassword} onChange={handleChange}
+                  minLength={USER_PROFILE_PASSWORD_MINLEN}
+                  required/>
               </Form.Group>
               <Form.Check
                 type='checkbox'
@@ -167,7 +183,8 @@ const SignUpModalLight = ({onSwap, pillButtons, ...props}) => {
                 className='mb-4'
               />
               {errorText && (<Alert variant="danger">{errorText}</Alert>)}
-              <Button type='submit' size='lg' variant={`primary ${pillButtons ? 'rounded-pill' : ''} w-100`}>
+              <Button type='submit' size='lg' variant={`primary ${pillButtons ? 'rounded-pill' : ''} w-100`}
+                      disabled={isSubmitDisabled}>
                 Sign up
               </Button>
             </Form>
