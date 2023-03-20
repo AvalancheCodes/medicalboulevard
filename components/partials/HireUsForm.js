@@ -54,7 +54,7 @@ const HireUsForm = ({className}) => {
       email: formData.email,
       companyName: formData.companyName,
       budget: formData.budget,
-      projectInfo: formData.budget
+      projectInfo: formData.projectInfo
     })
       .then(() => {
         setFormData({...initialFormData});
