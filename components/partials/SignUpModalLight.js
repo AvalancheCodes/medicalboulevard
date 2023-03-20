@@ -7,7 +7,7 @@ import CloseButton from 'react-bootstrap/CloseButton'
 import Alert from "react-bootstrap/Alert";
 import ImageLoader from '../ImageLoader'
 import PasswordToggle from '../PasswordToggle'
-import { useAuthContext } from "../../state/AuthStateProvider/useAuthContext";
+import useAuthContext from "../../state/AuthStateProvider/useAuthContext";
 import {
   USER_PROFILE_FIRST_NAME_MINLEN, USER_PROFILE_FIRST_NAME_MAXLEN,
   USER_PROFILE_LAST_NAME_MINLEN, USER_PROFILE_LAST_NAME_MAXLEN,

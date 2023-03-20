@@ -1,6 +1,6 @@
 import {
-  createUserWithEmailAndPassword,
-  getAuth,
+  Auth,
+  createUserWithEmailAndPassword, onAuthStateChanged,
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
@@ -9,15 +9,17 @@ import {
 import { setDoc, Timestamp } from 'firebase/firestore';
 import { FirebaseServiceBase } from "./FirebaseServiceBase";
 import registerUserProfileSchema from "../../utils/yup/registerUserProfileSchema";
+import { FirebaseReferencesService } from "./FirebaseReferencesService";
+import { FirebaseApp } from "firebase/app";
 
 export class FirebaseAuthService extends FirebaseServiceBase {
-  _auth = null;
-  _referencesService = null;
+  private readonly _auth: Auth;
+  private readonly _referencesService: FirebaseReferencesService;
 
-  constructor(firebaseApp, referencesService) {
+  constructor(firebaseApp: FirebaseApp, referencesService: FirebaseReferencesService, auth: Auth) {
     super(firebaseApp);
     this._referencesService = referencesService;
-    this._auth = getAuth(this._firebaseApp);
+    this._auth = auth;
   }
 
   async signInWithLoginPassword(email, password) {
@@ -33,7 +35,7 @@ export class FirebaseAuthService extends FirebaseServiceBase {
     return signOut(this._auth);
   }
 
-  async sendResetPasswordEmail(email) {
+  async sendResetPasswordEmail(email: string) {
     try {
       return await sendPasswordResetEmail(this._auth, email);
     } catch (e) {
@@ -45,13 +47,13 @@ export class FirebaseAuthService extends FirebaseServiceBase {
   /**
    * @return {Promise<string>} User Id
    */
-  async createUserWithEmailAndPassword(email, password, {firstName, lastName}) {
+  async createUserWithEmailAndPassword(email: string, password: string, { firstName, lastName }) {
     try {
       const userProfileData = {
         firstName: firstName?.trim(),
         lastName: lastName?.trim()
       }
-      await registerUserProfileSchema.validate(userProfileData, {strict: true});
+      await registerUserProfileSchema.validate(userProfileData, { strict: true });
       const credentials = await createUserWithEmailAndPassword(this._auth, email, password);
       const dataToSave = {
         ...userProfileData,
@@ -75,5 +77,9 @@ export class FirebaseAuthService extends FirebaseServiceBase {
       console.error(e);
       throw e;
     }
+  }
+
+  getAuth() {
+    return this._auth;
   }
 }

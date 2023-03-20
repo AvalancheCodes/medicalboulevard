@@ -1,15 +1,17 @@
-import { getFirestore, addDoc, Timestamp } from 'firebase/firestore';
+import { getFirestore, addDoc, Timestamp, Firestore } from 'firebase/firestore';
 import { FirebaseServiceBase } from "./FirebaseServiceBase";
 import hireUsFormSchema from "../../utils/yup/hireUsFormSchema";
+import { FirebaseApp } from "firebase/app";
+import { FirebaseReferencesService } from "./FirebaseReferencesService";
 
 export class FirebaseHireUsService extends FirebaseServiceBase {
-  _db = null;
-  _referencesService = null;
+  private readonly _db: Firestore;
+  private readonly _referencesService: FirebaseReferencesService;
 
-  constructor(firebaseApp, referencesService) {
+  constructor(firebaseApp: FirebaseApp, referencesService: FirebaseReferencesService, db: Firestore) {
     super(firebaseApp);
     this._referencesService = referencesService;
-    this._db = getFirestore(this._firebaseApp);
+    this._db = db;
   }
 
   async sendHireUsRequest({
@@ -29,7 +31,7 @@ export class FirebaseHireUsService extends FirebaseServiceBase {
         budget: budget, // no need to trim, comes from select options
         projectInfo: projectInfo?.trim()
       }
-      await hireUsFormSchema.validate(hireUsData, {strict: true});
+      await hireUsFormSchema.validate(hireUsData, { strict: true });
       // TODO: change to API request to server and add Send Email to David.
       return await addDoc(this._referencesService.getHireUsCollectionReference(), {
         ...hireUsData,

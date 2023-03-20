@@ -7,7 +7,7 @@ import CloseButton from 'react-bootstrap/CloseButton'
 import Alert from "react-bootstrap/Alert";
 import ImageLoader from '../ImageLoader'
 import PasswordToggle from '../PasswordToggle'
-import { useAuthContext } from "../../state/AuthStateProvider/useAuthContext";
+import useAuthContext from "../../state/AuthStateProvider/useAuthContext";
 
 
 const SignInModalLight = ({onSwap, pillButtons, ...props}) => {

@@ -1,10 +1,3 @@
-export const RecurringType = {
-  None: "none",
-  EveryDay: "every-day",
-  EveryWeek: "every-week",
-  EveryMonth: "every-month"
-}
-
 const FIRST_NAME_MINLEN = 1;
 const FIRST_NAME_MAXLEN = 32;
 

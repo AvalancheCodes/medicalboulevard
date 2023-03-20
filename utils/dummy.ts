@@ -1,7 +1,7 @@
 import icon1 from "../public/images/services/features/icon1.svg";
 import icon2 from "../public/images/services/features/icon2.svg";
 import icon3 from "../public/images/services/features/icon3.svg";
-import { RecurringType } from "./constants";
+import { RecurringType } from "./RecurringType";
 
 export const HOMEPAGE_CATEGORIES = [
   {

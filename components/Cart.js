@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { RecurringType } from "../utils/constants";
+import { RecurringType } from "../utils/RecurringType";
 import { CART_LINE_ITEMS } from "../utils/dummy";
 import currencyFormatter from "../utils/currencyFormatter";
 import moment from "moment";

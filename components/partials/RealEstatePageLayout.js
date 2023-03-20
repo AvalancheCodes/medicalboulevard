@@ -20,7 +20,7 @@ import Badge from "react-bootstrap/Badge";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Cart from "../Cart";
 import Popover from "react-bootstrap/Popover";
-import { useAuthContext } from "../../state/AuthStateProvider/useAuthContext";
+import useAuthContext from "../../state/AuthStateProvider/useAuthContext";
 
 const RealEstatePageLayout = (props) => {
   const {user, isAuthReady, logout} = useAuthContext()
