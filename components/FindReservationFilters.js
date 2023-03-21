@@ -78,7 +78,7 @@ const RepeatFilters = ({className}) => {
         <Col xs={'auto'}>
           <Form.Label>End Repeat</Form.Label>
           <Row className='justify-content-between'>
-            <Col xs={'auto'} className="d-flex p-r-0">
+            <Col xs={'auto'} className="d-flex pe-0">
               <Form.Check className="my-auto" type='radio' id="on-date" name='repeat-end-radio' label="On Date"/>
             </Col>
             <Col xs={'auto'} className="d-flex">
@@ -91,7 +91,7 @@ const RepeatFilters = ({className}) => {
             </Col>
           </Row>
           <Row className="mt-2 justify-content-between">
-            <Col xs={'auto'} className="d-flex p-r-0">
+            <Col xs={'auto'} className="d-flex pe-0">
               <Form.Check className="my-auto" type='radio' id="after-date" name='repeat-end-radio' label="After"/>
             </Col>
             <Col xs={'auto'} className="d-flex">
@@ -100,7 +100,7 @@ const RepeatFilters = ({className}) => {
                   paddingLeft: '0.7rem',
                   width: '7ch'
                 }}
-                className="my-auto p-r-0" type="number" size='sm' placeholder=''/>
+                className="my-auto pe-" type="number" size='sm' placeholder=''/>
               <span className="my-auto">&nbsp;times</span>
             </Col>
           </Row>

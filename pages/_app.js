@@ -29,6 +29,7 @@ const Finder = ({Component, pageProps}) => {
         <link rel='mask-icon' color='#5bbad5' href='/favicon/safari-pinned-tab.svg'/>
         <meta name='msapplication-TileColor' content='#766df4'/>
         <meta name='theme-color' content='#ffffff'/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
       </Head>
 
       <AuthStateProvider>

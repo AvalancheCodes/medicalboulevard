@@ -16,7 +16,7 @@ import heroImg from "../../public/images/services/services-rooms-scheduling-hero
 const StepItem = ({number, title, description}) => {
   return (
     <div>
-      <div className='circle'>{number.toString()}</div>
+      <div className='number-in-circle'>{number.toString()}</div>
       <h1 className='h4 py-2'>{title}</h1>
       <p>{description}</p>
     </div>
