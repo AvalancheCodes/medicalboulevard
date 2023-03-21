@@ -15,6 +15,7 @@ import Card from "react-bootstrap/Card";
 import StarRating from "../../components/StarRating";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
+import RecentlyViewed from "../../components/RecentlyViewed";
 
 const ROOMS = [
   { id: "1", name: "room1" },
@@ -106,6 +107,7 @@ const MedicalRoomIdPage = ({ room }) => {
           </Col>
         </Row>
         <Row>
+
           <Col xs={8}>
             <Container className='position-relative'>
               <Swiper
@@ -145,80 +147,114 @@ const MedicalRoomIdPage = ({ room }) => {
               <ul className='swiper-thumbnails'></ul>
             </Container>
 
-            <div>
-              <h1>Serenity Room</h1>
-              <p>
-                <i className='fi-home me-1'></i>
-                &nbsp;Elevate patient care in a spacious, sunlit setting
-              </p>
-              <div className='d-flex flex-row'>
-                <p className='me-4'>
-                  <i className="fa-solid fa-sink"></i>
-                  <i className="fa-solid fa-sink"></i>
-                  &nbsp;Double Sink
-                </p>
-                <p className='me-4'>
-                  <i className="fa-solid fa-sun me-1"></i>
-                  &nbsp;Natural Light
-                </p>
-                <p className='me-4'>
-                  <i className="fa-solid fa-ruler me-1"></i>
-                  &nbsp;85 sq.f
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <h1>
-                Overview
-              </h1>
-              <p>
-                Elevate your patient care in our spacious, sunlit Serenity Suite, thoughtfully designed for medical
-                professionals. This inviting atmosphere promotes a sense of comfort and trust, enhancing the overall
-                treatment experience for your patients. Benefit from the room's well-equipped layout, tailored to
-                support seamless consultations and procedures in a serene environment.
-              </p>
-              <p>
-                Please note: While the Serenity Suite offers a wide range of amenities to support your practice, it
-                does not include specialised medical equipment for specific procedures. Medical professionals are
-                responsible for providing their own specialised tools and instruments as needed.
-              </p>
-            </div>
-
-            <div>
-              <h1>
-                Medical Space Coordinator
-              </h1>
-              <Card className='card-horizontal'>
-                <div className='card-img-top'>
-                  <ImageLoader
-                    src='/images/real-estate/catalog/03.jpg'
-                    layout='fill'
-                    objectFit='cover'
-                    quality={100}
-                    alt='Card image'
-                  />
-                </div>
-                <div className='d-flex flex-column justify-content-between px-4 py-2'>
-                  <blockquote className='blockquote h6 fw-normal'>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo.
-                  </blockquote>
-                  <div>
-                    <div className='d-flex flex-row justify-content-between'>
-                      <h1 className='h6 m-0'>Kristin Johnson</h1>
-                      <StarRating rating={5}/>
+            <Container className='my-4'>
+              <Row>
+                <Col>
+                  <h1>
+                    Serenity Room
+                  </h1>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Row>
+                    <p>
+                      <i className='fi-home me-1'></i>
+                      &nbsp;Elevate patient care in a spacious, sunlit setting
+                    </p>
+                    <div className='d-flex flex-row'>
+                      <p className='me-4'>
+                        <i className="fa-solid fa-sink"></i>
+                        <i className="fa-solid fa-sink"></i>
+                        &nbsp;Double Sink
+                      </p>
+                      <p className='me-4'>
+                        <i className="fa-solid fa-sun me-1"></i>
+                        &nbsp;Natural Light
+                      </p>
+                      <p className='me-4'>
+                        <i className="fa-solid fa-ruler me-1"></i>
+                        &nbsp;85 sq.f
+                      </p>
                     </div>
-                    <div className='d-flex flex-row justify-content-between'>
-                      <p className='fw-light mb-0'>Your Trusted Partner in Medical Space Solutions</p>
-                      <p className='fw-light mb-0'>24 reviews</p>
-                    </div>
-                  </div>
-                </div>
+                  </Row>
+                </Col>
+              </Row>
+            </Container>
 
-              </Card>
-            </div>
+            <Container className='my-4'>
+              <Row>
+                <Col>
+                  <h1>
+                    Overview
+                  </h1>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <p>
+                    Elevate your patient care in our spacious, sunlit Serenity Suite, thoughtfully designed for medical
+                    professionals. This inviting atmosphere promotes a sense of comfort and trust, enhancing the overall
+                    treatment experience for your patients. Benefit from the room's well-equipped layout, tailored to
+                    support seamless consultations and procedures in a serene environment.
+                  </p>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <p>
+                    Please note: While the Serenity Suite offers a wide range of amenities to support your practice, it
+                    does not include specialised medical equipment for specific procedures. Medical professionals are
+                    responsible for providing their own specialised tools and instruments as needed.
+                  </p>
+                </Col>
+              </Row>
+            </Container>
+
+            <Container className='my-4'>
+              <Row>
+                <Col>
+                  <h1>
+                    Medical Space Coordinator
+                  </h1>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Card className='card-horizontal'>
+                    <div className='card-img-top'>
+                      <ImageLoader
+                        src='/images/real-estate/catalog/03.jpg'
+                        layout='fill'
+                        objectFit='cover'
+                        quality={100}
+                        alt='Card image'
+                      />
+                    </div>
+                    <div className='d-flex flex-column justify-content-between px-4 py-2'>
+                      <blockquote className='blockquote h6 fw-normal'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        ut
+                        aliquip ex ea commodo.
+                      </blockquote>
+                      <div>
+                        <div className='d-flex flex-row justify-content-between'>
+                          <h1 className='h6 m-0'>Kristin Johnson</h1>
+                          <StarRating rating={5}/>
+                        </div>
+                        <div className='d-flex flex-row justify-content-between'>
+                          <p className='fw-light mb-0'>Your Trusted Partner in Medical Space Solutions</p>
+                          <p className='fw-light mb-0'>24 reviews</p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </Card>
+                </Col>
+              </Row>
+            </Container>
           </Col>
 
           <Col xs={4}>
@@ -322,6 +358,12 @@ const MedicalRoomIdPage = ({ room }) => {
               </Row>
 
             </Container>
+          </Col>
+
+        </Row>
+        <Row className='mt-4'>
+          <Col>
+            <RecentlyViewed/>
           </Col>
         </Row>
       </Container>
