@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { AuthStateContext } from './AuthStateContext';
-import { IAuthContext } from "./IAuthContext";
+import AuthStateContext from './AuthStateContext';
+import IAuthContext from "./IAuthContext";
 
 export default function useAuthContext(): IAuthContext {
   const context = useContext(AuthStateContext);

@@ -4,17 +4,17 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { RecurringType } from "../utils/RecurringType";
+import { RecurringType } from "../core/shared/entities/enums/RecurringType";
 
-const RoomTypesFilter = ({className}) => {
+const RoomTypesFilter = ({ className }) => {
   const roomTypes = useMemo(() => {
     return [
-      {id: "examination", label: "Examination Room"},
-      {id: "conference", label: "Conference Room"},
-      {id: "office-desk", label: "Office Desk"},
-      {id: "video-conference", label: "Video Conference"},
-      {id: "social-media-station", label: "Social Media Station"},
-      {id: "land", label: "Land"}
+      { id: "examination", label: "Examination Room" },
+      { id: "conference", label: "Conference Room" },
+      { id: "office-desk", label: "Office Desk" },
+      { id: "video-conference", label: "Video Conference" },
+      { id: "social-media-station", label: "Social Media Station" },
+      { id: "land", label: "Land" }
     ]
   }, [])
 
@@ -32,7 +32,7 @@ const RoomTypesFilter = ({className}) => {
   )
 }
 
-const SelectDayFilter = ({className}) => {
+const SelectDayFilter = ({ className }) => {
   return (
     <Container className={className}>
       <Row>
@@ -55,14 +55,14 @@ const SelectDayFilter = ({className}) => {
   )
 }
 
-const RepeatFilters = ({className}) => {
+const RepeatFilters = ({ className }) => {
 
   const repeatOptions = useMemo(() => {
     return [
-      {id: RecurringType.None, label: "None"},
-      {id: RecurringType.EveryDay, label: "Every Day"},
-      {id: RecurringType.EveryWeek, label: "Every Week"},
-      {id: RecurringType.EveryMonth, label: "Every Month"},
+      { id: RecurringType.None, label: "None" },
+      { id: RecurringType.EveryDay, label: "Every Day" },
+      { id: RecurringType.EveryWeek, label: "Every Week" },
+      { id: RecurringType.EveryMonth, label: "Every Month" },
     ]
   }, [])
 
@@ -110,7 +110,7 @@ const RepeatFilters = ({className}) => {
   );
 }
 
-const FindReservationFilters = ({className}) => {
+const FindReservationFilters = ({ className }) => {
   return (
     <Card className={className}>
       <Card.Body>

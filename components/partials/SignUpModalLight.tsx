@@ -13,52 +13,49 @@ import {
   USER_PROFILE_LAST_NAME_MINLEN, USER_PROFILE_LAST_NAME_MAXLEN,
   USER_PROFILE_PASSWORD_MINLEN
 } from "../../utils/constants";
+import trimObjectStrings from "../../utils/trimObjectStrings"
+import { IRegisterUserFormData } from "../../core/client/models/IRegisterUserFormData";
+import registerUserFormSchema from "../../core/shared/yup/registerUserFormSchema";
 
-const SignUpModalLight = ({onSwap, pillButtons, ...props}) => {
-  const {signUpEmailPassword} = useAuthContext();
-  const [formData, setFormData] = useState(
-    {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      confirmPassword: ""
-    }
-  );
+const SignUpModalLight = ({ onSwap, pillButtons, ...props }) => {
+  const { signUpEmailPassword } = useAuthContext();
+  const [formData, setFormData] = useState<IRegisterUserFormData>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
 
-  const [errorText, setErrorText] = useState(null);
+  const [errorText, setErrorText] = useState<string | null>(null);
   // Form validation
-  const [validated, setValidated] = useState(false);
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
+  const [validated, setValidated] = useState<boolean>(false);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     const form = event.currentTarget;
     event.preventDefault();
     event.stopPropagation();
-    setValidated(true);
 
+    setValidated(true);
     setErrorText(null);
 
-    if (form.checkValidity() === false) {
-      setErrorText('Invalid input');
-      return;
+    const trimmedFormData = trimObjectStrings(formData, ["password", "confirmPassword"]);
+    setFormData(trimmedFormData);
+
+    try {
+      setIsSubmitDisabled(true);
+      if (form.checkValidity() === false) throw new Error("Invalid input");
+      await registerUserFormSchema.validate(trimmedFormData, { strict: true })
+      await signUpEmailPassword(trimmedFormData.email, trimmedFormData.password, {
+        firstName: trimmedFormData.firstName,
+        lastName: trimmedFormData.lastName
+      });
+    } catch (e) {
+      setErrorText(e.message)
+    } finally {
+      setIsSubmitDisabled(false);
     }
-    if (formData.password !== formData.confirmPassword) {
-      setErrorText('Passwords do not match');
-      return;
-    }
-    setIsSubmitDisabled(true);
-    signUpEmailPassword(formData.email, formData.password, {
-      firstName: formData.firstName,
-      lastName: formData.lastName
-    })
-      .then((uid) => {
-        debugger;
-        console.log(`User created: ${uid}`);
-        props.onHide();
-      })
-      .catch(e => setErrorText(e.message))
-      .finally(() => setIsSubmitDisabled(false));
   }
 
   const handleChange = (e) => {

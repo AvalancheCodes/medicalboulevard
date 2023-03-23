@@ -1,9 +1,10 @@
 import { User, UserCredential } from "firebase/auth";
+import { IUserProfileEntity } from "../../core/shared/entities/UserProfileEntity";
 
-export interface IAuthContext {
+export default interface IAuthContext {
   user: User;
   isAuthReady: boolean;
   logout: () => Promise<void>;
-  loginEmailPassword: (email: any, password: any) => Promise<UserCredential>;
-  signUpEmailPassword: (email: string, password: string, data: any) => Promise<string>;
+  loginEmailPassword: (email: string, password: string) => Promise<UserCredential>;
+  signUpEmailPassword: (email: string, password: string, data: Omit<IUserProfileEntity, "createdAt">) => Promise<void>;
 }

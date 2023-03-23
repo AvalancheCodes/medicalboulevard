@@ -2,9 +2,10 @@ import { object, string } from 'yup';
 import {
   USER_PROFILE_FIRST_NAME_MINLEN, USER_PROFILE_FIRST_NAME_MAXLEN,
   USER_PROFILE_LAST_NAME_MAXLEN, USER_PROFILE_LAST_NAME_MINLEN
-} from "../constants";
+} from "../../../utils/constants";
+import { IUserProfileEntity } from "../entities/UserProfileEntity";
 
-const registerUserProfileSchema = object({
+const userProfileModelSchema = object<IUserProfileEntity>({
   firstName: string()
     .min(USER_PROFILE_FIRST_NAME_MINLEN, `First Name must be between ${USER_PROFILE_FIRST_NAME_MINLEN} and ${USER_PROFILE_FIRST_NAME_MAXLEN} characters.`)
     .max(USER_PROFILE_FIRST_NAME_MAXLEN, `First Name must be between ${USER_PROFILE_FIRST_NAME_MINLEN} and ${USER_PROFILE_FIRST_NAME_MAXLEN} characters.`)
@@ -15,4 +16,4 @@ const registerUserProfileSchema = object({
     .required(),
 });
 
-export default registerUserProfileSchema;
+export default userProfileModelSchema;

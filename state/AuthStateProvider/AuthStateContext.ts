@@ -1,4 +1,5 @@
 import { createContext } from 'react';
-import { IAuthContext } from "./IAuthContext";
+import IAuthContext from "./IAuthContext";
 
-export const AuthStateContext = createContext<IAuthContext>(null!);
+const AuthStateContext = createContext<IAuthContext>(null!);
+export default AuthStateContext;

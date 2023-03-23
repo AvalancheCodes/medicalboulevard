@@ -8,33 +8,39 @@ import Alert from "react-bootstrap/Alert";
 import ImageLoader from '../ImageLoader'
 import PasswordToggle from '../PasswordToggle'
 import useAuthContext from "../../state/AuthStateProvider/useAuthContext";
+import { ISignUpUserFormData } from "../../core/client/models/ISignUpUserFormData";
 
 
-const SignInModalLight = ({onSwap, pillButtons, ...props}) => {
-  const {loginEmailPassword} = useAuthContext();
-  const [formData, setFormData] = useState({email: "", password: "",});
+const SignInModalLight = ({ onSwap, pillButtons, ...props }) => {
+  const { loginEmailPassword } = useAuthContext();
+  const [formData, setFormData] = useState<ISignUpUserFormData>({ email: "", password: "" });
 
-  const [errorText, setErrorText] = useState(null);
+  const [errorText, setErrorText] = useState<string | null>(null);
   // Form validation
-  const [validated, setValidated] = useState(false)
-  const handleSubmit = (event) => {
+  const [validated, setValidated] = useState<boolean>(false)
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(false);
+
+  const handleSubmit = async (event) => {
     event.preventDefault()
     event.stopPropagation()
+
     setValidated(true);
-
     setErrorText(null);
+    setIsSubmitDisabled(true);
 
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      setErrorText('Invalid input');
-      return;
+    const form = event.currentTarget;
+
+    try {
+      if (form.checkValidity() === false) throw new Error('Invalid input');
+      const creds = await loginEmailPassword(formData.email, formData.password)
+      console.log(`User logged in: ${JSON.stringify(creds)}`);
+      props.onHide()
+    } catch (e) {
+      setErrorText(e.message)
+    } finally {
+      setIsSubmitDisabled(false);
     }
-    loginEmailPassword(formData.email, formData.password)
-      .then((userCredential) => {
-        console.log(`User logged in: ${JSON.stringify(userCredential)}`);
-        props.onHide()
-      })
-      .catch(e => setErrorText(e.message));
+
   }
 
   const handleChange = (e) => {
@@ -104,7 +110,8 @@ const SignInModalLight = ({onSwap, pillButtons, ...props}) => {
                   required/>
               </Form.Group>
               {errorText && (<Alert variant="danger">{errorText}</Alert>)}
-              <Button type='submit' size='lg' variant={`primary ${pillButtons ? 'rounded-pill' : ''} w-100`}>
+              <Button type='submit' size='lg' variant={`primary ${pillButtons ? 'rounded-pill' : ''} w-100`}
+                      disabled={isSubmitDisabled}>
                 Sign in
               </Button>
             </Form>

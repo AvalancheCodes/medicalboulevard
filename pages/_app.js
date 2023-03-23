@@ -5,6 +5,7 @@ import NProgress from 'nprogress'
 import ScrollTopButton from '../components/ScrollTopButton'
 import '../scss/theme.scss'
 import { AuthStateProvider } from "../state/AuthStateProvider/AuthStateProvider";
+import { NotificationsStateProvider } from "../state/NotificationsStateProvider/NotificationsStateProvider";
 
 const Finder = ({Component, pageProps}) => {
 
@@ -32,9 +33,11 @@ const Finder = ({Component, pageProps}) => {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
       </Head>
 
-      <AuthStateProvider>
-        <Component {...pageProps} />
-      </AuthStateProvider>
+      <NotificationsStateProvider>
+        <AuthStateProvider>
+          <Component {...pageProps} />
+        </AuthStateProvider>
+      </NotificationsStateProvider>
 
       <ScrollTopButton
         showOffset={600}

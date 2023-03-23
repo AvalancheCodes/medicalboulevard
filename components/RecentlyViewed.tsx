@@ -125,7 +125,7 @@ const RecentlyViewed = () => {
           </h1>
         </Col>
         <Col xs='auto'>
-          <Button as={Link} href='/real-estate/catalog?category=rent' variant='link fw-normal'>
+          <Button as={Link as any} href='/real-estate/catalog?category=rent' variant='link fw-normal'>
             View all
             <i className='fi-arrow-long-right ms-2'></i>
           </Button>

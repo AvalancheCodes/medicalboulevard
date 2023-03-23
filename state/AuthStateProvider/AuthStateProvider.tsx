@@ -1,34 +1,40 @@
 import { PropsWithChildren, useCallback, useEffect, useState } from "react";
 import { onAuthStateChanged, User } from "firebase/auth";
-import { authService } from "../../services/firebase";
-import { AuthStateContext } from "./AuthStateContext";
-import { IAuthContext } from "./IAuthContext";
+import { firebaseAuthService, firestoreUserProfileService } from "../../core/client/services/firebase";
+import AuthStateContext from "./AuthStateContext";
+import IAuthContext from "./IAuthContext";
+import { IUserProfileEntity } from "../../core/shared/entities/UserProfileEntity";
+
 
 export const AuthStateProvider = ({ children }: PropsWithChildren) => {
   const [user, setUser] = useState<User | undefined>();
   const [isAuthReady, setIsAuthReady] = useState<boolean>(false);
 
-  const logout = useCallback(() => authService.signOut(), []);
+  const logout = useCallback(() => firebaseAuthService.signOut(), []);
 
   const loginEmailPassword = useCallback((email, password) => {
-    return authService.signInWithLoginPassword(email, password);
+    return firebaseAuthService.signInWithLoginPassword(email, password);
   }, [])
 
   const sendResetPasswordEmail = useCallback((email) => {
-    return authService.sendResetPasswordEmail(email)
+    return firebaseAuthService.sendResetPasswordEmail(email)
       .catch((e) => {
         console.error(e);
         throw e;
       });
   }, []);
 
-  const signUpEmailPassword = useCallback((email: string, password: string, data) => {
-    return authService.createUserWithEmailAndPassword(email, password, data);
+  const signUpEmailPassword = useCallback(async (email: string, password: string, data: Omit<IUserProfileEntity, "createdAt">) => {
+    const userId = await firebaseAuthService.createUserWithEmailAndPassword(email, password);
+    await firestoreUserProfileService.createUser(userId, {
+      firstName: data.firstName,
+      lastName: data.lastName
+    });
   }, [])
 
   // Watch for User authentication state and set AppContext user object on changes
   useEffect(() => {
-    const unsubscribeFn = onAuthStateChanged(authService.getAuth(), (user) => {
+    const unsubscribeFn = onAuthStateChanged(firebaseAuthService.Auth, (user) => {
       console.log('Firebase user state changed:', user);
       setUser(user || undefined);
       setIsAuthReady(true);
