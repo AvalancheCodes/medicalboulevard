@@ -24,7 +24,7 @@ export const AuthStateProvider = ({ children }: PropsWithChildren) => {
       });
   }, []);
 
-  const signUpEmailPassword = useCallback(async (email: string, password: string, data: Omit<IUserProfileEntity, "createdAt">) => {
+  const signUpEmailPassword = useCallback(async (email: string, password: string, data: Omit<IUserProfileEntity, "createdAtMs">) => {
     const userId = await firebaseAuthService.createUserWithEmailAndPassword(email, password);
     await firestoreUserProfileService.createUser(userId, {
       firstName: data.firstName,

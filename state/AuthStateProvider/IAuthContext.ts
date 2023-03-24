@@ -6,5 +6,5 @@ export default interface IAuthContext {
   isAuthReady: boolean;
   logout: () => Promise<void>;
   loginEmailPassword: (email: string, password: string) => Promise<UserCredential>;
-  signUpEmailPassword: (email: string, password: string, data: Omit<IUserProfileEntity, "createdAt">) => Promise<void>;
+  signUpEmailPassword: (email: string, password: string, data: Omit<IUserProfileEntity, "createdAtMs">) => Promise<void>;
 }

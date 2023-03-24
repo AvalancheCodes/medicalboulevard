@@ -2,6 +2,7 @@ import icon1 from "../public/images/services/features/icon1.svg";
 import icon2 from "../public/images/services/features/icon2.svg";
 import icon3 from "../public/images/services/features/icon3.svg";
 import { RecurringType } from "../core/shared/entities/enums/RecurringType";
+import { IRoomEntity } from "../core/shared/entities/RoomEntity";
 
 export const HOMEPAGE_CATEGORIES = [
   {
@@ -301,3 +302,50 @@ export const SERVICES_FLEXIBLE_SPACE_AND_SCHEDULING_FEEDBACK_ITEMS = [
     authorPhoto: "/images/avatars/30.jpg"
   },
 ]
+
+const SerenityRoom: IRoomEntity = {
+  name: "Serenity Room",
+  slug: "serenity-room",
+  category: "Medical",
+  type: "medical examination room",
+  sizeSqf: 85,
+  pricePerHour: 275,
+  excerpt: "Elevate patient care in a spacious, sunlit setting",
+  descriptionHtml: `
+    <h1>
+        Overview
+    </h1>
+                  
+    <p>
+      Elevate your patient care in our spacious, sunlit Serenity Suite, thoughtfully designed for medical
+      professionals. This inviting atmosphere promotes a sense of comfort and trust, enhancing the overall
+      treatment experience for your patients. Benefit from the room's well-equipped layout, tailored to
+      support seamless consultations and procedures in a serene environment.
+    </p>
+    
+    <p>
+      <strong>Please note:</strong> While the Serenity Suite offers a wide range of amenities to support your practice, it
+      does not include specialised medical equipment for specific procedures. Medical professionals are
+      responsible for providing their own specialised tools and instruments as needed.
+    </p>
+  `,
+  badges: [
+    { bgColor: "#9371A3", textColor: "white", text: "Verified" },
+    { bgColor: "#1E1E1E", textColor: "white", text: "New" },
+  ],
+
+  mainImageUrl: "/images/car-finder/single/gallery/01.jpg",
+  extraImagesUrls: [
+    '/images/car-finder/single/gallery/02.jpg',
+    '/images/car-finder/single/gallery/03.jpg',
+    '/images/car-finder/single/gallery/04.jpg',
+  ],
+
+  amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+
+  createdAtMs: 1607644800000
+}
+
+export const ROOMS = [
+  SerenityRoom
+];

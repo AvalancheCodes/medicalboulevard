@@ -110,7 +110,11 @@ const RepeatFilters = ({ className }) => {
   );
 }
 
-const FindReservationFilters = ({ className }) => {
+interface IProps {
+  className?: string;
+}
+
+const FindReservationFilters = ({ className }: IProps) => {
   return (
     <Card className={className}>
       <Card.Body>

@@ -3,6 +3,17 @@ import currencyFormatter from "../utils/currencyFormatter";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
+interface IProps {
+  image: string;
+  title: string;
+  description: string;
+  sizeSqf: number;
+  category: string;
+  price: number;
+  badges: any;
+  className?: string;
+}
+
 const RoomCard = ({
                     image,
                     title,
@@ -12,7 +23,7 @@ const RoomCard = ({
                     price,
                     badges,
                     className,
-                  }) => {
+                  }: IProps) => {
   const badgesWithType = useMemo(() => {
     // TODO: Ask about other possible badges
     const typesMap = {

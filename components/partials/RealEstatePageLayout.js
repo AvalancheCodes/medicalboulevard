@@ -203,7 +203,7 @@ const RealEstatePageLayout = (props) => {
                   <Nav.Link active={props.activeNav === '/'} href="/">Home</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link active={props.activeNav === '/medical-rooms'} href="/medical-rooms">Medical Rooms</Nav.Link>
+                  <Nav.Link active={props.activeNav === '/rooms'} href="/rooms">Medical Rooms</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link active={props.activeNav === '/services'} href="/services">Services</Nav.Link>

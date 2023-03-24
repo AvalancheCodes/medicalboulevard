@@ -1,0 +1,77 @@
+[
+  {
+    "id": "1",
+    "icon": "fa-solid fa-wifi",
+    "label": "WiFi"
+  },
+  {
+    "id": "2",
+    "icon": "fa-solid fa-couch",
+    "label": "Treatment Chair"
+  },
+  {
+    "id": "3",
+    "icon": "fa-solid fa-headset",
+    "label": "Welcoming Reception"
+  },
+  {
+    "id": "4",
+    "icon": "fa-solid fa-desktop",
+    "label": "Computer Desktop"
+  },
+  {
+    "id": "5",
+    "icon": "fa-solid fa-sun",
+    "label": "Ample Natural Light"
+  },
+  {
+    "id": "6",
+    "icon": "fa-solid fa-mug-hot",
+    "label": "Break Room"
+  },
+  {
+    "id": "7",
+    "icon": "fa-solid fa-snowflake",
+    "label": "Air Conditioning"
+  },
+  {
+    "id": "8",
+    "icon": "fa-solid fa-biohazard",
+    "label": "Medical Waste Removal"
+  },
+  {
+    "id": "9",
+    "icon": "fa-solid fa-photo-film",
+    "label": "Audio Visual"
+  },
+  {
+    "id": "10",
+    "icon": "fa-solid fa-warehouse",
+    "label": "Storage and lockers"
+  },
+  {
+    "id": "11",
+    "icon": "fa-solid fa-pills",
+    "label": "Medication"
+  },
+  {
+    "id": "12",
+    "icon": "fa-solid fa-radiation",
+    "label": "Sterilization equipment"
+  },
+  {
+    "id": "13",
+    "icon": "fa-solid fa-bandage",
+    "label": "Medical consumables"
+  },
+  {
+    "id": "14",
+    "icon": "fa-solid fa-stethoscope",
+    "label": "Procedure-specific tools"
+  },
+  {
+    "id": "15",
+    "icon": "fa-solid fa-sliders",
+    "label": "Customizable furniture"
+  }
+]

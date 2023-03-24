@@ -1,5 +1,5 @@
 import { FirebaseApp } from "firebase/app";
-import { Timestamp, Firestore, doc, setDoc } from 'firebase/firestore';
+import { Firestore, doc, setDoc } from 'firebase/firestore';
 import { FirebaseServiceBase } from "./FirebaseServiceBase";
 import { FirestorePathsService } from "../../../shared/services/firebase/FirestorePathsService";
 import userProfileModelSchema from "../../../shared/yup/userProfileModelSchema";
@@ -16,12 +16,12 @@ export class FirestoreUserProfileService extends FirebaseServiceBase {
     this._db = db;
   }
 
-  async createUser(userId: string, data: Omit<IUserProfileEntity, "createdAt">) {
+  async createUser(userId: string, data: Omit<IUserProfileEntity, "createdAtMs">) {
     try {
       const dataTrimmed = trimObjectStrings(data);
       const userProfileData: IUserProfileEntity = {
         ...dataTrimmed,
-        createdAt: Timestamp.now()
+        createdAtMs: Date.now()
       }
       await userProfileModelSchema.validate(userProfileData, { strict: true });
       const docRef = doc(this._db, this._firestorePathsService.getUserProfileDocumentPath(userId));

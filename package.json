@@ -42,6 +42,7 @@
     "react-scroll": "~1.8.9",
     "react-slider": "~2.0.4",
     "rellax": "~1.12.1",
+    "sanitize-html": "~2.10.0",
     "simplebar-react": "~2.4.3",
     "swiper": "~8.4.5",
     "yup": "~1.0.2"

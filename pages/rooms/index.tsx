@@ -1,20 +1,21 @@
+import { useMemo } from "react";
+import Link from "next/link";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Form from 'react-bootstrap/Form'
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 
 import RealEstatePageLayout from '../../components/partials/RealEstatePageLayout'
 import FindReservationFilters from "../../components/FindReservationFilters";
-import Breadcrumb from "react-bootstrap/Breadcrumb";
-import Link from "next/link";
-import Form from 'react-bootstrap/Form'
 import RoomCard from "../../components/RoomCard";
-import { useMemo } from "react";
+
 import { MEDICAL_ROOMS_PROPERTIES } from "../../utils/dummy";
 
 const pageTitle = 'Medical Rooms';
 const activeNav = '/medical-rooms';
 
-const MedicalRoomHeader = () => {
+const RoomsHeader = () => {
   return (
     <Container fluid as='section'>
       <Row>
@@ -63,20 +64,19 @@ const HomePage = () => {
       pageTitle={pageTitle}
       activeNav={activeNav}
     >
-      <Container fluid as='section' className={"my-5"}>
+      <Container fluid as='section' className="my-5">
         <Row>
           <Col xs={3}>
             <FindReservationFilters/>
           </Col>
           <Col>
-            <MedicalRoomHeader/>
+            <RoomsHeader/>
             <Container fluid as='section' className='pt-4'>
               <Row>
                 {roomsToShow.map(x => (
                   <Col xs={12} md={6} lg={4} key={x.id} className='pb-3'>
                     <RoomCard
                       image={x.image}
-                      imageSizes={[400, 200]}
                       category={x.category}
                       title={x.title}
                       sizeSqf={x.sizeSqf}

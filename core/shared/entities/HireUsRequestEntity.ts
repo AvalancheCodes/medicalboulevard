@@ -1,14 +1,14 @@
-import { BaseEntity, IBaseEntity } from "./BaseEntity";
-import { TimestampCommon } from "./utils/TimestampCommon";
+import { BaseEntity, IBaseEntity } from "./abstractions/BaseEntity";
+import ICreatedAt from "./abstractions/ICreatedAt";
 
-export interface IHireUsRequestEntity extends IBaseEntity {
+export interface IHireUsRequestEntity extends IBaseEntity, ICreatedAt {
   firstName: string;
   lastName: string;
   email: string;
   companyName: string;
   budget: string;
   projectInfo: string;
-  createdAt: TimestampCommon;
+  createdAtMs: number;
 }
 
 export class HireUsRequestEntity extends BaseEntity implements IHireUsRequestEntity {
@@ -18,7 +18,7 @@ export class HireUsRequestEntity extends BaseEntity implements IHireUsRequestEnt
   public readonly budget: string;
   public readonly companyName: string;
   public readonly projectInfo: string;
-  public readonly createdAt: TimestampCommon;
+  public readonly createdAtMs: number;
 
 
   constructor(id: string, raw: IHireUsRequestEntity) {
@@ -30,6 +30,6 @@ export class HireUsRequestEntity extends BaseEntity implements IHireUsRequestEnt
     this.budget = raw.budget;
     this.companyName = raw.companyName;
     this.projectInfo = raw.projectInfo;
-    this.createdAt = raw.createdAt;
+    this.createdAtMs = raw.createdAtMs;
   }
 }

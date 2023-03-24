@@ -1,4 +1,4 @@
-import { Firestore, Timestamp } from 'firebase-admin/firestore'
+import { Firestore } from 'firebase-admin/firestore'
 import { FirestorePathsService } from "../../../shared/services/firebase/FirestorePathsService";
 import hireUsFormSchema from "../../../shared/yup/hireUsFormSchema";
 import trimObjectStrings from "../../../../utils/trimObjectStrings";
@@ -18,7 +18,7 @@ export class FirestoreAdminHireUsService {
       const trimmedData = trimObjectStrings(data, ["budget"]);
       const hireUsData: IHireUsRequestEntity = {
         ...trimmedData,
-        createdAt: Timestamp.now()
+        createdAtMs: Date.now()
       }
       await hireUsFormSchema.validate(hireUsData, { strict: true });
       // TODO: change to API request to server and add Send Email to David.
