@@ -1,9 +1,10 @@
 import { initializeApp, getApp, cert, } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore'
+import { FirestoreAdminHireUsService } from "./FirestoreAdminHireUsService";
+import { FirestorePathsService } from "../../../shared/services/firebase/FirestorePathsService";
+import { adminFirebaseCertText } from "../../../../utils/firebaseConfig";
 
-const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_CERT_TEXT);
-
-console.log(JSON.stringify(serviceAccount));
+const serviceAccount = JSON.parse(adminFirebaseCertText);
 
 function createFirebaseApp() {
   try {
@@ -19,6 +20,9 @@ const firebaseApp = createFirebaseApp();
 
 const db = getFirestore(firebaseApp);
 
+const firestorePathsService = new FirestorePathsService();
+const firestoreAdminHireUsService = new FirestoreAdminHireUsService(firestorePathsService, db);
+
 export {
-  firebaseApp, db
+  firestoreAdminHireUsService
 }

@@ -1,8 +1,8 @@
 import { Firestore } from 'firebase-admin/firestore'
 import { FirestorePathsService } from "../../../shared/services/firebase/FirestorePathsService";
-import hireUsFormSchema from "../../../shared/yup/hireUsFormSchema";
 import trimObjectStrings from "../../../../utils/trimObjectStrings";
 import { IHireUsRequestEntity } from "../../../shared/entities/HireUsRequestEntity";
+import hireUsRequestEntitySchema from "../../../shared/yup/hireUsRequestEntitySchema";
 
 export class FirestoreAdminHireUsService {
   private readonly _db: Firestore;
@@ -13,14 +13,14 @@ export class FirestoreAdminHireUsService {
     this._db = db;
   }
 
-  public async sendHireUsRequest(data: IHireUsRequestEntity): Promise<void> {
+  public async saveRequest(data: Omit<IHireUsRequestEntity, "createdAtMs">): Promise<void> {
     try {
       const trimmedData = trimObjectStrings(data, ["budget"]);
       const hireUsData: IHireUsRequestEntity = {
         ...trimmedData,
         createdAtMs: Date.now()
       }
-      await hireUsFormSchema.validate(hireUsData, { strict: true });
+      await hireUsRequestEntitySchema.validate(hireUsData, { strict: true });
       // TODO: change to API request to server and add Send Email to David.
       const colRef = this._db.collection(this._firestorePathsService.getHireUsCollectionReference())
       await colRef.add(hireUsData);

@@ -4,6 +4,7 @@ import { IHireUsPostResponse } from "../../../core/shared/api-models/hire-us/IHi
 import { IErrorResponse } from "../../../core/shared/api-models/IErrorResponse";
 import trimObjectStrings from "../../../utils/trimObjectStrings";
 import hireUsPostRequestSchema from "../../../core/shared/yup/hireUsPostRequestSchema";
+import { firestoreAdminHireUsService } from "../../../core/server/services/firebase";
 
 async function handlePost(req: NextApiRequest, res: NextApiResponse) {
   console.log(JSON.stringify(req.body));
@@ -11,6 +12,7 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
   const trimmedPayload = trimObjectStrings(payload);
   try {
     await hireUsPostRequestSchema.validate(trimmedPayload);
+    await firestoreAdminHireUsService.saveRequest(trimmedPayload);
   } catch (e) {
     return res.status(400).json(<IErrorResponse>{ message: e.message });
   }

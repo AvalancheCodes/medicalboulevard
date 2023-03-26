@@ -10,4 +10,6 @@ const _publicFirebaseConfig = {
 }
 
 const publicFirebaseConfig = Object.freeze(_publicFirebaseConfig);
-export default publicFirebaseConfig;
+
+const adminFirebaseCertText = process.env.FIREBASE_ADMIN_CERT_TEXT;
+export { publicFirebaseConfig, adminFirebaseCertText };

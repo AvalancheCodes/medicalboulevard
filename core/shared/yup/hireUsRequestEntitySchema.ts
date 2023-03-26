@@ -9,7 +9,7 @@ import {
 
 const budgetValues = HIRE_US_BUDGET_OPTIONS.map(x => x.value);
 
-const hireUsModelSchema = object({
+const hireUsRequestEntitySchema = object({
   firstName: string()
     .min(HIRE_US_FIRST_NAME_MINLEN, `First Name must be between ${HIRE_US_FIRST_NAME_MINLEN} and ${HIRE_US_FIRST_NAME_MAXLEN} characters.`)
     .max(HIRE_US_FIRST_NAME_MAXLEN, `First Name must be between ${HIRE_US_FIRST_NAME_MINLEN} and ${HIRE_US_FIRST_NAME_MAXLEN} characters.`)
@@ -34,4 +34,4 @@ const hireUsModelSchema = object({
     .required(),
 });
 
-export default hireUsModelSchema;
+export default hireUsRequestEntitySchema;

@@ -4,7 +4,7 @@ import { getFirestore } from "firebase/firestore";
 import { FirebaseAuthService } from './FirebaseAuthService';
 import { FirestoreUserProfileService } from "./FirestoreUserProfileService";
 import { FirestorePathsService } from "../../../shared/services/firebase/FirestorePathsService";
-import firebaseConfig from "../../../../utils/firebaseConfig";
+import { publicFirebaseConfig } from "../../../../utils/firebaseConfig";
 
 function createFirebaseApp(config) {
   try {
@@ -14,7 +14,7 @@ function createFirebaseApp(config) {
   }
 }
 
-const firebaseApp = createFirebaseApp(firebaseConfig);
+const firebaseApp = createFirebaseApp(publicFirebaseConfig);
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
 

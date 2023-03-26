@@ -36,13 +36,6 @@ const HireUsForm = ({ className }) => {
   const [validated, setValidated] = useState(false)
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
 
-  useEffect(() => {
-    pushNotification({
-      title: "Done",
-      message: "We will contact you shortly for further discussions"
-    });
-  }, [])
-
   const handleSubmit = useCallback(async (event) => {
     const form = event.currentTarget;
     event.preventDefault();
