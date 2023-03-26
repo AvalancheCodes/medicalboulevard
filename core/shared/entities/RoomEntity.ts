@@ -17,6 +17,7 @@ export interface IRoomEntity extends IBaseEntity, ICreatedAt {
   extraImagesUrls?: string[];
 
   descriptionHtml: string;
+  descriptionShort: string;
 
   amenitiesIds?: string[];
 
@@ -38,6 +39,7 @@ export class RoomEntity extends BaseEntity implements IRoomEntity {
   public readonly extraImagesUrls: string[] | undefined;
 
   public readonly descriptionHtml: string;
+  public readonly descriptionShort: string;
 
   public readonly amenitiesIds: string[] | undefined;
 
@@ -59,6 +61,7 @@ export class RoomEntity extends BaseEntity implements IRoomEntity {
     this.extraImagesUrls = raw.extraImagesUrls;
 
     this.descriptionHtml = raw.descriptionHtml;
+    this.descriptionShort = raw.descriptionHtml;
 
     this.amenitiesIds = raw.amenitiesIds;
 

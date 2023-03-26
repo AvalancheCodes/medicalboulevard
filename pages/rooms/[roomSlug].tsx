@@ -3,15 +3,14 @@ import Link from "next/link";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Card from "react-bootstrap/Card";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import Button from "react-bootstrap/Button";
-import Badge from "react-bootstrap/Badge";
 import RealEstatePageLayout from '../../components/partials/RealEstatePageLayout'
-import StarRating from "../../components/StarRating";
 import ImageLoader from "../../components/ImageLoader";
 import RecentlyViewed from "../../components/RecentlyViewed";
 import SanitizedHtml from "../../components/SanitizedHtml";
+import { MedicalSpaceCoordinatorCard } from "../../components/MedicalSpaceCoordinatorCard";
+import BadgeEntityComponent from "../../components/BadgeEntityComponent";
 
 import { IRoomEntity } from "../../core/shared/entities/RoomEntity";
 import { RoomAmenityEntity } from "../../core/shared/entities/RoomAmenityEntity";
@@ -26,10 +25,11 @@ import 'swiper/css/pagination'
 
 import amenities from "../../data/amenities.json";
 import { ROOMS } from "../../utils/dummy";
-import { MedicalSpaceCoordinatorCard } from "../../components/MedicalSpaceCoordinatorCard";
+import useRecentlyViewedRoomsIds from "../../hooks/useRecentlyViewedRoomsIds";
+
 
 interface IProps {
-  room: IRoomEntity;
+  room: IRoomEntity & { id: string };
 }
 
 const SlidesCount = ({ currentSlide, totalSlides }) => (
@@ -46,6 +46,7 @@ const SlidesCount = ({ currentSlide, totalSlides }) => (
 const MedicalRoomIdPage = ({ room }: IProps) => {
   const [currentSlide, setCurrentSlide] = useState<number>();
   const [totalSlides, setTotalSlides] = useState<number>();
+  const { pushItem } = useRecentlyViewedRoomsIds();
 
   const allAmenities = useMemo<RoomAmenityEntity[]>(() => amenities.map(x => new RoomAmenityEntity(x.id, x)), []);
   const roomAmenities = useMemo<RoomAmenityEntity[] | undefined>(() => {
@@ -84,6 +85,7 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
 
   useEffect(() => {
     console.log(room);
+    pushItem(room.id);
   }, [room])
 
   const swiperOnSlideChange = useCallback((swiper: SwiperClass) => {
@@ -213,12 +215,7 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
               <Row>
                 <Col>
                   {room.badges?.map((x) => (
-                    <Badge key={x.text} bg="" className={'me-1'} style={{
-                      backgroundColor: x.bgColor,
-                      color: x.textColor
-                    }}>
-                      {x.text}
-                    </Badge>
+                    <BadgeEntityComponent key={x.text} badge={x}/>
                   ))}
                 </Col>
                 <Col xs='auto'>
@@ -326,7 +323,7 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
         </Row>
         <Row className='mt-4'>
           <Col>
-            <RecentlyViewed/>
+            <RecentlyViewed currentRoomId={room.id}/>
           </Col>
         </Row>
       </Container>

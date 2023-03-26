@@ -10,7 +10,8 @@ import RealEstatePageLayout from '../../components/partials/RealEstatePageLayout
 import FindReservationFilters from "../../components/FindReservationFilters";
 import RoomCard from "../../components/RoomCard";
 
-import { MEDICAL_ROOMS_PROPERTIES } from "../../utils/dummy";
+import { ROOMS } from "../../utils/dummy";
+import { IRoomEntity } from "../../core/shared/entities/RoomEntity";
 
 const pageTitle = 'Medical Rooms';
 const activeNav = '/medical-rooms';
@@ -53,10 +54,14 @@ const RoomsHeader = () => {
   )
 }
 
-const HomePage = () => {
+interface IProps {
+  allRooms: IRoomEntity[];
+}
+
+const HomePage = ({ allRooms }: IProps) => {
 
   const roomsToShow = useMemo(() => {
-    return MEDICAL_ROOMS_PROPERTIES;
+    return allRooms;
   }, [])
 
   return (
@@ -74,16 +79,8 @@ const HomePage = () => {
             <Container fluid as='section' className='pt-4'>
               <Row>
                 {roomsToShow.map(x => (
-                  <Col xs={12} md={6} lg={4} key={x.id} className='pb-3'>
-                    <RoomCard
-                      image={x.image}
-                      category={x.category}
-                      title={x.title}
-                      sizeSqf={x.sizeSqf}
-                      description={x.description}
-                      price={x.price}
-                      badges={x.badges}
-                    />
+                  <Col xs={12} md={6} lg={4} key={x.slug} className='pb-3'>
+                    <RoomCard room={x}/>
                   </Col>
                 ))}
               </Row>
@@ -94,6 +91,16 @@ const HomePage = () => {
 
     </RealEstatePageLayout>
   )
+}
+
+export async function getStaticProps() {
+  const allRooms = ROOMS;
+
+  return {
+    props: {
+      allRooms,
+    },
+  }
 }
 
 export default HomePage

@@ -62,59 +62,6 @@ export const HOMEPAGE_HOW_IT_WORKS = [
   ]
 ];
 
-export const MEDICAL_ROOMS_PROPERTIES = [
-  {
-    id: "1",
-    title: "The Glamour Suite",
-    image: '/images/dummy/room-card-image.png',
-    sizeSqf: 98,
-    category: 'Medical',
-    description: 'The Glamour Suite offers a luxurious experience with a spa chair, two sinks, and abundant natural light through its wide windows.',
-    price: 1629,
-    badges: ['Furnished']
-  },
-  {
-    id: "2",
-    title: "The Glamour Suite",
-    image: '/images/dummy/room-card-image.png',
-    sizeSqf: 98,
-    category: 'Medical',
-    description: 'The Glamour Suite offers a luxurious experience with a spa chair, two sinks, and abundant natural light through its wide windows.',
-    price: 1629,
-    badges: ['Furnished']
-  },
-  {
-    id: "3",
-    title: "The Glamour Suite",
-    image: '/images/dummy/room-card-image.png',
-    sizeSqf: 98,
-    category: 'Medical',
-    description: 'The Glamour Suite offers a luxurious experience with a spa chair, two sinks, and abundant natural light through its wide windows.',
-    price: 1629,
-    badges: ['Furnished']
-  },
-  {
-    id: "4",
-    title: "The Glamour Suite",
-    image: '/images/dummy/room-card-image.png',
-    sizeSqf: 98,
-    category: 'Medical',
-    description: 'The Glamour Suite offers a luxurious experience with a spa chair, two sinks, and abundant natural light through its wide windows.',
-    price: 1629,
-    badges: ['Furnished']
-  },
-  {
-    id: "5",
-    title: "The Glamour Suite",
-    image: '/images/dummy/room-card-image.png',
-    sizeSqf: 98,
-    category: 'Medical',
-    description: 'The Glamour Suite offers a luxurious experience with a spa chair, two sinks, and abundant natural light through its wide windows.',
-    price: 1629,
-    badges: ['Furnished']
-  },
-];
-
 export const CART_LINE_ITEMS = [
   {
     title: 'The Glamour Suite 1',
@@ -303,7 +250,8 @@ export const SERVICES_FLEXIBLE_SPACE_AND_SCHEDULING_FEEDBACK_ITEMS = [
   },
 ]
 
-const SerenityRoom: IRoomEntity = {
+const SerenityRoom: IRoomEntity & { id: string } = {
+  id: "serenity-room",
   name: "Serenity Room",
   slug: "serenity-room",
   category: "Medical",
@@ -329,6 +277,8 @@ const SerenityRoom: IRoomEntity = {
       responsible for providing their own specialised tools and instruments as needed.
     </p>
   `,
+  // TODO: Replace with actual description for this room.
+  descriptionShort: "The Glamour Suite offers a luxurious experience with a spa chair, two sinks, and abundant natural light through its wide windows.",
   badges: [
     { bgColor: "#9371A3", textColor: "white", text: "Verified" },
     { bgColor: "#1E1E1E", textColor: "white", text: "New" },

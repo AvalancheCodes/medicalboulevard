@@ -1,102 +1,64 @@
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import ImageLoader from '../components/ImageLoader'
-import { Navigation, Pagination } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
+
 import Button from 'react-bootstrap/Button'
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import Link from "next/link";
+
+import useRecentlyViewedRoomsIds from "../hooks/useRecentlyViewedRoomsIds";
+
+import { Navigation, Pagination } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
-const items = [
-  {
-    id: "1",
-    image: "/images/real-estate/catalog/01.jpg",
-    category: "Medical Suite",
-    name: "Serenity Room",
-    sizeSqf: 80,
-    description: "Tranquil, Elegant Treatment Space",
-    pricePerHour: 500,
-    iconItems: [
+
+import { IRoomEntity } from "../core/shared/entities/RoomEntity";
+import { ROOMS } from "../utils/dummy";
+
+interface IRecentlyViewedCardProps {
+  room: IRoomEntity,
+  className?: string;
+}
+
+const RecentlyViewedCard = ({ room, className }: IRecentlyViewedCardProps) => {
+  // TODO: Wire IconItems
+  const iconItems = useMemo(() => {
+    return [
       ["fa-solid fa-house-medical"],
       ["fa-solid fa-sink", "fa-solid fa-sink"],
       ["fa-solid fa-sun"]
     ]
-  },
-  {
-    id: "2",
-    image: "/images/real-estate/catalog/02.jpg",
-    category: "Medical Chamber",
-    name: "Clarity Chamber",
-    sizeSqf: 80,
-    description: "Streamlined, Modern Exam Room",
-    pricePerHour: 450,
-    iconItems: []
-  },
-  {
-    id: "3",
-    image: "/images/real-estate/catalog/03.jpg",
-    category: "Medical Room",
-    name: "Radiance Room",
-    sizeSqf: 80,
-    description: "Bright, Inviting Consultation Area",
-    pricePerHour: 1000,
-    iconItems: [
-      ["fa-solid fa-house-medical"],
-      ["fa-solid fa-sink", "fa-solid fa-sink"],
-    ]
-  },
-  {
-    id: "4",
-    image: "/images/real-estate/catalog/04.jpg",
-    category: "Business Suite",
-    name: "Connectivity Corner",
-    sizeSqf: 80,
-    description: "Efficient Telemedicine & Media",
-    pricePerHour: 250,
-    iconItems: []
-  },
-  {
-    id: "5",
-    image: "/images/real-estate/catalog/05.jpg",
-    category: "Medical Room",
-    name: "Room X",
-    sizeSqf: 80,
-    description: "Efficient Telemedicine & Media",
-    pricePerHour: 420.20,
-    iconItems: []
-  },
-]
-
-const RecentlyViewedItem = ({ image, category, name, sizeSqf, description, pricePerHour, iconItems }) => {
+  }, [])
   return (
-    <Card>
+    <Card className={className}>
       <ImageLoader
-        src={image}
+        src={room.mainImageUrl}
         width={306}
         height={200}
         layout='responsive'
-        alt={name}
+        alt={room.name}
         className='card-img-top'
       />
       <Card.Body>
         <div>
           <h2 className='fs-xs fw-normal' style={{
             color: "#9371A3"
-          }}>{category}</h2>
-          <h1 className='h6'>{name} | {sizeSqf.toString()} sq.f</h1>
+          }}>{room.category}</h2>
+          <h1 className='h6'>{room.name} | {room.sizeSqf.toString()} sq.f</h1>
         </div>
 
         <div>
-          <p className='fs-sm fw-lighter'>{description}</p>
+          <p className='fs-sm fw-lighter'>{room.descriptionShort}</p>
         </div>
 
         <div>
           <p className=''>
-            <i className="fa-solid fa-money-bills"></i> {pricePerHour.toString()} /hr
+            <i className="fa-solid fa-money-bills"></i> {room.pricePerHour.toString()} /hr
           </p>
         </div>
 
@@ -114,10 +76,44 @@ const RecentlyViewedItem = ({ image, category, name, sizeSqf, description, price
   )
 }
 
-const RecentlyViewed = () => {
+
+interface IRecentlyViewedProps {
+  currentRoomId?: string; // pass it to hide current room from recently viewed
+  className?: string;
+}
+
+const RecentlyViewed = ({ currentRoomId, className }: IRecentlyViewedProps) => {
+
+  const { items } = useRecentlyViewedRoomsIds();
+  const [recentlyViewedRooms, setRecentlyViewedRooms] = useState<IRoomEntity[] | undefined>();
+
+  const roomsIdsToShow = useMemo<string[] | undefined>(() => {
+    if (!items) return undefined;
+    const filteredRoomsIds = currentRoomId
+      ? items.filter(x => x !== currentRoomId)
+      : items;
+
+    return filteredRoomsIds.length > 0
+      ? filteredRoomsIds
+      : undefined;
+  }, [items, currentRoomId])
+
+  useEffect(() => {
+    if (!roomsIdsToShow || roomsIdsToShow.length === 0) {
+      setRecentlyViewedRooms(undefined);
+      return;
+    }
+    const rooms = roomsIdsToShow
+      .map(id => ROOMS.find(x => x.id === id))
+      .filter(x => x);
+    console.log(rooms);
+    setRecentlyViewedRooms(rooms);
+  }, [roomsIdsToShow])
+
+  if (!recentlyViewedRooms || recentlyViewedRooms.length === 0) return null;
 
   return (
-    <Container fluid as='section'>
+    <Container fluid as='section' className={className}>
       <Row className="align-items-center my-4">
         <Col>
           <h1 className='mb-0'>
@@ -147,39 +143,13 @@ const RecentlyViewed = () => {
                 el: '#recently-viewed-pagination',
                 clickable: true
               }}
-              loop
+              loop={false}
               grabCursor
-              slidesPerView="auto"
-              breakpoints={{
-                0: {
-                  slidesPerView: 1,
-                  spaceBetween: 16
-                },
-                500: {
-                  slidesPerView: 2,
-                  spaceBetween: 18
-                },
-                768: {
-                  slidesPerView: 3,
-                  spaceBetween: 20
-                },
-                1100: {
-                  slidesPerView: 3,
-                  spaceBetween: 24
-                }
-              }}
+              slidesPerView={3}
             >
-              {items.map(x => (
-                <SwiperSlide key={x.id}>
-                  <RecentlyViewedItem
-                    image={x.image}
-                    category={x.category}
-                    name={x.name}
-                    sizeSqf={x.sizeSqf}
-                    description={x.description}
-                    pricePerHour={x.pricePerHour}
-                    iconItems={x.iconItems}
-                  />
+              {recentlyViewedRooms?.map(x => (
+                <SwiperSlide key={x.slug}>
+                  <RecentlyViewedCard room={x}/>
                 </SwiperSlide>
               ))}
             </Swiper>
