@@ -349,7 +349,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   console.log("Room slug: ", params.roomSlug)
-  const room = ROOMS.find(x => x.slug = params.roomSlug);
+  const room = ROOMS.find(x => x.slug === params.roomSlug);
   // Pass post data to the page via props
   return { props: { room: room } }
 }
