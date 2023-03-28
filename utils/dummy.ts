@@ -251,12 +251,12 @@ export const SERVICES_FLEXIBLE_SPACE_AND_SCHEDULING_FEEDBACK_ITEMS = [
 ]
 
 const SerenityRoom: IRoomEntity & { id: string } = {
-  id: "serenity-room",
+  id: "serenity-room-id",
   name: "Serenity Room",
   slug: "serenity-room",
   category: "Medical",
   type: "medical examination room",
-  sizeSqf: 85,
+  sizeSqf: 95,
   pricePerHour: 275,
   excerpt: "Elevate patient care in a spacious, sunlit setting",
   descriptionHtml: `
@@ -296,6 +296,100 @@ const SerenityRoom: IRoomEntity & { id: string } = {
   createdAtMs: 1607644800000
 }
 
+const TheRadianceRoom: IRoomEntity & { id: string } = {
+  id: "the-radiance-room-id",
+  name: "The Radiance Room Room",
+  slug: "radiance-room",
+  category: "Medical",
+  type: "medical examination room",
+  sizeSqf: 85,
+  pricePerHour: 250,
+  excerpt: "Elevate patient care in a spacious, sunlit setting",
+  descriptionHtml: `
+    <h1>
+        Overview
+    </h1>
+                  
+    <p>
+      Discover unparalleled sophistication in our chic Radiance Room, 
+      expertly designed for discerning medical professionals. This refined and 
+      inviting space inspires a sense of prestige and trust, enriching the overall 
+      treatment experience for your patients. Benefit from the room's advanced layout, 
+      purposefully constructed to support seamless consultations and procedures 
+      in a stylish, professional setting.
+    </p>
+    
+    <p>
+      <strong>Please note:</strong> While the Rejuvenation Suite offers a wide range of amenities to support your practice, it
+      does not include specialised medical equipment for specific procedures. Medical professionals are
+      responsible for providing their own specialised tools and instruments as needed.
+    </p>
+  `,
+  descriptionShort: "TODO: add description short",
+  badges: [
+    { bgColor: "#9371A3", textColor: "white", text: "Verified" },
+    { bgColor: "#1E1E1E", textColor: "white", text: "New" },
+  ],
+
+  mainImageUrl: "/images/car-finder/single/gallery/01.jpg",
+  extraImagesUrls: [
+    '/images/car-finder/single/gallery/02.jpg',
+    '/images/car-finder/single/gallery/03.jpg',
+    '/images/car-finder/single/gallery/04.jpg',
+  ],
+
+  amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+
+  createdAtMs: 1607644800000
+}
+
+const TheRejuvenationRetreatRoom: IRoomEntity & { id: string } = {
+  id: "the-rejuvenation-retreat-room-id",
+  name: "The Rejuvenation Retreat Room",
+  slug: "rejuvenation-room",
+  category: "Medical",
+  type: "medical examination room",
+  sizeSqf: 85,
+  pricePerHour: 250,
+  excerpt: "Elevate patient care in a spacious, sunlit setting",
+  descriptionHtml: `
+    <h1>
+        Overview
+    </h1>
+                  
+    <p>
+      Experience seamless efficiency in our sleek Rejuvenation Room, meticulously crafted for medical professionals. 
+      This modern and tranquil space fosters a sense of confidence and assurance, elevating the overall treatment experience 
+      for your patients. Benefit from the room's state-of-the-art layout, 
+      thoughtfully designed to facilitate smooth consultations and procedures in an elegant, professional environment
+    </p>
+    
+    <p>
+      <strong>Please note:</strong> While the Rejuvenation Suite offers a wide range of amenities to support your practice, it
+      does not include specialised medical equipment for specific procedures. Medical professionals are
+      responsible for providing their own specialised tools and instruments as needed.
+    </p>
+  `,
+  descriptionShort: "TODO: add description short",
+  badges: [
+    { bgColor: "#9371A3", textColor: "white", text: "Verified" },
+    { bgColor: "#1E1E1E", textColor: "white", text: "New" },
+  ],
+
+  mainImageUrl: "/images/car-finder/single/gallery/01.jpg",
+  extraImagesUrls: [
+    '/images/car-finder/single/gallery/02.jpg',
+    '/images/car-finder/single/gallery/03.jpg',
+    '/images/car-finder/single/gallery/04.jpg',
+  ],
+
+  amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+
+  createdAtMs: 1607644800000
+}
+
 export const ROOMS = [
-  SerenityRoom
+  SerenityRoom,
+  TheRadianceRoom,
+  TheRejuvenationRetreatRoom
 ];
