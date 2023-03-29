@@ -1,7 +1,7 @@
 import { initializeApp, getApp, cert, } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore'
-import { FirestoreAdminHireUsService } from "./FirestoreAdminHireUsService";
-import { FirestorePathsService } from "../../../shared/services/firebase/FirestorePathsService";
+import FirestoreAdminHireUsService from "./FirestoreAdminHireUsService";
+import FirestorePathsService from "../../../shared/services/firebase/FirestorePathsService";
 import { adminFirebaseCertText } from "../../../../utils/firebaseConfig";
 
 const serviceAccount = JSON.parse(adminFirebaseCertText);

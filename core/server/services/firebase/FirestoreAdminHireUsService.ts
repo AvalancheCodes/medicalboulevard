@@ -1,10 +1,10 @@
 import { Firestore } from 'firebase-admin/firestore'
-import { FirestorePathsService } from "../../../shared/services/firebase/FirestorePathsService";
-import trimObjectStrings from "../../../../utils/trimObjectStrings";
+import FirestorePathsService from "../../../shared/services/firebase/FirestorePathsService";
 import IHireUsRequestEntity from "../../../shared/entities/IHireUsRequestEntity";
 import hireUsRequestEntitySchema from "../../../shared/yup/hireUsRequestEntitySchema";
+import normalizeBeforeSave from "../../../../utils/normalizeBeforeSave";
 
-export class FirestoreAdminHireUsService {
+export default class FirestoreAdminHireUsService {
   private readonly _db: Firestore;
   private readonly _firestorePathsService: FirestorePathsService;
 
@@ -15,9 +15,9 @@ export class FirestoreAdminHireUsService {
 
   public async saveRequest(data: Omit<IHireUsRequestEntity, "createdAtMs">): Promise<void> {
     try {
-      const trimmedData = trimObjectStrings(data, ["budget"]);
+      const normalized = normalizeBeforeSave(data);
       const hireUsData: IHireUsRequestEntity = {
-        ...trimmedData,
+        ...normalized,
         createdAtMs: Date.now()
       }
       await hireUsRequestEntitySchema.validate(hireUsData, { strict: true });

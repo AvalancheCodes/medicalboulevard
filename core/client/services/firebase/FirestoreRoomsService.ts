@@ -1,12 +1,12 @@
 import { FirebaseApp } from "firebase/app";
 import { Firestore } from 'firebase/firestore';
-import { FirebaseServiceBase } from "./FirebaseServiceBase";
-import { FirestorePathsService } from "../../../shared/services/firebase/FirestorePathsService";
+import FirebaseServiceBase from "./FirebaseServiceBase";
+import FirestorePathsService from "../../../shared/services/firebase/FirestorePathsService";
 import { ROOMS } from "../../../../utils/dummy";
 import IRoomEntity from "../../../shared/entities/IRoomEntity";
 import { EntityWithId } from "../../../shared/entities/utils/EntityWithId";
 
-export class FirestoreRoomsService extends FirebaseServiceBase {
+export default class FirestoreRoomsService extends FirebaseServiceBase {
   private readonly _db: Firestore;
   private readonly _firestorePathsService: FirestorePathsService;
 

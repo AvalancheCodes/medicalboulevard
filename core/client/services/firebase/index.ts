@@ -1,13 +1,13 @@
 import { getApp, initializeApp } from 'firebase/app';
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { FirebaseAuthService } from './FirebaseAuthService';
-import { FirestoreUserProfileService } from "./FirestoreUserProfileService";
-import { FirestorePathsService } from "../../../shared/services/firebase/FirestorePathsService";
 import { publicFirebaseConfig } from "../../../../utils/firebaseConfig";
-import { FirestoreMedicalSpaceCoordinatorService } from "./FirestoreMedicalSpaceCoordinatorService";
-import { FirestoreRoomAmenitiesService } from "./FirestoreRoomAmenitiesService";
-import { FirestoreRoomsService } from "./FirestoreRoomsService";
+import FirebaseAuthService from './FirebaseAuthService';
+import FirestoreUserProfileService from "./FirestoreUserProfileService";
+import FirestorePathsService from "../../../shared/services/firebase/FirestorePathsService";
+import FirestoreMedicalSpaceCoordinatorService from "./FirestoreMedicalSpaceCoordinatorService";
+import FirestoreRoomAmenitiesService from "./FirestoreRoomAmenitiesService";
+import FirestoreRoomsService from "./FirestoreRoomsService";
 
 function createFirebaseApp(config) {
   try {

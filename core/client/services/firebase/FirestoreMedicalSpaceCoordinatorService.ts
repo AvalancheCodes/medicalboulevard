@@ -1,12 +1,12 @@
 import { FirebaseApp } from "firebase/app";
 import { Firestore } from 'firebase/firestore';
-import { FirebaseServiceBase } from "./FirebaseServiceBase";
-import { FirestorePathsService } from "../../../shared/services/firebase/FirestorePathsService";
+import FirebaseServiceBase from "./FirebaseServiceBase";
+import FirestorePathsService from "../../../shared/services/firebase/FirestorePathsService";
 import IMedicalSpaceCoordinatorEntity from "../../../shared/entities/IMedicalSpaceCoordinatorEntity";
 import { MEDICAL_SPACE_COORDINATORS } from "../../../../utils/dummy";
 import { EntityWithId } from "../../../shared/entities/utils/EntityWithId";
 
-export class FirestoreMedicalSpaceCoordinatorService extends FirebaseServiceBase {
+export default class FirestoreMedicalSpaceCoordinatorService extends FirebaseServiceBase {
   private readonly _db: Firestore;
   private readonly _firestorePathsService: FirestorePathsService;
 

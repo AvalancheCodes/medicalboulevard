@@ -1,12 +1,12 @@
 import { FirebaseApp } from "firebase/app";
 import { Firestore, doc, setDoc } from 'firebase/firestore';
-import { FirebaseServiceBase } from "./FirebaseServiceBase";
-import { FirestorePathsService } from "../../../shared/services/firebase/FirestorePathsService";
+import FirebaseServiceBase from "./FirebaseServiceBase";
+import FirestorePathsService from "../../../shared/services/firebase/FirestorePathsService";
 import userProfileModelSchema from "../../../shared/yup/userProfileModelSchema";
-import trimObjectStrings from "../../../../utils/trimObjectStrings";
 import IUserProfileEntity from "../../../shared/entities/IUserProfileEntity";
+import normalizeBeforeSave from "../../../../utils/normalizeBeforeSave";
 
-export class FirestoreUserProfileService extends FirebaseServiceBase {
+export default class FirestoreUserProfileService extends FirebaseServiceBase {
   private readonly _db: Firestore;
   private readonly _firestorePathsService: FirestorePathsService;
 
@@ -18,9 +18,9 @@ export class FirestoreUserProfileService extends FirebaseServiceBase {
 
   public async createUser(userId: string, data: Omit<IUserProfileEntity, "createdAtMs">) {
     try {
-      const dataTrimmed = trimObjectStrings(data);
+      const normalized = normalizeBeforeSave(data);
       const userProfileData: IUserProfileEntity = {
-        ...dataTrimmed,
+        ...normalized,
         createdAtMs: Date.now()
       }
       await userProfileModelSchema.validate(userProfileData, { strict: true });

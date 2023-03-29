@@ -6,9 +6,9 @@ import {
   signOut
 } from 'firebase/auth';
 import { FirebaseApp } from "firebase/app";
-import { FirebaseServiceBase } from "./FirebaseServiceBase";
+import FirebaseServiceBase from "./FirebaseServiceBase";
 
-export class FirebaseAuthService extends FirebaseServiceBase {
+export default class FirebaseAuthService extends FirebaseServiceBase {
   private readonly _auth: Auth;
 
   public get Auth(): Auth {
