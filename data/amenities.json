@@ -2,7 +2,6 @@
   {
     "_id": "1",
     "icons": [
-      "fa-solid fa-wifi",
       "fa-solid fa-wifi"
     ],
     "label": "WiFi"

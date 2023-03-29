@@ -94,6 +94,7 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
       activeNav={`/rooms/${room.slug}`}
     >
       <Container as='section' className="my-5">
+
         <Row>
           <Col>
             <Breadcrumb className='mb-4 pt-md-3'>
@@ -103,12 +104,13 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
             </Breadcrumb>
           </Col>
         </Row>
+
         <Row>
 
           <Col xs={8}>
 
             {allImages && allImages.length > 0 && (
-              <Container className='position-relative'>
+              <div className='position-relative'>
                 <Swiper
                   modules={[Navigation, Pagination]}
                   onSlideChange={swiperOnSlideChange}
@@ -139,11 +141,11 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
                 </Swiper>
 
                 <ul className='swiper-thumbnails'></ul>
-              </Container>
+              </div>
             )}
 
 
-            <Container className='my-4'>
+            <div className='my-4'>
               <Row>
                 <Col>
                   <h1>{room.name}</h1>
@@ -174,17 +176,17 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
                   </Row>
                 </Col>
               </Row>
-            </Container>
+            </div>
 
-            <Container className='my-4'>
+            <div className='my-4'>
               <Row>
                 <Col>
                   <SanitizedHtml html={room.descriptionHtml}/>
                 </Col>
               </Row>
-            </Container>
+            </div>
 
-            <Container className='my-4'>
+            <div className='my-4'>
               <Row>
                 <Col>
                   <h1>
@@ -197,69 +199,85 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
                   <MedicalSpaceCoordinatorCard coordinator={room._medicalSpaceCoordinator}/>
                 </Col>
               </Row>
-            </Container>
+            </div>
           </Col>
 
           <Col xs={4}>
-            <Container>
 
-              <Row>
-                <Col>
-                  {room.badges?.map((x) => (
-                    <BadgeEntityComponent key={x.text} badge={x}/>
+            <Row>
+              <Col>
+                {room.badges?.map((x) => (
+                  <BadgeEntityComponent key={x.text} badge={x}/>
+                ))}
+              </Col>
+              <Col xs='auto'>
+                {/*<i className={true ? 'fi-heart' : 'fi-heart-filled'}></i>*/}
+                <i className='fi-heart me-1'></i>
+                <i className='fi-share'></i>
+              </Col>
+            </Row>
+
+            <Row className='my-4'>
+              <Col>
+                <h1 className='h5'>Requested period rent</h1>
+                <h2 className='mb-0'>$1,100 <span className='fw-light fs-sm'>/month</span></h2>
+              </Col>
+            </Row>
+
+            <Row className='p-4'>
+              <Col>
+                <h1 className='h5'>Details:</h1>
+                <div>
+                  {roomDetails.map(x => (
+                    <p key={x.title} className='fw-bold mb-1'>
+                      {x.title}: <span className='fw-normal'>{x.text}</span>
+                    </p>
                   ))}
-                </Col>
-                <Col xs='auto'>
-                  {/*<i className={true ? 'fi-heart' : 'fi-heart-filled'}></i>*/}
-                  <i className='fi-heart me-1'></i>
-                  <i className='fi-share'></i>
-                </Col>
-              </Row>
+                </div>
+              </Col>
+            </Row>
 
-              <Row className='my-4'>
-                <Col>
-                  <h1 className='h5'>Requested period rent</h1>
-                  <h2 className='mb-0'>$1,100 <span className='fw-light fs-sm'>/month</span></h2>
-                </Col>
-              </Row>
+            <Row className='mt-4'>
+              <Col>
+                <Button type='button' variant='primary' className='w-100'>Book a viewing</Button>
+              </Col>
+            </Row>
 
-              <Row className='p-4'>
-                <Col>
-                  <h1 className='h5'>Details:</h1>
-                  <div>
-                    {roomDetails.map(x => (
-                      <p key={x.title} className='fw-bold mb-1'>
-                        {x.title}: <span className='fw-normal'>{x.text}</span>
-                      </p>
-                    ))}
-                  </div>
-                </Col>
-              </Row>
+            <Row className='mt-2'>
+              <Col>
+                <p>
+                  <i className='fi-alert-circle lead me-2 me-sm-3'></i>
+                  Frequently Asked Questions
+                </p>
+              </Col>
+            </Row>
 
-              <Row className='mt-4'>
-                <Col>
-                  <Button type='button' variant='primary' className='w-100'>Book a viewing</Button>
-                </Col>
-              </Row>
+            {room._amenitiesIncluded && room._amenitiesIncluded.length > 0 && (
+              <>
+                <Row className='my-4 gx-0'>
 
-              <Row className='mt-2'>
-                <Col>
-                  <p>
-                    <i className='fi-alert-circle lead me-2 me-sm-3'></i>
-                    Frequently Asked Questions
-                  </p>
-                </Col>
-              </Row>
+                  <Col xs={12}>
+                    <h1 className='h5 mb-1'>Amenities</h1>
+                  </Col>
 
-              {room._amenitiesIncluded && room._amenitiesIncluded.length > 0 && (
-                <>
-                  <Row className='my-4'>
+                  {room._amenitiesIncluded.map(x => (
+                    <Col xs={12} md={6} key={x._id} className='my-2'>
+                      {x.icons?.map((x, i) => (
+                        <i key={i} className={x}></i>
+                      ))}
+                      &nbsp;{x.label}
+                    </Col>
+                  ))}
 
+                </Row>
+
+                {room._amenitiesNotIncluded && room._amenitiesNotIncluded.length > 0 && (
+                  <Row className='my-4 gx-0'>
                     <Col xs={12}>
-                      <h1 className='h5 mb-1'>Amenities</h1>
+                      <h1 className='h5 mb-1'>Not Included</h1>
                     </Col>
 
-                    {room._amenitiesIncluded.map(x => (
+                    {room._amenitiesNotIncluded.map(x => (
                       <Col xs={12} md={6} key={x._id} className='my-2'>
                         {x.icons?.map((x, i) => (
                           <i key={i} className={x}></i>
@@ -267,52 +285,33 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
                         &nbsp;{x.label}
                       </Col>
                     ))}
-
                   </Row>
+                )}
 
-                  {room._amenitiesNotIncluded && room._amenitiesNotIncluded.length > 0 && (
-                    <Row className='my-4'>
-                      <Col xs={12}>
-                        <h1 className='h5 mb-1'>Not Included</h1>
-                      </Col>
+              </>
+            )}
 
-                      {room._amenitiesNotIncluded.map(x => (
-                        <Col xs={12} md={6} key={x._id} className='my-2'>
-                          {x.icons?.map((x, i) => (
-                            <i key={i} className={x}></i>
-                          ))}
-                          &nbsp;{x.label}
-                        </Col>
-                      ))}
-                    </Row>
-                  )}
+            <Row className='mt-4 fs-xxs'>
+              <Col xs={12} md={4}>
+                <p className='mb-0'>
+                  Published:&nbsp;
+                  <span className='fw-bold'>{publicationDateString}</span>
+                </p>
+              </Col>
+              <Col xs={12} md={4}>
+                <p className='mb-0'>
+                  Ad number:&nbsp;
+                  <span className='fw-bold'>681013232</span>
+                </p>
+              </Col>
+              <Col xs={12} md={4}>
+                <p className='mb-0'>
+                  Views:&nbsp;
+                  <span className='fw-bold'>48</span>
+                </p>
+              </Col>
+            </Row>
 
-                </>
-              )}
-
-
-              <Row className='mt-4 fs-xxs'>
-                <Col xs={12} md={4}>
-                  <p className='mb-0'>
-                    Published:&nbsp;
-                    <span className='fw-bold'>{publicationDateString}</span>
-                  </p>
-                </Col>
-                <Col xs={12} md={4}>
-                  <p className='mb-0'>
-                    Ad number:&nbsp;
-                    <span className='fw-bold'>681013232</span>
-                  </p>
-                </Col>
-                <Col xs={12} md={4}>
-                  <p className='mb-0'>
-                    Views:&nbsp;
-                    <span className='fw-bold'>48</span>
-                  </p>
-                </Col>
-              </Row>
-
-            </Container>
           </Col>
 
         </Row>

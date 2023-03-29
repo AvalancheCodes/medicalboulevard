@@ -36,7 +36,6 @@ export const NotificationsStateProvider = ({ children }: PropsWithChildren) => {
         aria-atomic="true"
         className="bg-transparent position-fixed"
         style={{
-          minHeight: '240px',
           top: "0",
           right: "0",
           minWidth: '360px',
