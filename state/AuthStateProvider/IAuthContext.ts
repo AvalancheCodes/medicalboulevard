@@ -1,5 +1,5 @@
 import { User, UserCredential } from "firebase/auth";
-import { IUserProfileEntity } from "../../core/shared/entities/UserProfileEntity";
+import IUserProfileEntity from "../../core/shared/entities/IUserProfileEntity";
 
 export default interface IAuthContext {
   user: User;

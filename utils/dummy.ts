@@ -1,8 +1,10 @@
 import icon1 from "../public/images/services/features/icon1.svg";
 import icon2 from "../public/images/services/features/icon2.svg";
 import icon3 from "../public/images/services/features/icon3.svg";
-import { RecurringType } from "../core/shared/entities/enums/RecurringType";
-import { IRoomEntity } from "../core/shared/entities/RoomEntity";
+import RecurringType from "../core/shared/entities/enums/RecurringType";
+import IRoomEntity from "../core/shared/entities/IRoomEntity";
+import IMedicalSpaceCoordinatorEntity from "../core/shared/entities/IMedicalSpaceCoordinatorEntity";
+import { EntityWithId } from "../core/shared/entities/utils/EntityWithId";
 
 export const HOMEPAGE_CATEGORIES = [
   {
@@ -250,8 +252,24 @@ export const SERVICES_FLEXIBLE_SPACE_AND_SCHEDULING_FEEDBACK_ITEMS = [
   },
 ]
 
-const SerenityRoom: IRoomEntity & { id: string } = {
-  id: "serenity-room-id",
+//#region MedicalSpaceCoordinators
+const MDS_KRISTIN_JOHNSON: EntityWithId<IMedicalSpaceCoordinatorEntity> = {
+  _id: "mds-kristin-johnson-id",
+  fullName: "Kristin Johnson",
+  rating: 90,
+  about: "Kristin combines her real estate background and customer service skills to offer a seamless rental experience at Medical Boulevard. As our Medical Space Coordinator, she expertly guides clients and fosters lasting relationships, ensuring satisfaction in our flexible spaces.",
+  photoUrl: "/images/dummy/mds-kristin-johnson.png"
+}
+
+export const MEDICAL_SPACE_COORDINATORS = [
+  MDS_KRISTIN_JOHNSON
+]
+//#endregion MedicalSpaceCoordinators
+
+//#region ROOMS
+
+const SerenityRoom: EntityWithId<IRoomEntity> = {
+  _id: "serenity-room-id",
   name: "Serenity Room",
   slug: "serenity-room",
   category: "Medical",
@@ -292,12 +310,12 @@ const SerenityRoom: IRoomEntity & { id: string } = {
   ],
 
   amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-
+  medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
   createdAtMs: 1607644800000
 }
 
-const TheRadianceRoom: IRoomEntity & { id: string } = {
-  id: "the-radiance-room-id",
+const TheRadianceRoom: EntityWithId<IRoomEntity> = {
+  _id: "the-radiance-room-id",
   name: "The Radiance Room Room",
   slug: "radiance-room",
   category: "Medical",
@@ -339,12 +357,12 @@ const TheRadianceRoom: IRoomEntity & { id: string } = {
   ],
 
   amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-
+  medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
   createdAtMs: 1607644800000
 }
 
-const TheRejuvenationRetreatRoom: IRoomEntity & { id: string } = {
-  id: "the-rejuvenation-retreat-room-id",
+const TheRejuvenationRetreatRoom: EntityWithId<IRoomEntity> = {
+  _id: "the-rejuvenation-retreat-room-id",
   name: "The Rejuvenation Retreat Room",
   slug: "rejuvenation-room",
   category: "Medical",
@@ -384,6 +402,7 @@ const TheRejuvenationRetreatRoom: IRoomEntity & { id: string } = {
   ],
 
   amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+  medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
 
   createdAtMs: 1607644800000
 }
@@ -393,3 +412,5 @@ export const ROOMS = [
   TheRadianceRoom,
   TheRejuvenationRetreatRoom
 ];
+
+//#endregion ROOMS

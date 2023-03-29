@@ -3,7 +3,7 @@ import { onAuthStateChanged, User } from "firebase/auth";
 import { firebaseAuthService, firestoreUserProfileService } from "../../core/client/services/firebase";
 import AuthStateContext from "./AuthStateContext";
 import IAuthContext from "./IAuthContext";
-import { IUserProfileEntity } from "../../core/shared/entities/UserProfileEntity";
+import IUserProfileEntity from "../../core/shared/entities/IUserProfileEntity";
 
 
 export const AuthStateProvider = ({ children }: PropsWithChildren) => {

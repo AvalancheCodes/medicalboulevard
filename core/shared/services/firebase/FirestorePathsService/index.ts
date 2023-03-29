@@ -1,6 +1,7 @@
 export class FirestorePathsService {
   private readonly _userProfilesCollectionName: string = "user-profiles";
   private readonly _hireUsCollectionName: string = "hire-us"
+  private readonly _medicalSpaceCoordinatorsCollectionName: string = "medical-space-coordinators";
 
   //#region UserProfiles
   getUserProfilesCollectionPath(): string {
@@ -23,4 +24,15 @@ export class FirestorePathsService {
   }
 
   //#endregion HireUs
+
+  //#region Medical Space Coordinators
+  getMedicalSpaceCoordinatorsCollectionReference(): string {
+    return this._medicalSpaceCoordinatorsCollectionName;
+  }
+
+  getMedicalSpaceCoordinatorDocumentReference(itemId: string): string {
+    return this.getMedicalSpaceCoordinatorsCollectionReference() + "/" + itemId;
+  }
+
+  //#endregion Medical Space Coordinators
 }

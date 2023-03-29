@@ -17,8 +17,8 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 
-import { IRoomEntity } from "../core/shared/entities/RoomEntity";
-import { ROOMS } from "../utils/dummy";
+import IRoomEntity from "../core/shared/entities/IRoomEntity";
+import { firestoreRoomsService } from "../core/client/services/firebase";
 
 interface IRecentlyViewedCardProps {
   room: IRoomEntity,
@@ -103,11 +103,12 @@ const RecentlyViewed = ({ currentRoomId, className }: IRecentlyViewedProps) => {
       setRecentlyViewedRooms(undefined);
       return;
     }
-    const rooms = roomsIdsToShow
-      .map(id => ROOMS.find(x => x.id === id))
-      .filter(x => x);
-    console.log(rooms);
-    setRecentlyViewedRooms(rooms);
+    Promise.all(roomsIdsToShow.map(id => firestoreRoomsService.getById(id)))
+      .then(rooms => setRecentlyViewedRooms(rooms.filter(x => x)))
+      .catch(e => {
+        console.error(e);
+        setRecentlyViewedRooms(undefined);
+      });
   }, [roomsIdsToShow])
 
   if (!recentlyViewedRooms || recentlyViewedRooms.length === 0) return null;

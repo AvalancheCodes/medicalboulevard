@@ -10,8 +10,8 @@ import RealEstatePageLayout from '../../components/partials/RealEstatePageLayout
 import FindReservationFilters from "../../components/FindReservationFilters";
 import RoomCard from "../../components/RoomCard";
 
-import { ROOMS } from "../../utils/dummy";
-import { IRoomEntity } from "../../core/shared/entities/RoomEntity";
+import IRoomEntity from "../../core/shared/entities/IRoomEntity";
+import { firestoreRoomsService } from "../../core/client/services/firebase";
 
 const pageTitle = 'Medical Rooms';
 const activeNav = '/medical-rooms';
@@ -94,7 +94,7 @@ const HomePage = ({ allRooms }: IProps) => {
 }
 
 export async function getStaticProps() {
-  const allRooms = ROOMS;
+  const allRooms = await firestoreRoomsService.getAll();
 
   return {
     props: {

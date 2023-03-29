@@ -1,6 +1,6 @@
 import React from "react";
 import Badge from "react-bootstrap/Badge";
-import { IBadgeEntity } from "../core/shared/entities/BadgeEntity";
+import IBadgeEntity from "../core/shared/entities/IBadgeEntity";
 
 interface IProps {
   badge: IBadgeEntity;

@@ -3,7 +3,7 @@ import {
   USER_PROFILE_FIRST_NAME_MINLEN, USER_PROFILE_FIRST_NAME_MAXLEN,
   USER_PROFILE_LAST_NAME_MAXLEN, USER_PROFILE_LAST_NAME_MINLEN
 } from "../../../utils/constants";
-import { IUserProfileEntity } from "../entities/UserProfileEntity";
+import IUserProfileEntity from "../entities/IUserProfileEntity";
 
 const userProfileModelSchema = object<IUserProfileEntity>({
   firstName: string()

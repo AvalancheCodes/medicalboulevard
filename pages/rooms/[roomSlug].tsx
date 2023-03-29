@@ -12,8 +12,6 @@ import SanitizedHtml from "../../components/SanitizedHtml";
 import { MedicalSpaceCoordinatorCard } from "../../components/MedicalSpaceCoordinatorCard";
 import BadgeEntityComponent from "../../components/BadgeEntityComponent";
 
-import { IRoomEntity } from "../../core/shared/entities/RoomEntity";
-import { RoomAmenityEntity } from "../../core/shared/entities/RoomAmenityEntity";
 import moment from "moment";
 
 import { Navigation, Pagination } from "swiper";
@@ -23,13 +21,17 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
-import amenities from "../../data/amenities.json";
-import { ROOMS } from "../../utils/dummy";
 import useRecentlyViewedRoomsIds from "../../hooks/useRecentlyViewedRoomsIds";
+import IRoomBO from "../../core/shared/bll-models/IRoomBO";
+import {
+  firestoreMedicalSpaceCoordinatorService,
+  firestoreRoomAmenitiesService,
+  firestoreRoomsService
+} from "../../core/client/services/firebase";
 
 
 interface IProps {
-  room: IRoomEntity & { id: string };
+  room: IRoomBO;
 }
 
 const SlidesCount = ({ currentSlide, totalSlides }) => (
@@ -47,17 +49,6 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
   const [currentSlide, setCurrentSlide] = useState<number>();
   const [totalSlides, setTotalSlides] = useState<number>();
   const { pushItem } = useRecentlyViewedRoomsIds();
-
-  const allAmenities = useMemo<RoomAmenityEntity[]>(() => amenities.map(x => new RoomAmenityEntity(x.id, x)), []);
-  const roomAmenities = useMemo<RoomAmenityEntity[] | undefined>(() => {
-    if (!room.amenitiesIds) return undefined;
-    return allAmenities.filter(x => room.amenitiesIds.includes(x.id))
-  }, [room, allAmenities]);
-
-  const notIncludedAmenities = useMemo<RoomAmenityEntity[] | undefined>(() => {
-    if (!room.amenitiesIds) return undefined;
-    return allAmenities.filter(x => !room.amenitiesIds.includes(x.id));
-  }, [room, allAmenities]);
 
   const allImages = useMemo<string[] | undefined>(() => {
     if (!room.mainImageUrl) return undefined;
@@ -85,7 +76,7 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
 
   useEffect(() => {
     console.log(room);
-    pushItem(room.id);
+    pushItem(room._id);
   }, [room])
 
   const swiperOnSlideChange = useCallback((swiper: SwiperClass) => {
@@ -203,7 +194,7 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
               </Row>
               <Row>
                 <Col>
-                  <MedicalSpaceCoordinatorCard/>
+                  <MedicalSpaceCoordinatorCard coordinator={room._medicalSpaceCoordinator}/>
                 </Col>
               </Row>
             </Container>
@@ -260,7 +251,7 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
                 </Col>
               </Row>
 
-              {roomAmenities && roomAmenities.length > 0 && (
+              {room._amenitiesIncluded && room._amenitiesIncluded.length > 0 && (
                 <>
                   <Row className='my-4'>
 
@@ -268,25 +259,29 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
                       <h1 className='h5 mb-1'>Amenities</h1>
                     </Col>
 
-                    {roomAmenities.map(x => (
-                      <Col xs={12} md={6} key={x.id} className='my-2'>
-                        <i className={x.icon}></i>&nbsp;
-                        {x.label}
+                    {room._amenitiesIncluded.map(x => (
+                      <Col xs={12} md={6} key={x._id} className='my-2'>
+                        {x.icons?.map((x, i) => (
+                          <i key={i} className={x}></i>
+                        ))}
+                        &nbsp;{x.label}
                       </Col>
                     ))}
 
                   </Row>
 
-                  {notIncludedAmenities && notIncludedAmenities.length > 0 && (
+                  {room._amenitiesNotIncluded && room._amenitiesNotIncluded.length > 0 && (
                     <Row className='my-4'>
                       <Col xs={12}>
                         <h1 className='h5 mb-1'>Not Included</h1>
                       </Col>
 
-                      {notIncludedAmenities.map(x => (
-                        <Col xs={12} md={6} key={x.id} className='my-2'>
-                          <i className={x.icon}></i>&nbsp;
-                          {x.label}
+                      {room._amenitiesNotIncluded.map(x => (
+                        <Col xs={12} md={6} key={x._id} className='my-2'>
+                          {x.icons?.map((x, i) => (
+                            <i key={i} className={x}></i>
+                          ))}
+                          &nbsp;{x.label}
                         </Col>
                       ))}
                     </Row>
@@ -323,7 +318,7 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
         </Row>
         <Row className='mt-4'>
           <Col>
-            <RecentlyViewed currentRoomId={room.id}/>
+            <RecentlyViewed currentRoomId={room._id}/>
           </Col>
         </Row>
       </Container>
@@ -338,7 +333,8 @@ export async function getStaticPaths() {
   // const posts = await res.json()
 
   // Get the paths we want to pre-render based on posts
-  const paths = ROOMS.map((room) => ({
+  const all = await firestoreRoomsService.getAll();
+  const paths = all.map((room) => ({
     params: { roomSlug: room.slug },
   }))
 
@@ -348,8 +344,18 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log("Room slug: ", params.roomSlug)
-  const room = ROOMS.find(x => x.slug === params.roomSlug);
+  console.log("Room slug: ", params.roomSlug);
+  const roomEntity = await firestoreRoomsService.getBySlug(params.roomSlug);
+  const allAmenities = await firestoreRoomAmenitiesService.getAll();
+  const roomAmenities = allAmenities.filter(x => roomEntity.amenitiesIds.includes(x._id));
+  const roomAmenitiesNotIncluded = allAmenities.filter(x => !roomEntity.amenitiesIds.includes(x._id));
+  const medicalSpaceCoordinator = await firestoreMedicalSpaceCoordinatorService.getById(roomEntity.medicalSpaceCoordinatorId);
+  const room: IRoomBO = {
+    ...roomEntity,
+    _amenitiesIncluded: roomAmenities,
+    _amenitiesNotIncluded: roomAmenitiesNotIncluded,
+    _medicalSpaceCoordinator: medicalSpaceCoordinator
+  };
   // Pass post data to the page via props
   return { props: { room: room } }
 }

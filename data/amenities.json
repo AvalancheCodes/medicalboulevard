@@ -1,77 +1,108 @@
 [
   {
-    "id": "1",
-    "icon": "fa-solid fa-wifi",
+    "_id": "1",
+    "icons": [
+      "fa-solid fa-wifi",
+      "fa-solid fa-wifi"
+    ],
     "label": "WiFi"
   },
   {
-    "id": "2",
-    "icon": "fa-solid fa-couch",
+    "_id": "2",
+    "icons": [
+      "fa-solid fa-couch"
+    ],
     "label": "Treatment Chair"
   },
   {
-    "id": "3",
-    "icon": "fa-solid fa-headset",
+    "_id": "3",
+    "icons": [
+      "fa-solid fa-headset"
+    ],
     "label": "Welcoming Reception"
   },
   {
-    "id": "4",
-    "icon": "fa-solid fa-desktop",
+    "_id": "4",
+    "icons": [
+      "fa-solid fa-desktop"
+    ],
     "label": "Computer Desktop"
   },
   {
-    "id": "5",
-    "icon": "fa-solid fa-sun",
+    "_id": "5",
+    "icons": [
+      "fa-solid fa-sun"
+    ],
     "label": "Ample Natural Light"
   },
   {
-    "id": "6",
-    "icon": "fa-solid fa-mug-hot",
+    "_id": "6",
+    "icons": [
+      "fa-solid fa-mug-hot"
+    ],
     "label": "Break Room"
   },
   {
-    "id": "7",
-    "icon": "fa-solid fa-snowflake",
+    "_id": "7",
+    "icons": [
+      "fa-solid fa-snowflake"
+    ],
     "label": "Air Conditioning"
   },
   {
-    "id": "8",
-    "icon": "fa-solid fa-biohazard",
+    "_id": "8",
+    "icons": [
+      "fa-solid fa-biohazard"
+    ],
     "label": "Medical Waste Removal"
   },
   {
-    "id": "9",
-    "icon": "fa-solid fa-photo-film",
+    "_id": "9",
+    "icons": [
+      "fa-solid fa-photo-film"
+    ],
     "label": "Audio Visual"
   },
   {
-    "id": "10",
-    "icon": "fa-solid fa-warehouse",
+    "_id": "10",
+    "icons": [
+      "fa-solid fa-warehouse"
+    ],
     "label": "Storage and lockers"
   },
   {
-    "id": "11",
-    "icon": "fa-solid fa-pills",
+    "_id": "11",
+    "icons": [
+      "fa-solid fa-pills"
+    ],
     "label": "Medication"
   },
   {
-    "id": "12",
-    "icon": "fa-solid fa-radiation",
+    "_id": "12",
+    "icons": [
+      "fa-solid fa-radiation"
+    ],
     "label": "Sterilization equipment"
   },
   {
-    "id": "13",
-    "icon": "fa-solid fa-bandage",
+    "_id": "13",
+    "icons": [
+      "fa-solid fa-bandage"
+    ],
     "label": "Medical consumables"
   },
   {
-    "id": "14",
-    "icon": "fa-solid fa-stethoscope",
+    "_id": "14",
+    "icons": [
+      "fa-solid fa-stethoscope"
+    ],
     "label": "Procedure-specific tools"
   },
   {
-    "id": "15",
-    "icon": "fa-solid fa-sliders",
+    "_id": "15",
+    "icons": [
+      "fa-solid fa-sliders"
+    ],
     "label": "Customizable furniture"
   }
 ]

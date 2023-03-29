@@ -4,7 +4,7 @@ import { FirebaseServiceBase } from "./FirebaseServiceBase";
 import { FirestorePathsService } from "../../../shared/services/firebase/FirestorePathsService";
 import userProfileModelSchema from "../../../shared/yup/userProfileModelSchema";
 import trimObjectStrings from "../../../../utils/trimObjectStrings";
-import { IUserProfileEntity } from "../../../shared/entities/UserProfileEntity";
+import IUserProfileEntity from "../../../shared/entities/IUserProfileEntity";
 
 export class FirestoreUserProfileService extends FirebaseServiceBase {
   private readonly _db: Firestore;
@@ -16,7 +16,7 @@ export class FirestoreUserProfileService extends FirebaseServiceBase {
     this._db = db;
   }
 
-  async createUser(userId: string, data: Omit<IUserProfileEntity, "createdAtMs">) {
+  public async createUser(userId: string, data: Omit<IUserProfileEntity, "createdAtMs">) {
     try {
       const dataTrimmed = trimObjectStrings(data);
       const userProfileData: IUserProfileEntity = {

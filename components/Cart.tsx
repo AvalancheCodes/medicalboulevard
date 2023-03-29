@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 import { CART_LINE_ITEMS } from "../utils/dummy";
 import currencyFormatter from "../utils/currencyFormatter";
 import moment from "moment";
-import { RecurringType } from "../core/shared/entities/enums/RecurringType";
+import RecurringType from "../core/shared/entities/enums/RecurringType";
 
 const CartLineItem = ({
                         title,

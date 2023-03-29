@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import Link from "next/link";
 import Card from "react-bootstrap/Card";
 import currencyFormatter from "../utils/currencyFormatter";
-import { IRoomEntity } from "../core/shared/entities/RoomEntity";
+import IRoomEntity from "../core/shared/entities/IRoomEntity";
 import BadgeEntityComponent from "./BadgeEntityComponent";
 
 interface IProps {

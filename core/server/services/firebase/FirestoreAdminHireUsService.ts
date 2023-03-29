@@ -1,7 +1,7 @@
 import { Firestore } from 'firebase-admin/firestore'
 import { FirestorePathsService } from "../../../shared/services/firebase/FirestorePathsService";
 import trimObjectStrings from "../../../../utils/trimObjectStrings";
-import { IHireUsRequestEntity } from "../../../shared/entities/HireUsRequestEntity";
+import IHireUsRequestEntity from "../../../shared/entities/IHireUsRequestEntity";
 import hireUsRequestEntitySchema from "../../../shared/yup/hireUsRequestEntitySchema";
 
 export class FirestoreAdminHireUsService {
