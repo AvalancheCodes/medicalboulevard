@@ -104,7 +104,7 @@ const RealEstatePageLayout = (props) => {
         >
           <Container>
             <Navbar.Brand as={Link} href='/' className='me-3 me-xl-4'>
-              <ImageLoader priority src='/images/logo/logo-dark.png' width={257} height={58} placeholder={false}
+              <ImageLoader priority src='/images/logo/medical_blvd_inc_logo.png' width={257} height={58} placeholder={false}
                            alt='MedicalBoulevard'/>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls='navbarNav' className='ms-auto'/>
