@@ -1,6 +1,15 @@
 import { useState } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown'
 
+interface IProps{
+  defaultValue: string;
+  options: Array<string[]>;
+  icon?: string;
+  variant?: string;
+  darkMenu?: boolean;
+  [key: string]: any;
+}
+
 const DropdownSelect = ({
   defaultValue,
   options,
@@ -8,7 +17,7 @@ const DropdownSelect = ({
   variant,
   darkMenu,
   ...props
-}) => {
+}: IProps) => {
 
   const [selected, setSelected] = useState(defaultValue)
 
@@ -25,7 +34,7 @@ const DropdownSelect = ({
         {selected}
       </Dropdown.Toggle>
       <Dropdown.Menu variant={darkMenu ? 'dark' : ''}>
-        {options ? options.map((option, indx) => 
+        {options ? options.map((option, indx) =>
         <Dropdown.Item key={indx} eventKey={option[1]}>
           {option[0] && <i className={`${option[0]} fs-lg opacity-60 me-2`}></i>}
           {option[1]}

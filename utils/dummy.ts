@@ -6,62 +6,25 @@ import IRoomEntity from "../core/shared/entities/IRoomEntity";
 import IMedicalSpaceCoordinatorEntity from "../core/shared/entities/IMedicalSpaceCoordinatorEntity";
 import { EntityWithId } from "../core/shared/entities/utils/EntityWithId";
 
-export const HOMEPAGE_CATEGORIES = [
+export const HOMEPAGE_PROCESS_STEPS = [
   {
-    href: '/real-estate/catalog?category=rent',
-    media: 'fi-real-estate-house',
-    title: 'Examination'
+    title: "Choose Your Ideal Medical Space",
+    text: "Browse our gallery of flexible medical spaces and filter by type to find your perfect fit. Our spaces are available for rent on an hourly basis with a minimum time block of four hours, providing the flexibility you need to elevate your practice.",
+    url: "/services",
+    urlText: "Services",
   },
   {
-    href: '/real-estate/catalog?category=sale',
-    media: 'fi-apartment',
-    title: 'SPA Rooms'
+    title: "Check Availability and Pricing",
+    text: "Once you've found the right space, simply fill out our easy-to-use online form to check availability and pricing. We'll get back to you within 24 hours with all the information you need to move forward with your rental.",
+    url: "/features",
+    urlText: "Features",
   },
   {
-    href: '/real-estate/catalog?category=rent',
-    media: 'fi-shop',
-    title: 'Conference Room'
-  },
-  {
-    href: '/real-estate/catalog?category=rent',
-    media: 'fi-rent',
-    title: 'Media Room'
-  },
-  {
-    href: '/real-estate/catalog?category=sale',
-    media: 'fi-house-chosen',
-    title: 'Workspace'
+    title: "Schedule a Tour or Virtual Tour",
+    text: "If the space you requested is available, we'll work with you to schedule a tour or virtual tour so you can see it for yourself. If it's not available, we'll help you find a time that works with your schedule. With our simple 3-step process, renting your ideal medical space has never been easier.",
+    url: "/dashboard",
+    urlText: "Dashboard",
   }
-];
-
-export const HOMEPAGE_HOW_IT_WORKS = [
-  [
-    {
-      title: "Check Availability",
-      text: "To get started, you can check the availability of the medical or business rooms you're interested in renting. Select the specific dates and times for one-time or recurring rentals."
-    },
-    {
-      title: "Book Your Room and Repeat as Needed:",
-      text: "Check availability for the desired dates and times for one-time or recurring rentals of our medical and business rooms. Once you find a room that works for you, book it directly through Medical Boulevard and provide payment for the total time you've booked. With upcoming 24-hour availability, you'll have even more flexibility to serve your patients or hold your meetings on your schedule."
-    },
-    {
-      title: "Use It",
-      text: "Once your booking is confirmed and payment is received, you can start using your room at the scheduled time. Our rooms are equipped with everything you need to perform your services or hold your meetings, including furniture and sinks required for non-intrusive surgical procedures or other facial treatments. You can focus on your work knowing that all necessary equipment is provided."
-    }
-  ], [
-    {
-      title: "Check Availability",
-      text: "To get started, you can check the availability of the medical or business rooms you're interested in renting. Select the specific dates and times for one-time or recurring rentals."
-    },
-    {
-      title: "Book Your Room and Repeat as Needed:",
-      text: "Check availability for the desired dates and times for one-time or recurring rentals of our medical and business rooms. Once you find a room that works for you, book it directly through Medical Boulevard and provide payment for the total time you've booked. With upcoming 24-hour availability, you'll have even more flexibility to serve your patients or hold your meetings on your schedule."
-    },
-    {
-      title: "Use It",
-      text: "Once your booking is confirmed and payment is received, you can start using your room at the scheduled time. Our rooms are equipped with everything you need to perform your services or hold your meetings, including furniture and sinks required for non-intrusive surgical procedures or other facial treatments. You can focus on your work knowing that all necessary equipment is provided."
-    },
-  ]
 ];
 
 export const CART_LINE_ITEMS = [

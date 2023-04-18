@@ -1,23 +1,38 @@
 import Link from 'next/link'
 import ImageLoader from './ImageLoader'
 
+interface IProps {
+  img: { src: string, alt: string };
+  href: string;
+  title: string;
+  category: string;
+  location: string;
+  button: { href: string, props?: any, wishlistProps?: any, variant: string, title: string };
+  overlay: boolean;
+  badges: Array<string[]>;
+  className?: string;
+
+  [key: string]: any;
+}
+
 const PropertyCardOverlay = ({
-  img,
-  href,
-  title,
-  category,
-  location,
-  button,
-  overlay,
-  badges,
-  className,
-  ...props
-}) => {
+                               img,
+                               href,
+                               title,
+                               category,
+                               location,
+                               button,
+                               overlay,
+                               badges,
+                               className,
+                               ...props
+                             }: IProps) => {
 
   return (
     <div {...props} className={`card border-0 overflow-hidden${className ? ` ${className}` : ''}`}>
       {overlay && <span className='img-gradient-overlay'></span>}
-      {img && <ImageLoader src={img.src} layout='fill' objectFit='cover' quality={100} alt={img.alt} className='rounded-3' />}
+      {img &&
+        <ImageLoader src={img.src} layout='fill' objectFit='cover' quality={100} alt={img.alt} className='rounded-3'/>}
       <div className='card-body content-overlay pb-0'>
         {badges && <>
           {badges.map((badge, indx) => <span key={indx} className={`d-table badge bg-${badge[0]} fs-sm mb-1`}>
@@ -58,7 +73,7 @@ const PropertyCardOverlay = ({
                 {button.title}
               </button>
             }
-            <div className='posiion-relative border-start border-light zindex-5' style={{marginLeft: '-1px'}}></div>
+            <div className='posiion-relative border-start border-light zindex-5' style={{ marginLeft: '-1px' }}></div>
             <button
               {...button.wishlistProps}
               type='button'

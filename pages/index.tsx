@@ -7,17 +7,15 @@ import Nav from 'react-bootstrap/Nav'
 
 import ImageLoader from '../components/ImageLoader'
 import DropdownSelect from '../components/DropdownSelect'
-import IconBox from '../components/IconBox'
 import PropertyCardOverlay from '../components/PropertyCardOverlay'
 import RealEstatePageLayout from '../components/partials/RealEstatePageLayout'
 import ScheduleTourButton from "../components/ScheduleTourButton";
 import HowItWorksLineItem from "../components/HowItWorksLineItem";
 import SubscribeHero from "../components/SubscribeHero";
-import { HOMEPAGE_CATEGORIES, HOMEPAGE_HOW_IT_WORKS } from "../utils/dummy";
+import { HOMEPAGE_PROCESS_STEPS } from "../utils/dummy";
 
 const IndexPage = () => {
-  const categories = HOMEPAGE_CATEGORIES;
-  const howItWorks = HOMEPAGE_HOW_IT_WORKS;
+  const processSteps = HOMEPAGE_PROCESS_STEPS;
 
   return (
     <RealEstatePageLayout
@@ -49,21 +47,20 @@ const IndexPage = () => {
         </Row>
       </Container>
 
-      {/* Categories */}
+      {/* Our Mission */}
       <Container as='section' className='my-5 py-4'>
         <Row className='g-3 g-xl-4'>
-          {categories.map((category, indx) => (
-            <Col key={indx} className={"m-0"}>
-              <IconBox
-                href={category.href}
-                media={category.media}
-                mediaShape='circle'
-                title={category.title}
-                type='card-shadow'
-                align='center'
-              />
-            </Col>
-          ))}
+          <Col className="m-0 mx-4 text-center">
+            <h2 className='h1 mb-4'>Our Mission</h2>
+            <p className="fs-5 fw-normal">
+              At Medical Boulevard, our mission is to empower healthcare professionals specialised in non-invasive
+              cosmetic procedures and wellness therapies by providing flexible, fully-equipped medical spaces in a prime
+              Beverly Hills location. We are dedicated to fostering a supportive community that encourages collaboration
+              and growth, allowing practitioners to focus on delivering exceptional patient care while we handle the
+              complexities of establishing and maintaining a thriving practice. Together, we are revolutionising the
+              healthcare industry, one innovative practice at a time.
+            </p>
+          </Col>
         </Row>
       </Container>
 
@@ -108,7 +105,8 @@ const IndexPage = () => {
             </Nav>
           </div>
 
-          <Button as={Link} href='/real-estate/catalog?category=rent' variant='link fw-normal d-none d-lg-block p-0'>
+          <Button as={Link as any} href='/real-estate/catalog?category=rent'
+                  variant='link fw-normal d-none d-lg-block p-0'>
             View all
             <i className='fi-arrow-long-right ms-2'></i>
           </Button>
@@ -187,18 +185,31 @@ const IndexPage = () => {
 
       {/* How It Works */}
       <Container as='section' className='my-5 py-4'>
-        <h2>How it works</h2>
-        <Container>
+        <h3 className="fs-xs fw-bold text-uppercase">
+          Built-in access
+        </h3>
+        <h2>
+          Simple 3-Step Process to Rent Your Ideal <br/>
+          Medical Space
+        </h2>
+        <p className="fs-lg fw-normal">
+          Find the Perfect Space to Elevate Your Practice Today
+        </p>
+        <div className="mt-4 pt-4">
           <Row>
-            {howItWorks.map((col, indx1) => (
-              <Col key={indx1}>
-                {col.map((item, indx2) => (
-                  <HowItWorksLineItem key={indx2} number={indx2 + 1} title={item.title} text={item.text}/>
-                ))}
+            {processSteps.map((item, i) => (
+              <Col key={i}>
+                <HowItWorksLineItem
+                  number={i + 1}
+                  title={item.title}
+                  text={item.text}
+                  linkUrl={item.url}
+                  linkText={item.urlText}
+                />
               </Col>
             ))}
           </Row>
-        </Container>
+        </div>
       </Container>
 
       {/* Subscribe banner */}

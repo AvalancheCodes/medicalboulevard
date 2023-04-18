@@ -17,6 +17,10 @@ import { apiHireUsService } from "../../core/client/services/api";
 import useNotificationsContext from "../../state/NotificationsStateProvider/useNotificationsContext";
 import IHireUsRequestFormData from "../../core/client/models/IHireUsRequestFormData";
 
+interface IProps {
+  className?: string;
+}
+
 const initialFormData: IHireUsRequestFormData = {
   firstName: "",
   lastName: "",
@@ -27,7 +31,7 @@ const initialFormData: IHireUsRequestFormData = {
 };
 
 // TODO: Add ReCaptcha to the form!
-const HireUsForm = ({ className }) => {
+const HireUsForm = ({ className }: IProps) => {
   const { pushNotification } = useNotificationsContext();
   const [formData, setFormData] = useState<IHireUsRequestFormData>({ ...initialFormData });
 
