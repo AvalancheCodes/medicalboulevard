@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import Modal, { ModalProps } from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
@@ -11,13 +11,13 @@ import useAuthContext from "../../state/AuthStateProvider/useAuthContext";
 import { ISignUpUserFormData } from "../../core/client/models/ISignUpUserFormData";
 
 interface IProps extends ModalProps {
-  onSwap: () => {};
-  pillButtons: string;
+  onSwap: () => void;
+  pillButtons?: boolean;
 
   [key: string]: any;
 }
 
-const SignInModalLight = ({ onSwap, pillButtons, ...props }: IProps) => {
+const SignInModalLight = ({ onSwap, pillButtons = false, onHide, ...props }: IProps) => {
   const { loginEmailPassword } = useAuthContext();
   const [formData, setFormData] = useState<ISignUpUserFormData>({ email: "", password: "" });
 
@@ -26,7 +26,7 @@ const SignInModalLight = ({ onSwap, pillButtons, ...props }: IProps) => {
   const [validated, setValidated] = useState<boolean>(false)
   const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(false);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = useCallback(async (event) => {
     event.preventDefault()
     event.stopPropagation()
 
@@ -38,23 +38,28 @@ const SignInModalLight = ({ onSwap, pillButtons, ...props }: IProps) => {
 
     try {
       if (form.checkValidity() === false) throw new Error('Invalid input');
-      const creds = await loginEmailPassword(formData.email, formData.password)
+      const creds = await loginEmailPassword(formData.email, formData.password);
       console.log(`User logged in: ${JSON.stringify(creds)}`);
-      props.onHide()
+      onHide();
     } catch (e) {
       setErrorText(e.message)
     } finally {
       setIsSubmitDisabled(false);
     }
 
-  }
+  }, [formData, loginEmailPassword, onHide]);
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     setFormData(curr => ({
       ...curr,
       [e.target.name]: e.target.value
     }));
-  }
+  }, []);
+
+  const onSwapWithPreventDefaults = useCallback((e) => {
+    e.preventDefault();
+    onSwap();
+  }, [onSwap])
 
   return (
     <Modal {...props} className='signin-modal'>
@@ -75,7 +80,8 @@ const SignInModalLight = ({ onSwap, pillButtons, ...props }: IProps) => {
                 alt='Illustration'
               />
             </div>
-            <div className='mt-4 mt-sm-5'>Don&apos;t have an account? <a href='#' onClick={onSwap}>Sign up here</a>
+            <div className='mt-4 mt-sm-5'>
+              Don&apos;t have an account? <a href='#' onClick={onSwapWithPreventDefaults}>Sign up here</a>
             </div>
           </div>
           <div className='col-md-6 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5'>

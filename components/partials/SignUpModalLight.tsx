@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import Modal, { ModalProps } from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
@@ -18,13 +18,13 @@ import { IRegisterUserFormData } from "../../core/client/models/IRegisterUserFor
 import registerUserFormSchema from "../../core/shared/yup/registerUserFormSchema";
 
 interface IProps extends ModalProps {
-  onSwap: () => {};
-  pillButtons: string;
+  onSwap: () => void;
+  pillButtons?: boolean;
 
   [key: string]: any;
 }
 
-const SignUpModalLight = ({ onSwap, pillButtons, ...props }: IProps) => {
+const SignUpModalLight = ({ onSwap, pillButtons = false, ...props }: IProps) => {
   const { signUpEmailPassword } = useAuthContext();
   const [formData, setFormData] = useState<IRegisterUserFormData>({
     firstName: "",
@@ -39,7 +39,7 @@ const SignUpModalLight = ({ onSwap, pillButtons, ...props }: IProps) => {
   const [validated, setValidated] = useState<boolean>(false);
   const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(false);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = useCallback(async (event) => {
     const form = event.currentTarget;
     event.preventDefault();
     event.stopPropagation();
@@ -63,14 +63,19 @@ const SignUpModalLight = ({ onSwap, pillButtons, ...props }: IProps) => {
     } finally {
       setIsSubmitDisabled(false);
     }
-  }
+  }, [formData, signUpEmailPassword])
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     setFormData(curr => ({
       ...curr,
       [e.target.name]: e.target.value
     }));
-  }
+  }, []);
+
+  const onSwapWithPreventDefaults = useCallback((e) => {
+    e.preventDefault();
+    onSwap();
+  }, [onSwap])
 
   return (
     <Modal {...props} className='signup-modal'>
@@ -105,7 +110,9 @@ const SignUpModalLight = ({ onSwap, pillButtons, ...props }: IProps) => {
                 alt='Illustration'
               />
             </div>
-            <div className='mt-sm-4 pt-md-3'>Already have an account? <a href='#' onClick={onSwap}>Sign in</a></div>
+            <div className='mt-sm-4 pt-md-3'>
+              Already have an account? <a href='#' onClick={onSwapWithPreventDefaults}>Sign in</a>
+            </div>
           </div>
           <div className='col-md-6 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5'>
             <Button variant={`outline-info ${pillButtons ? 'rounded-pill' : ''} w-100 mb-3`}>

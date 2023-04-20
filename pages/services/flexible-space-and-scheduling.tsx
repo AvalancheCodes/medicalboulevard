@@ -13,7 +13,7 @@ import {
 import heroImg from "../../public/images/services/services-rooms-scheduling-hero.png";
 
 
-const StepItem = ({number, title, description}) => {
+const StepItem = ({ number, title, description }) => {
   return (
     <div>
       <div className='number-in-circle'>{number.toString()}</div>
@@ -23,7 +23,7 @@ const StepItem = ({number, title, description}) => {
   )
 }
 
-const QuoteItem = ({quote, authorName, authorJobTitle, authorCompany, authorPhoto}) => {
+const QuoteItem = ({ quote, authorName, authorJobTitle, authorCompany, authorPhoto }) => {
   return (
     <Card>
       <Card.Body>
@@ -34,7 +34,7 @@ const QuoteItem = ({quote, authorName, authorJobTitle, authorCompany, authorPhot
       <Card.Footer>
         <Row>
           <Col xs='auto' className='d-flex flex-column justify-content-center'>
-            <ImageLoader src={authorPhoto} width={60} height={60} placeholder={false}
+            <ImageLoader src={authorPhoto} width={60} height={60} placeholder={"blur"}
                          className='rounded-circle' alt={authorName}/>
           </Col>
           <Col>

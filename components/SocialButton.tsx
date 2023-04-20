@@ -1,22 +1,31 @@
-const SocialButton = ({
-  brand,
-  variant,
-  size,
-  roundedCircle,
-  light,
-  className,
-  ...props
-}) => {
+interface IProps {
+  brand: string;
+  variant?: 'solid' | 'translucent' | 'border';
+  size?: 'sm' | 'lg' | 'xl';
+  roundedCircle?: boolean;
+  light?: boolean;
+  className?: string;
 
-  const brandProp = brand ? brand.toLowerCase() : '',
-        variantProp = variant ? variant.toLowerCase() : '',
-        roundedCircleClass = roundedCircle ? ' rounded-circle' : '',
-        basicLight = light ? ' btn-light' : '',
-        solidLight = light ? ' btn-translucent-light' : ' btn-light-primary',
-        translucentLight = light ? ' btn-translucent-light' : ' btn-translucent-primary',
-        borderLight = light ? ' btn-outline-light border-light' : ' btn-light border',
-        extraClass = className ? ` ${className}` : ''
-  
+  [key: string]: any;
+}
+
+const SocialButton = ({
+                        brand,
+                        variant,
+                        size,
+                        roundedCircle,
+                        light,
+                        className,
+                        ...props
+                      }: IProps) => {
+
+  const roundedCircleClass = roundedCircle ? ' rounded-circle' : '';
+  const basicLight = light ? ' btn-light' : '';
+  const solidLight = light ? ' btn-translucent-light' : ' btn-light-primary';
+  const translucentLight = light ? ' btn-translucent-light' : ' btn-translucent-primary';
+  const borderLight = light ? ' btn-outline-light border-light' : ' btn-light border';
+  const extraClass = className ? ` ${className}` : ''
+
   // Button size CSS classes
   let btnSize
   switch (size) {
@@ -51,7 +60,7 @@ const SocialButton = ({
 
   // CSS classes that depend on prop.variant, prop.size, prop.light, prop.className
   let socialButtonClass
-  switch (variantProp) {
+  switch (variant) {
     case 'solid':
       socialButtonClass = 'btn btn-icon shadow-sm' + btnSize + roundedCircleClass + solidLight + extraClass
       break
@@ -68,8 +77,8 @@ const SocialButton = ({
   // Render markup
   return (
     <a {...props} className={socialButtonClass}>
-      <i className={`fi-${brandProp}`}></i>
-    </a> 
+      <i className={`fi-${brand}`}></i>
+    </a>
   )
 }
 

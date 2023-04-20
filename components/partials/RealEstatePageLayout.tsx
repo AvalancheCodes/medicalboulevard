@@ -1,84 +1,88 @@
-import { useEffect, useState } from 'react'
-import Head from 'next/head'
-import Link from 'next/link'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Nav from 'react-bootstrap/Nav'
-import Navbar from 'react-bootstrap/Navbar'
-import Dropdown from 'react-bootstrap/Dropdown'
-import Button from 'react-bootstrap/Button'
-import ImageLoader from '../ImageLoader'
-import StickyNavbar from '../StickyNavbar'
-import StarRating from '../StarRating'
-import SocialButton from '../SocialButton'
-import MarketButton from '../MarketButton'
-import SignInModalLight from '../partials/SignInModalLight'
-import SignUpModalLight from '../partials/SignUpModalLight'
-import ScheduleTourButton from "../ScheduleTourButton";
+import { ReactNode, useCallback, useState } from "react"
+import Head from "next/head"
+import Link from "next/link"
+import Container from "react-bootstrap/Container"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
+import Nav from "react-bootstrap/Nav"
+import Navbar from "react-bootstrap/Navbar"
+import Dropdown from "react-bootstrap/Dropdown"
+import Button from "react-bootstrap/Button"
 import Badge from "react-bootstrap/Badge";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Cart from "../Cart";
 import Popover from "react-bootstrap/Popover";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import ImageLoader from "../ImageLoader"
+import StickyNavbar from "../StickyNavbar"
+import StarRating from "../StarRating"
+import SocialButton from "../SocialButton"
+import MarketButton from "../MarketButton"
+import SignInModalLight from "../partials/SignInModalLight"
+import SignUpModalLight from "../partials/SignUpModalLight"
+import ScheduleTourButton from "../ScheduleTourButton";
+import Cart from "../Cart";
 import useAuthContext from "../../state/AuthStateProvider/useAuthContext";
 
-const RealEstatePageLayout = (props) => {
-  const {user, isAuthReady, logout} = useAuthContext()
+// Footer recent blog posts array
+const footerPosts = [
+  {
+    href: '/real-estate/blog-single',
+    img: '/images/real-estate/blog/th01.jpg',
+    category: 'Home Improvement',
+    title: 'Your Guide to a Smart Apartment Searching',
+    text: 'Mi justo, varius vitae cursus ipsum sem massa amet pellentesque. Ipsum enim sit nulla ridiculus semper nam...',
+    date: 'Dec 4',
+    comments: '2'
+  },
+  {
+    href: '/real-estate/blog-single',
+    img: '/images/real-estate/blog/th02.jpg',
+    category: 'Tips & Advice',
+    title: 'Top 10 Ways to Refresh Your Space',
+    text: 'Volutpat, orci, vitae arcu feugiat vestibulum ultricies nisi, aenean eget. Vitae enim, tellus tempor consequat mi vitae...',
+    date: 'Nov 23',
+    comments: 'No'
+  }
+]
+
+interface IProps {
+  pageTitle: string;
+  activeNav: string;
+  navbarExtraClass?: string;
+
+  children: ReactNode;
+}
+
+const RealEstatePageLayout = ({ pageTitle, activeNav, navbarExtraClass, children }: IProps) => {
+  const { user, isAuthReady, logout } = useAuthContext()
   // Sign in modal
-  const [signinShow, setSigninShow] = useState(false)
-  const handleSigninClose = () => setSigninShow(false)
-  const handleSigninShow = () => setSigninShow(true)
+  const [signInShow, setSignInShow] = useState(false)
+  const [signUpShow, setSignUpShow] = useState(false)
 
-  // Sign up modal
-  const [signupShow, setSignupShow] = useState(false)
-  const handleSignupClose = () => setSignupShow(false)
+  const handleSignInClose = useCallback(() => setSignInShow(false), []);
+  const handleSignInShow = useCallback(() => setSignInShow(true), []);
+  const handleSignupClose = useCallback(() => setSignUpShow(false), []);
+  const handleSignInToUp = useCallback(() => {
+    setSignInShow(false)
+    setSignUpShow(true)
+  }, []);
+  const handleSignUpToIn = useCallback(() => {
+    setSignInShow(true)
+    setSignUpShow(false)
+  }, []);
 
-  // Swap modals
-  const handleSignInToUp = (e) => {
-    e.preventDefault()
-    setSigninShow(false)
-    setSignupShow(true)
-  }
-  const handleSignUpToIn = (e) => {
-    e.preventDefault()
-    setSigninShow(true)
-    setSignupShow(false)
-  }
-
-  // Footer recent blog posts array
-  const footerPosts = [
-    {
-      href: '/real-estate/blog-single',
-      img: '/images/real-estate/blog/th01.jpg',
-      category: 'Home Improvement',
-      title: 'Your Guide to a Smart Apartment Searching',
-      text: 'Mi justo, varius vitae cursus ipsum sem massa amet pellentesque. Ipsum enim sit nulla ridiculus semper nam...',
-      date: 'Dec 4',
-      comments: '2'
-    },
-    {
-      href: '/real-estate/blog-single',
-      img: '/images/real-estate/blog/th02.jpg',
-      category: 'Tips & Advice',
-      title: 'Top 10 Ways to Refresh Your Space',
-      text: 'Volutpat, orci, vitae arcu feugiat vestibulum ultricies nisi, aenean eget. Vitae enim, tellus tempor consequat mi vitae...',
-      date: 'Nov 23',
-      comments: 'No'
-    }
-  ]
 
   return (
     <>
       <Head>
-        <title>{`MedicalBoulevard | ${props.pageTitle}`}</title>
+        <title>{`MedicalBoulevard | ${pageTitle}`}</title>
       </Head>
 
       {/* Sign in modal */}
       {!user && <SignInModalLight
         centered
         size='lg'
-        show={signinShow}
-        onHide={handleSigninClose}
+        show={signInShow}
+        onHide={handleSignInClose}
         onSwap={handleSignInToUp}
       />}
 
@@ -86,7 +90,7 @@ const RealEstatePageLayout = (props) => {
       {!user && <SignUpModalLight
         centered
         size='lg'
-        show={signupShow}
+        show={signUpShow}
         onHide={handleSignupClose}
         onSwap={handleSignUpToIn}
       />}
@@ -100,12 +104,18 @@ const RealEstatePageLayout = (props) => {
         <Navbar as={StickyNavbar}
                 expand='lg'
                 bg='light'
-                className={`fixed-top${props.navbarExtraClass ? ` ${props.navbarExtraClass}` : ''}`}
+                className={`fixed-top${navbarExtraClass ? ` ${navbarExtraClass}` : ''}`}
         >
           <Container>
-            <Navbar.Brand as={Link} href='/' className='me-3 me-xl-4'>
-              <ImageLoader priority src='/images/logo/medical_blvd_inc_logo.png' width={257} height={58} placeholder={false}
-                           alt='MedicalBoulevard'/>
+            <Navbar.Brand as={Link as any} href='/' className='me-3 me-xl-4'>
+              <ImageLoader
+                priority
+                src='/images/logo/medical_blvd_inc_logo.png'
+                width={257}
+                height={58}
+                placeholder={"blur"}
+                alt='MedicalBoulevard'
+              />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls='navbarNav' className='ms-auto'/>
 
@@ -116,14 +126,22 @@ const RealEstatePageLayout = (props) => {
                   <Dropdown className='d-none d-lg-block order-lg-3 my-n2 me-3'>
                     <Dropdown.Toggle as={Link} href='/real-estate/account-info'
                                      className='nav-link dropdown-toggle-flush d-flex py-1 px-0'
-                                     style={{width: '40px'}}>
-                      <ImageLoader src='/images/avatars/30.jpg' width={80} height={80} placeholder={false}
-                                   className='rounded-circle' alt='Annette Black'/>
+                                     style={{ width: '40px' }}>
+                      <ImageLoader
+                        src='/images/avatars/30.jpg'
+                        width={80} height={80}
+                        placeholder={"blur"}
+                        className='rounded-circle' alt='Annette Black'
+                      />
                     </Dropdown.Toggle>
                     <Dropdown.Menu renderOnMount align='end'>
-                      <div className='d-flex align-items-start border-bottom px-3 py-1 mb-2' style={{width: '16rem'}}>
-                        <ImageLoader src='/images/avatars/03.jpg' width={48} height={48} placeholder={false}
-                                     className='rounded-circle' alt='Annette Black'/>
+                      <div className='d-flex align-items-start border-bottom px-3 py-1 mb-2' style={{ width: '16rem' }}>
+                        <ImageLoader
+                          src='/images/avatars/03.jpg'
+                          width={48} height={48}
+                          placeholder={"blur"}
+                          className='rounded-circle' alt='Annette Black'
+                        />
                         <div className='ps-2'>
                           <h6 className='fs-base mb-0'>Annette Black</h6>
                           <StarRating size='sm' rating={5}/>
@@ -162,7 +180,7 @@ const RealEstatePageLayout = (props) => {
                     </Dropdown.Menu>
                   </Dropdown>
                 ) : (
-                  <Button variant='sm text-primary d-none d-lg-block order-lg-3' onClick={handleSigninShow}>
+                  <Button variant='sm text-primary d-none d-lg-block order-lg-3' onClick={handleSignInShow}>
                     <i className='fi-user me-2'></i>
                     Sign in
                   </Button>
@@ -174,7 +192,7 @@ const RealEstatePageLayout = (props) => {
               trigger='click'
               placement='auto'
               overlay={
-                <Popover style={{maxWidth: "479px"}}>
+                <Popover style={{ maxWidth: "479px" }}>
                   <Popover.Body>
                     <Cart/>
                   </Popover.Body>
@@ -198,24 +216,24 @@ const RealEstatePageLayout = (props) => {
             <ScheduleTourButton className={"order-lg-3"}/>
 
             <Navbar.Collapse id='navbarNav' className='order-md-2'>
-              <Nav navbarScroll style={{maxHeight: '35rem'}}>
+              <Nav navbarScroll style={{ maxHeight: '35rem' }}>
                 <Nav.Item>
-                  <Nav.Link active={props.activeNav === '/'} href="/">Home</Nav.Link>
+                  <Nav.Link active={activeNav === '/'} href="/">Home</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link active={props.activeNav === '/rooms'} href="/rooms">Medical Rooms</Nav.Link>
+                  <Nav.Link active={activeNav === '/rooms'} href="/rooms">Medical Rooms</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link active={props.activeNav === '/services'} href="/services">Services</Nav.Link>
+                  <Nav.Link active={activeNav === '/services'} href="/services">Services</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link active={props.activeNav === '/directory'} href="/directory">Directory</Nav.Link>
+                  <Nav.Link active={activeNav === '/directory'} href="/directory">Directory</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link active={props.activeNav === '/blog'} href="/blog">Blog</Nav.Link>
+                  <Nav.Link active={activeNav === '/blog'} href="/blog">Blog</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link active={props.activeNav === '/contacts'} href="/contacts">Contact</Nav.Link>
+                  <Nav.Link active={activeNav === '/contacts'} href="/contacts">Contact</Nav.Link>
                 </Nav.Item>
 
                 {isAuthReady && (
@@ -224,8 +242,12 @@ const RealEstatePageLayout = (props) => {
                       user ? (
                         <Nav.Item as={Dropdown} className='d-lg-none'>
                           <Dropdown.Toggle as={Nav.Link} className='d-flex align-items-center'>
-                            <ImageLoader src='/images/avatars/30.jpg' width={30} height={30} placeholder={false}
-                                         className='rounded-circle' alt='Annette Black'/>
+                            <ImageLoader
+                              src='/images/avatars/30.jpg'
+                              width={30} height={30}
+                              placeholder={"blur"}
+                              className='rounded-circle' alt='Annette Black'
+                            />
                             <span className='ms-2'>Annette Black</span>
                           </Dropdown.Toggle>
                           <Dropdown.Menu>
@@ -266,7 +288,7 @@ const RealEstatePageLayout = (props) => {
                         </Nav.Item>
                       ) : (
                         <Nav.Item className='d-lg-none'>
-                          <Nav.Link onClick={handleSigninShow}>
+                          <Nav.Link onClick={handleSignInShow}>
                             <i className='fi-user me-2'></i>
                             Sign in
                           </Nav.Link>
@@ -282,7 +304,7 @@ const RealEstatePageLayout = (props) => {
 
         {/* Page content, py-5 to skip navbar */}
         <div className={'py-5'}>
-          {props.children}
+          {children}
         </div>
       </main>
 
@@ -297,8 +319,13 @@ const RealEstatePageLayout = (props) => {
                 {/* Logo + contacts */}
                 <div className='mb-sm-0 mb-4 px-2'>
                   <Link href='/real-estate' className='d-inline-flex mb-4'>
-                    <ImageLoader priority src='/images/logo/logo-dark.png' width={116} height={32} placeholder={false}
-                                 alt='MedicalBoulevard'/>
+                    <ImageLoader
+                      priority
+                      src='/images/logo/logo-dark.png'
+                      width={116} height={32}
+                      placeholder={"blur"}
+                      alt='MedicalBoulevard'
+                    />
                   </Link>
                   <Nav className='flex-column mb-sm-4 mb-2'>
                     <Nav.Item className='mb-2'>
@@ -374,13 +401,13 @@ const RealEstatePageLayout = (props) => {
             </Col>
 
             {/* Recent posts */}
-            <Col lg={6} xl={{span: 5, offset: 1}}>
+            <Col lg={6} xl={{ span: 5, offset: 1 }}>
               <h4 className='h5'>Recent Posts</h4>
               {footerPosts.map((post, indx) => (
                 <div key={indx}>
-                  <article className='d-flex align-items-start' style={{maxWidth: '640px'}}>
+                  <article className='d-flex align-items-start' style={{ maxWidth: '640px' }}>
                     <Link href={post.href} className='d-none d-sm-flex flex-shrink-0 mb-sm-0 mb-3'
-                          style={{width: '100px', height: '100px'}}>
+                          style={{ width: '100px', height: '100px' }}>
                       <ImageLoader src={post.img} width={200} height={200} className='rounded-3' alt='Thumbnail'/>
                     </Link>
                     <div className='ps-sm-4'>

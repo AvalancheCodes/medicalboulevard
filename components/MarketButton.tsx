@@ -1,4 +1,13 @@
-const MarketButton = ({ href, market, target, className, ...props }) => {
+interface IProps{
+  href: string;
+  market: "apple" | "google";
+  target?: "_blank"|"_self"|"_parent"|"_top";
+  className?: string;
+
+  [key: string]: any;
+}
+
+const MarketButton = ({ href, market, target, className, ...props }: IProps) => {
 
   const extraClass = className ? ` ${className}` : ''
 

@@ -25,8 +25,14 @@ const PropertyCardOverlay = ({ room, button, overlay, className, ...props }: IPr
     <div {...props} className={`card border-0 overflow-hidden ${className}`}>
       {overlay && <span className='img-gradient-overlay'></span>}
       {room.mainImageUrl && (
-        <ImageLoader src={room.mainImageUrl} layout='fill' objectFit='cover' quality={100} alt={room.name}
-                     className='rounded-3'/>
+        <ImageLoader
+          src={room.mainImageUrl}
+          layout='fill'
+          objectFit='cover'
+          quality={100}
+          alt={room.name}
+          className='rounded-3'
+        />
       )}
       <div className='card-body content-overlay pb-0'>
         {room.badges?.map(x => (
