@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useState } from "react";
 import Link from 'next/link'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -12,10 +13,40 @@ import RealEstatePageLayout from '../components/partials/RealEstatePageLayout'
 import ScheduleTourButton from "../components/ScheduleTourButton";
 import HowItWorksLineItem from "../components/HowItWorksLineItem";
 import SubscribeHero from "../components/SubscribeHero";
-import { HOMEPAGE_PROCESS_STEPS } from "../utils/dummy";
+import ReserveRoomModal from "../components/partials/ReserveRoomModal";
+import { HOMEPAGE_PROCESS_STEPS, ROOMS } from "../utils/dummy";
+import IRoomEntity from "../core/shared/entities/IRoomEntity";
+import randomSizeSplit from "../utils/randomSizeSplit";
+import ReserveRoomThankYouModal from "../components/partials/ReserveRoomThankYouModal";
+import { EntityWithId } from "../core/shared/entities/utils/EntityWithId";
+
 
 const IndexPage = () => {
   const processSteps = HOMEPAGE_PROCESS_STEPS;
+  const [selectedRoom, setSelectedRoom] = useState<EntityWithId<IRoomEntity> | null>(null);
+  const [isThankYouModalVisible, setIsThankYouModalVisible] = useState(false)
+  const [chunkedRooms, setChunkedRooms] = useState(() => {
+    return ROOMS.map(x => [x]);
+  })
+
+  const handleReserveRoomModalHide = useCallback(() => {
+    setSelectedRoom(null);
+    setIsThankYouModalVisible(false);
+  }, []);
+
+  const handleReserveRoomModalSubmit = useCallback(() => {
+    setSelectedRoom(null);
+    setIsThankYouModalVisible(true);
+  }, [])
+
+  const handleReserveRoomThankYouModalHide = useCallback(() => {
+    setIsThankYouModalVisible(false);
+  }, [])
+
+
+  useEffect(() => {
+    setChunkedRooms(curr => randomSizeSplit(curr.flatMap(x => x), 1, 3))
+  }, [])
 
   return (
     <RealEstatePageLayout
@@ -114,72 +145,33 @@ const IndexPage = () => {
 
         {/* Grid of properties */}
         <Row className='g-4'>
-          <Col md={6}>
-            <PropertyCardOverlay
-              img={{
-                src: '/images/real-estate/recent/01.jpg',
-                alt: 'Background image'
-              }}
-              href='/real-estate/single-v1'
-              title='Luxury Rental Villa'
-              category='For rental'
-              location='118-11 Sutphin Blvd Jamaica, NY 11434'
-              overlay
-              badges={[['success', 'Verified'], ['info', 'New']]}
-              button={{
-                href: '/real-estate/single-v1',
-                title: 'From $3,850',
-                variant: 'primary',
-                wishlistProps: {
-                  onClick: () => console.log('You\'ve added Luxury Rental Villa property to your wishlist!')
-                }
-              }}
-              className='h-100'
-            />
-          </Col>
-          <Col md={6}>
-            <PropertyCardOverlay
-              img={{
-                src: '/images/real-estate/recent/02.jpg',
-                alt: 'Background image'
-              }}
-              href='/real-estate/single-v1'
-              title='Duplex with Garage'
-              category='For sale'
-              location='21 Pulaski Road Kings Park, NY 11754'
-              overlay
-              badges={[['info', 'New']]}
-              button={{
-                href: '/real-estate/single-v1',
-                title: '$200,410',
-                variant: 'primary',
-                wishlistProps: {
-                  onClick: () => console.log('You\'ve added Duplex with Garage property to your wishlist!')
-                }
-              }}
-              className='mb-4'
-            />
-            <PropertyCardOverlay
-              img={{
-                src: '/images/real-estate/recent/03.jpg',
-                alt: 'Background image'
-              }}
-              href='/real-estate/single-v1'
-              title='Country House'
-              category='For sale'
-              location='6954 Grand AveMaspeth, NY 11378'
-              overlay
-              badges={[['info', 'New']]}
-              button={{
-                href: '/real-estate/single-v1',
-                title: '$162,000',
-                variant: 'primary',
-                wishlistProps: {
-                  onClick: () => console.log('You\'ve added Country House property to your wishlist!')
-                }
-              }}
-            />
-          </Col>
+          {chunkedRooms.map((chunk, i) => (
+            <Col md={4} key={i}>
+              {chunk.map((room, i2, ch) => (
+                <PropertyCardOverlay
+                  key={room._id}
+                  room={room}
+                  overlay
+                  button={{
+                    title: 'Reserve',
+                    variant: 'primary',
+                    wishlistProps: {
+                      onClick: () => console.log("not implemented")
+                    },
+                    props: {
+                      onClick: () => setSelectedRoom(room)
+                    }
+                  }}
+                  className={
+                    chunk.length === 1
+                      ? 'h-100'
+                      : i2 < ch.length - 1 ? 'mb-4' : ""
+                  }
+                />
+              ))}
+
+            </Col>
+          ))}
         </Row>
       </Container>
 
@@ -216,6 +208,22 @@ const IndexPage = () => {
       <Container as='section' fluid className='my-5 py-4'>
         <SubscribeHero/>
       </Container>
+
+      {selectedRoom && !isThankYouModalVisible && (
+        <ReserveRoomModal
+          show={true}
+          onHide={handleReserveRoomModalHide}
+          onAfterSubmit={handleReserveRoomModalSubmit}
+          room={selectedRoom}
+        />
+      )}
+
+      {isThankYouModalVisible && (
+        <ReserveRoomThankYouModal
+          show={true}
+          onHide={handleReserveRoomThankYouModalHide}
+        />
+      )}
 
     </RealEstatePageLayout>
   )

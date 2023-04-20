@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
-import Modal from 'react-bootstrap/Modal'
+import Modal, { ModalProps } from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import CloseButton from 'react-bootstrap/CloseButton'
@@ -10,8 +10,14 @@ import PasswordToggle from '../PasswordToggle'
 import useAuthContext from "../../state/AuthStateProvider/useAuthContext";
 import { ISignUpUserFormData } from "../../core/client/models/ISignUpUserFormData";
 
+interface IProps extends ModalProps {
+  onSwap: () => {};
+  pillButtons: string;
 
-const SignInModalLight = ({ onSwap, pillButtons, ...props }) => {
+  [key: string]: any;
+}
+
+const SignInModalLight = ({ onSwap, pillButtons, ...props }: IProps) => {
   const { loginEmailPassword } = useAuthContext();
   const [formData, setFormData] = useState<ISignUpUserFormData>({ email: "", password: "" });
 

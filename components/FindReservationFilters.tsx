@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import RecurringType from "../core/shared/entities/enums/RecurringType";
+import { RECURRING_OPTIONS } from "../utils/constants";
 
 const RoomTypesFilter = ({ className }) => {
   const roomTypes = useMemo(() => {
@@ -57,21 +57,12 @@ const SelectDayFilter = ({ className }) => {
 
 const RepeatFilters = ({ className }) => {
 
-  const repeatOptions = useMemo(() => {
-    return [
-      { id: RecurringType.None, label: "None" },
-      { id: RecurringType.EveryDay, label: "Every Day" },
-      { id: RecurringType.EveryWeek, label: "Every Week" },
-      { id: RecurringType.EveryMonth, label: "Every Month" },
-    ]
-  }, [])
-
   return (
     <Container className={className}>
       <Row>
         <Col xs={'auto'}>
           <Form.Label>Repeat</Form.Label>
-          {repeatOptions.map(item => (
+          {RECURRING_OPTIONS.map(item => (
             <Form.Check type='radio' key={item.id} id={item.id} name='repeat-radio' label={item.label}/>
           ))}
         </Col>

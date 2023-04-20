@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
-import Modal from 'react-bootstrap/Modal'
+import Modal, { ModalProps } from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import CloseButton from 'react-bootstrap/CloseButton'
@@ -17,7 +17,14 @@ import trimObjectStrings from "../../utils/trimObjectStrings"
 import { IRegisterUserFormData } from "../../core/client/models/IRegisterUserFormData";
 import registerUserFormSchema from "../../core/shared/yup/registerUserFormSchema";
 
-const SignUpModalLight = ({ onSwap, pillButtons, ...props }) => {
+interface IProps extends ModalProps {
+  onSwap: () => {};
+  pillButtons: string;
+
+  [key: string]: any;
+}
+
+const SignUpModalLight = ({ onSwap, pillButtons, ...props }: IProps) => {
   const { signUpEmailPassword } = useAuthContext();
   const [formData, setFormData] = useState<IRegisterUserFormData>({
     firstName: "",

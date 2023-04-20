@@ -1,87 +1,64 @@
 import Link from 'next/link'
 import ImageLoader from './ImageLoader'
+import IRoomEntity from "../core/shared/entities/IRoomEntity";
+import BadgeEntityComponent from "./BadgeEntityComponent";
+import { ComponentProps } from "react";
 
 interface IProps {
-  img: { src: string, alt: string };
-  href: string;
-  title: string;
-  category: string;
-  location: string;
-  button: { href: string, props?: any, wishlistProps?: any, variant: string, title: string };
+  room: IRoomEntity;
+  button: {
+    props?: ComponentProps<'button'>,
+    wishlistProps?: ComponentProps<'button'>,
+    variant: string,
+    title: string
+  };
   overlay: boolean;
-  badges: Array<string[]>;
+
   className?: string;
 
   [key: string]: any;
 }
 
-const PropertyCardOverlay = ({
-                               img,
-                               href,
-                               title,
-                               category,
-                               location,
-                               button,
-                               overlay,
-                               badges,
-                               className,
-                               ...props
-                             }: IProps) => {
+const PropertyCardOverlay = ({ room, button, overlay, className, ...props }: IProps) => {
 
   return (
-    <div {...props} className={`card border-0 overflow-hidden${className ? ` ${className}` : ''}`}>
+    <div {...props} className={`card border-0 overflow-hidden ${className}`}>
       {overlay && <span className='img-gradient-overlay'></span>}
-      {img &&
-        <ImageLoader src={img.src} layout='fill' objectFit='cover' quality={100} alt={img.alt} className='rounded-3'/>}
+      {room.mainImageUrl && (
+        <ImageLoader src={room.mainImageUrl} layout='fill' objectFit='cover' quality={100} alt={room.name}
+                     className='rounded-3'/>
+      )}
       <div className='card-body content-overlay pb-0'>
-        {badges && <>
-          {badges.map((badge, indx) => <span key={indx} className={`d-table badge bg-${badge[0]} fs-sm mb-1`}>
-            {badge[1]}
-          </span>)}
-        </>}
+        {room.badges?.map(x => (
+          <BadgeEntityComponent key={x.text} badge={x}/>
+        ))}
       </div>
       <div className='card-footer content-overlay border-0 pt-0 pb-4'>
         <div className='d-sm-flex justify-content-between align-items-end pt-5 mt-2 mt-sm-5'>
-          {href ? <Link href={href} className='text-decoration-none text-light pe-2'>
-            {category && <div className='fs-sm text-uppercase pt-2 mb-1'>{category}</div>}
-            {title && <h3 className='h5 text-light mb-1'>{title}</h3>}
-            {location && <div className='fs-sm opacity-70'>
-              <i className='fi-map-pin me-1'></i>
-              {location}
-            </div>}
-          </Link> : <div className='text-decoration-none text-light pe-2'>
-            <div className='fs-sm text-uppercase pt-2 mb-1'>{category}</div>
-            <h3 className='h5 text-light mb-1'>{title}</h3>
-            {location && <div className='fs-sm opacity-70'>
-              <i className='fi-map-pin me-1'></i>
-              {location}
-            </div>}
-          </div>}
-          {button && <div className='btn-group ms-n2 ms-sm-0 mt-3'>
-            {button.href ?
-              <Link
-                href={button.href}
-                {...button.props}
-                className={button.variant ? `btn btn-${button.variant} rounded-end-0 px-3` : 'btn btn-primary rounded-end-0 px-3'}
-              >
-                {button.title}
-              </Link> :
-              <button
-                type='button'
-                className={button.variant ? `btn btn-${button.variant} rounded-end-0 px-3` : 'btn btn-primary rounded-end-0 px-3'}
-              >
-                {button.title}
-              </button>
-            }
+          <Link href={`/rooms/${room.slug}`} className='text-decoration-none text-light pe-2'>
+            <div className='fs-sm text-uppercase pt-2 mb-1'>{room.category}</div>
+            <h3 className='h5 text-light mb-1'>{room.name}</h3>
+            <div className='fs-sm opacity-70'>
+              <i className='fi-map-pin me-1'></i> {room.excerpt}
+            </div>
+          </Link>
+          <div className='btn-group ms-n2 ms-sm-0 mt-3'>
+            <button
+              type='button'
+              className={`btn btn-${button.variant ?? "primary"} rounded-end-0 px-3`}
+              {...button.props}
+            >
+              {button.title}
+            </button>
             <div className='posiion-relative border-start border-light zindex-5' style={{ marginLeft: '-1px' }}></div>
             <button
-              {...button.wishlistProps}
               type='button'
-              className={button.variant ? `btn btn-${button.variant} rounded-start-0 px-3` : 'btn btn-primary rounded-start-0 px-3'}
+              className={`btn btn-${button.variant ?? "primary"} rounded-start-0 px-3`}
+              {...button.wishlistProps}
             >
               <i className='fi-heart'></i>
             </button>
-          </div>}
+          </div>
         </div>
       </div>
     </div>

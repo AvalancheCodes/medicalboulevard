@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 const key = "recently-viewed-rooms-ids";
 const useRecentlyViewedRoomsIds = () => {
@@ -10,14 +10,14 @@ const useRecentlyViewedRoomsIds = () => {
     return storedData ? JSON.parse(storedData) : [];
   });
 
-  const pushData = (roomId: string) => {
+  const pushData = useCallback((roomId: string) => {
     setData(prevData => {
       const newSet = new Set([roomId, ...prevData]);
       const newData = Array.from(newSet).slice(0, 5);
       localStorage.setItem(key, JSON.stringify(newData));
       return newData;
     });
-  };
+  }, []);
 
   return {
     items: data,

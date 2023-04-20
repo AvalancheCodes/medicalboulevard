@@ -42,7 +42,7 @@ const CartLineItem = ({
         console.warn(`Unknown RecurringType: '${recurringType}'!`);
         return "ERR";
     }
-  }, [])
+  }, [dateStart, hoursEnd, hoursStart, recurringType])
 
   const dateStartFormatted = useMemo(() => {
     if (!recurringType) {
@@ -54,7 +54,7 @@ const CartLineItem = ({
     }
 
     return dateStart;
-  }, [dateStart, recurringType])
+  }, [dateStart, hoursStart, recurringType])
 
   const dateEndFormatted = useMemo(() => {
     switch (recurringType) {

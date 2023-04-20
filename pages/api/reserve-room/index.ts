@@ -1,18 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { IHireUsPostRequest } from "../../../core/shared/api-models/hire-us/IHireUsPostRequest";
-import { IHireUsPostResponse } from "../../../core/shared/api-models/hire-us/IHireUsPostResponse";
 import { IErrorResponse } from "../../../core/shared/api-models/IErrorResponse";
 import trimObjectStrings from "../../../utils/trimObjectStrings";
-import hireUsPostRequestSchema from "../../../core/shared/yup/hireUsPostRequestSchema";
-import { firestoreAdminHireUsService } from "../../../core/server/services/firebase";
+import { IReserveRoomPostResponse } from "../../../core/shared/api-models/reserve-room/IReserveRoomPostResponse";
+import { IReserveRoomPostRequest } from "../../../core/shared/api-models/reserve-room/IReserveRoomPostRequest";
 
 async function handlePost(req: NextApiRequest, res: NextApiResponse) {
   console.log(JSON.stringify(req.body));
-  const payload = req.body as IHireUsPostRequest;
+  const payload = req.body as IReserveRoomPostRequest;
   const trimmedPayload = trimObjectStrings(payload);
   try {
-    await hireUsPostRequestSchema.validate(trimmedPayload);
-    await firestoreAdminHireUsService.saveRequest(trimmedPayload);
+    // TODO: Add validation
+    // TODO: Save request in Firestore
+    // await hireUsPostRequestSchema.validate(trimmedPayload);
+    // await firestoreAdminHireUsService.saveRequest(trimmedPayload);
+
     /*
     // Send an email.
     const msg = {
@@ -24,7 +25,7 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
     };
     await sgMail.send(msg);
     */
-    res.status(200).json(<IHireUsPostResponse>{});
+    res.status(200).json(<IReserveRoomPostResponse>{});
   } catch (e) {
     res.status(400).json(<IErrorResponse>{ message: e.message });
   }

@@ -62,7 +62,7 @@ const HomePage = ({ allRooms }: IProps) => {
 
   const roomsToShow = useMemo(() => {
     return allRooms;
-  }, [])
+  }, [allRooms])
 
   return (
     <RealEstatePageLayout

@@ -182,7 +182,7 @@ const HireUsForm = ({ className }: IProps) => {
         </Col>
 
         <Col xs={12} className='text-center py-2'>
-          <p>We'll get back to you in 1-2 business days.</p>
+          <p>We&apos;ll get back to you in 1-2 business days.</p>
         </Col>
 
       </Row>

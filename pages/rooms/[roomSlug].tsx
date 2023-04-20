@@ -77,7 +77,7 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
   useEffect(() => {
     console.log(room);
     pushItem(room._id);
-  }, [room])
+  }, [pushItem, room])
 
   const swiperOnSlideChange = useCallback((swiper: SwiperClass) => {
     setCurrentSlide(swiper.realIndex + 1)

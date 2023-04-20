@@ -1,3 +1,5 @@
+import RecurringType from "../core/shared/entities/enums/RecurringType";
+
 const FIRST_NAME_MINLEN = 1;
 const FIRST_NAME_MAXLEN = 32;
 
@@ -26,13 +28,22 @@ export const HIRE_US_COMPANY_NAME_MINLEN = 1;
 export const HIRE_US_COMPANY_NAME_MAXLEN = 64;
 
 export const HIRE_US_BUDGET_OPTIONS = [
-  {value: "1000_5000", label: "$1,000 - $5,000"},
-  {value: "5000_10000", label: "$5,000 - $10,000"},
-  {value: "10000_50000", label: "$10,000 - $50,000"},
-  {value: "50000_inf", label: "$50,000+"}
+  { value: "1000_5000", label: "$1,000 - $5,000" },
+  { value: "5000_10000", label: "$5,000 - $10,000" },
+  { value: "10000_50000", label: "$10,000 - $50,000" },
+  { value: "50000_inf", label: "$50,000+" }
 ]
 
 export const HIRE_US_PROJECT_INFO_MINLEN = 8;
 export const HIRE_US_PROJECT_INFO_MAXLEN = 256;
 
 //#endregion Hire Us form data
+
+//#region Repeat Rent
+export const RECURRING_OPTIONS = [
+  { id: RecurringType.None, label: "None" },
+  { id: RecurringType.EveryDay, label: "Every Day" },
+  { id: RecurringType.EveryWeek, label: "Every Week" },
+  { id: RecurringType.EveryMonth, label: "Every Month" },
+]
+//#endregion Repeat Rent
