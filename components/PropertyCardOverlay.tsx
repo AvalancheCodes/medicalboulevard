@@ -2,27 +2,33 @@ import Link from 'next/link'
 import ImageLoader from './ImageLoader'
 import IRoomEntity from "../core/shared/entities/IRoomEntity";
 import BadgeEntityComponent from "./BadgeEntityComponent";
-import { ComponentProps } from "react";
+import { ButtonGroup, ButtonProps, CardProps } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
-interface IProps {
+type cleanButtonProps = Omit<ButtonProps, "type" | "className">;
+
+interface IProps extends CardProps {
   room: IRoomEntity;
   button: {
-    props?: ComponentProps<'button'>,
-    wishlistProps?: ComponentProps<'button'>,
+    props?: cleanButtonProps,
+    wishlistProps?: Omit<cleanButtonProps, "variant" | "title">,
     variant: string,
     title: string
   };
   overlay: boolean;
 
+  width: string;
+  height: string;
   className?: string;
 
   [key: string]: any;
 }
 
-const PropertyCardOverlay = ({ room, button, overlay, className, ...props }: IProps) => {
+const PropertyCardOverlay = ({ room, button, overlay, width, height, className, ...props }: IProps) => {
 
   return (
-    <div {...props} className={`card border-0 overflow-hidden ${className}`}>
+    <Card {...props} className={`rounded overflow-hidden ${className}`} style={{ width: width, height: height }}>
       {overlay && <span className='img-gradient-overlay'></span>}
       {room.mainImageUrl && (
         <ImageLoader
@@ -48,26 +54,23 @@ const PropertyCardOverlay = ({ room, button, overlay, className, ...props }: IPr
               <i className='fi-map-pin me-1'></i> {room.excerpt}
             </div>
           </Link>
-          <div className='btn-group ms-n2 ms-sm-0 mt-3'>
-            <button
-              type='button'
-              className={`btn btn-${button.variant ?? "primary"} rounded-end-0 px-3`}
-              {...button.props}
-            >
+          <ButtonGroup>
+            <Button type="button" variant={button.variant ?? "primary"} {...button.props} className="px-3">
               {button.title}
-            </button>
-            <div className='posiion-relative border-start border-light zindex-5' style={{ marginLeft: '-1px' }}></div>
-            <button
-              type='button'
-              className={`btn btn-${button.variant ?? "primary"} rounded-start-0 px-3`}
-              {...button.wishlistProps}
-            >
-              <i className='fi-heart'></i>
-            </button>
-          </div>
+            </Button>
+            <div className="vr" style={{
+              zIndex: "10",
+              margin: "5% 0",
+              color: "rgba(255, 255, 255, 0.2)",
+            }}></div>
+            <Button type="button" variant={button.variant ?? "primary"}
+                    title="Add to Wishlist" {...button.wishlistProps} className="px-3">
+              <i className="fi-heart" style={{ marginTop: 0 }}></i>
+            </Button>
+          </ButtonGroup>
         </div>
       </div>
-    </div>
+    </Card>
   )
 }
 

@@ -69,7 +69,7 @@ const FlexibleSpaceAndSchedulingPage = () => {
               </h1>
               <p className='h3 fw-normal'>
                 At Medical Boulevard, we understand that building and growing a medical practice requires more than just
-                providing excellent care. With our branding and marketing services, we'll help you stand out from the
+                providing excellent care. With our branding and marketing services, we&apos;ll help you stand out from the
                 crowd, attract new patients, and build a strong online presence.
               </p>
             </Col>
