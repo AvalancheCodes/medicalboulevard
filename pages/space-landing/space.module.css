@@ -4,7 +4,11 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  background-attachment: fixed;
   position: relative;
+}
+.header .wrapper {
+  height:700px;
 }
 .overlay {
   position: absolute;
@@ -13,11 +17,10 @@
   height: 700px;
   width: 100%;
 }
-.content {
+.wrapper {
   margin-left: auto;
   margin-right: auto;
   width: 938px;
-  height: 700px;
   position: relative;
 }
 .welcome-box-img-wrapper{
@@ -32,4 +35,31 @@
   height: 100%;
   width: 100%;
   padding-left: 10%;
+}
+.practice {
+  height:700px;
+  background-image: url('/images/space-landing/space_landing_practice_bg.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+}
+.contact {
+  background: rgba(104,158,163,1);
+}
+.intro {
+  background: rgba(230,233,240,1);
+}
+.intro-wrapper {
+  width:750px;
+  margin: auto;
+}
+.phone-icon {
+  font-size: 20px;
+  margin-right: 10px;
+  color: #354d81;
+}
+.footer {
+  background: rgba(104,158,163,1);
 }
