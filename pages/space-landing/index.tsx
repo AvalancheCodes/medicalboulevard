@@ -1,10 +1,15 @@
 import { ReactNode, useCallback, useState } from "react"
 import RequestTourModal from "./RequestTourModal"
+import MoreDetailModal from "./MoreDetailModal"
 import styles from './space.module.css'
 const Space = () => {
   const [requestTourShow, setRequestTourShow] = useState(false)
   const handleRequestTourShow = () => setRequestTourShow(true)
   const handleRequestTourClose = useCallback(() => setRequestTourShow(false), []);
+
+  const [moreDetailShow, setMoreDetailShow] = useState(false)
+  const handleMoreDetailShow = () => setMoreDetailShow(true)
+  const handleMoreDetailClose = useCallback(() => setMoreDetailShow(false), []);
 
   return (
     <>
@@ -13,6 +18,12 @@ const Space = () => {
         size='lg'
         show={requestTourShow}
         onHide={handleRequestTourClose}
+      />
+      <MoreDetailModal
+        centered
+        size='lg'
+        show={moreDetailShow}
+        onHide={handleMoreDetailClose}
       />
       <main className="page-wrapper">
         <div className="space-landing">
@@ -46,7 +57,7 @@ const Space = () => {
                         <p className='h5 text-white fw-light mb-1'>Spacious rooms: (about 95 ft²)</p>
                         <p className='h5 text-white fw-light mb-1'>Double Sink (one for patients)</p>
                         <p className='h5 text-white fw-light mb-4'>Advanced Treatment Chair</p>
-                        <button className={`${styles['btn-more-detail']} btn`}>SEE MORE DETAILS</button>
+                        <button className={`${styles['btn-more-detail']} btn`} onClick={handleMoreDetailShow}>SEE MORE DETAILS</button>
                       </div>
                     </div>
                   </div>
