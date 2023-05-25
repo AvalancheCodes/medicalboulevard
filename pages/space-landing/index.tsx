@@ -13,7 +13,6 @@ const Space = () => {
         size='lg'
         show={requestTourShow}
         onHide={handleRequestTourClose}
-      // onSwap={handleSignInToUp} />
       />
       <main className="page-wrapper">
         <div className="space-landing">
@@ -30,7 +29,7 @@ const Space = () => {
               <p className="fs-7 fw-normal">
                 <i>Medical Boulevard Inc.</i>
               </p>
-              <button className="btn btn-primary" onClick={handleRequestTourShow}>REQUEST A TOUR</button>
+              <button className={`${styles['btn-request-tour']} btn btn-primary`} onClick={handleRequestTourShow}>REQUEST A TOUR</button>
             </div>
           </section>
           <section className={`text-center welcome py-5`}>
@@ -47,7 +46,7 @@ const Space = () => {
                         <p className='h5 text-white fw-light mb-1'>Spacious rooms: (about 95 ft²)</p>
                         <p className='h5 text-white fw-light mb-1'>Double Sink (one for patients)</p>
                         <p className='h5 text-white fw-light mb-4'>Advanced Treatment Chair</p>
-                        <a href='https://space.medicalblvd.com/clkn/rel/a-11-lightbox.html' className='btn btn-outline-danger'>SEE MORE DETAILS</a>
+                        <button className={`${styles['btn-more-detail']} btn`}>SEE MORE DETAILS</button>
                       </div>
                     </div>
                   </div>
