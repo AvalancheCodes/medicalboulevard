@@ -15,12 +15,15 @@ const RequestTourModal = ({ ...props }: IProps) => {
   return (
     <>
       <Modal {...props} className='requesttour-modal'>
-        <Modal.Body className='px-0 py-2 py-sm-0'>
+        <Modal.Header>
+          <Modal.Title>Pencil us in</Modal.Title>
           <CloseButton
             onClick={props.onHide}
             aria-label='Close modal'
             className='position-absolute top-0 end-0 mt-3 me-3'
           />
+        </Modal.Header>
+        <Modal.Body className='px-0 py-2 py-sm-0'>
           <div className='row mx-0 align-items-center'>
             <div className='col-md-12 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5'>
               <Form noValidate>
