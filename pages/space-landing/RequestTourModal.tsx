@@ -26,7 +26,7 @@ const RequestTourModal = ({ ...props }: IProps) => {
         <Modal.Body className='px-0 py-2 py-sm-0'>
           <div className='row mx-0 align-items-center'>
             <div className='col-md-12 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5'>
-              <Form noValidate>
+              <Form>
                 <Form.Group controlId='si-name' className='mb-4'>
                   <Form.Label>Name</Form.Label>
                   <Form.Control
