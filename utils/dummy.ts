@@ -265,7 +265,7 @@ const SerenityRoom: EntityWithId<IRoomEntity> = {
     { bgColor: "#1E1E1E", textColor: "white", text: "New" },
   ],
 
-  mainImageUrl: "/images/car-finder/single/gallery/01.jpg",
+  mainImageUrl: "/images/rooms/serenity-1.png",
   extraImagesUrls: [
     '/images/car-finder/single/gallery/02.jpg',
     '/images/car-finder/single/gallery/03.jpg',
@@ -274,6 +274,143 @@ const SerenityRoom: EntityWithId<IRoomEntity> = {
 
   amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
+  createdAtMs: 1607644800000
+}
+const TeleMedRoom: EntityWithId<IRoomEntity> = {
+  _id: "the-telemedicine-room",
+  name: "The Tele-Medicine Room",
+  slug: "conference-room",
+  category: "medical",
+  type: "medical examination room",
+  sizeSqf: 85,
+  pricePerHour: 250,
+  excerpt: "Elevate patient care in a spacious, sunlit setting",
+  descriptionHtml: `
+    <h1>
+        Overview
+    </h1>
+                  
+    <p>
+      Experience seamless efficiency in our sleek Rejuvenation Room, meticulously crafted for medical professionals. 
+      This modern and tranquil space fosters a sense of confidence and assurance, elevating the overall treatment experience 
+      for your patients. Benefit from the room's state-of-the-art layout, 
+      thoughtfully designed to facilitate smooth consultations and procedures in an elegant, professional environment
+    </p>
+    
+    <p>
+      <strong>Please note:</strong> While the Rejuvenation Suite offers a wide range of amenities to support your practice, it
+      does not include specialised medical equipment for specific procedures. Medical professionals are
+      responsible for providing their own specialised tools and instruments as needed.
+    </p>
+  `,
+  descriptionShort: "TODO: add description short",
+  badges: [
+    { bgColor: "#9371A3", textColor: "white", text: "Verified" },
+    { bgColor: "#1E1E1E", textColor: "white", text: "New" },
+  ],
+
+  mainImageUrl: "/images/rooms/radiance-1.png",
+  extraImagesUrls: [
+    '/images/car-finder/single/gallery/02.jpg',
+    '/images/car-finder/single/gallery/03.jpg',
+    '/images/car-finder/single/gallery/04.jpg',
+  ],
+
+  amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+  medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
+
+  createdAtMs: 1607644800000
+}
+
+const ConferenceRoom: EntityWithId<IRoomEntity> = {
+  _id: "the-conference-room",
+  name: "The Conference Room",
+  slug: "conference-room",
+  category: "medical",
+  type: "business room",
+  sizeSqf: 85,
+  pricePerHour: 250,
+  excerpt: "Host your medical event",
+  descriptionHtml: `
+    <h1>
+        Overview
+    </h1>
+                  
+    <p>
+      Experience seamless efficiency in our sleek Rejuvenation Room, meticulously crafted for medical professionals. 
+      This modern and tranquil space fosters a sense of confidence and assurance, elevating the overall treatment experience 
+      for your patients. Benefit from the room's state-of-the-art layout, 
+      thoughtfully designed to facilitate smooth consultations and procedures in an elegant, professional environment
+    </p>
+    
+    <p>
+      <strong>Please note:</strong> While the Rejuvenation Suite offers a wide range of amenities to support your practice, it
+      does not include specialised medical equipment for specific procedures. Medical professionals are
+      responsible for providing their own specialised tools and instruments as needed.
+    </p>
+  `,
+  descriptionShort: "TODO: add description short",
+  badges: [
+    { bgColor: "#9371A3", textColor: "white", text: "Verified" },
+    { bgColor: "#1E1E1E", textColor: "white", text: "New" },
+  ],
+
+  mainImageUrl: "/images/rooms/radiance-1.png",
+  extraImagesUrls: [
+    '/images/car-finder/single/gallery/02.jpg',
+    '/images/car-finder/single/gallery/03.jpg',
+    '/images/car-finder/single/gallery/04.jpg',
+  ],
+
+  amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+  medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
+
+  createdAtMs: 1607644800000
+}
+
+const TheRejuvenationRetreatRoom: EntityWithId<IRoomEntity> = {
+  _id: "the-rejuvenation-retreat-room-id",
+  name: "The Rejuvenation Retreat Room",
+  slug: "rejuvenation-room",
+  category: "medical",
+  type: "medical examination room",
+  sizeSqf: 85,
+  pricePerHour: 250,
+  excerpt: "Elevate patient care in a spacious, sunlit setting",
+  descriptionHtml: `
+    <h1>
+        Overview
+    </h1>
+                  
+    <p>
+      Experience seamless efficiency in our sleek Rejuvenation Room, meticulously crafted for medical professionals. 
+      This modern and tranquil space fosters a sense of confidence and assurance, elevating the overall treatment experience 
+      for your patients. Benefit from the room's state-of-the-art layout, 
+      thoughtfully designed to facilitate smooth consultations and procedures in an elegant, professional environment
+    </p>
+    
+    <p>
+      <strong>Please note:</strong> While the Rejuvenation Suite offers a wide range of amenities to support your practice, it
+      does not include specialised medical equipment for specific procedures. Medical professionals are
+      responsible for providing their own specialised tools and instruments as needed.
+    </p>
+  `,
+  descriptionShort: "TODO: add description short",
+  badges: [
+    { bgColor: "#9371A3", textColor: "white", text: "Verified" },
+    { bgColor: "#1E1E1E", textColor: "white", text: "New" },
+  ],
+
+  mainImageUrl: "/images/rooms/conference-2.png",
+  extraImagesUrls: [
+    '/images/rooms/conference-4.png',
+    '/images/rooms/conference-3.png',
+    '/images/rooms/conference-1.png',
+  ],
+
+  amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+  medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
+
   createdAtMs: 1607644800000
 }
 
@@ -312,7 +449,7 @@ const TheRadianceRoom: EntityWithId<IRoomEntity> = {
     { bgColor: "#1E1E1E", textColor: "white", text: "New" },
   ],
 
-  mainImageUrl: "/images/car-finder/single/gallery/01.jpg",
+  mainImageUrl: "/images/rooms/med-conference.png",
   extraImagesUrls: [
     '/images/car-finder/single/gallery/02.jpg',
     '/images/car-finder/single/gallery/03.jpg',
@@ -321,59 +458,15 @@ const TheRadianceRoom: EntityWithId<IRoomEntity> = {
 
   amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
-  createdAtMs: 1607644800000
-}
-
-const TheRejuvenationRetreatRoom: EntityWithId<IRoomEntity> = {
-  _id: "the-rejuvenation-retreat-room-id",
-  name: "The Rejuvenation Retreat Room",
-  slug: "rejuvenation-room",
-  category: "medical",
-  type: "medical examination room",
-  sizeSqf: 85,
-  pricePerHour: 250,
-  excerpt: "Elevate patient care in a spacious, sunlit setting",
-  descriptionHtml: `
-    <h1>
-        Overview
-    </h1>
-                  
-    <p>
-      Experience seamless efficiency in our sleek Rejuvenation Room, meticulously crafted for medical professionals. 
-      This modern and tranquil space fosters a sense of confidence and assurance, elevating the overall treatment experience 
-      for your patients. Benefit from the room's state-of-the-art layout, 
-      thoughtfully designed to facilitate smooth consultations and procedures in an elegant, professional environment
-    </p>
-    
-    <p>
-      <strong>Please note:</strong> While the Rejuvenation Suite offers a wide range of amenities to support your practice, it
-      does not include specialised medical equipment for specific procedures. Medical professionals are
-      responsible for providing their own specialised tools and instruments as needed.
-    </p>
-  `,
-  descriptionShort: "TODO: add description short",
-  badges: [
-    { bgColor: "#9371A3", textColor: "white", text: "Verified" },
-    { bgColor: "#1E1E1E", textColor: "white", text: "New" },
-  ],
-
-  mainImageUrl: "/images/car-finder/single/gallery/01.jpg",
-  extraImagesUrls: [
-    '/images/car-finder/single/gallery/02.jpg',
-    '/images/car-finder/single/gallery/03.jpg',
-    '/images/car-finder/single/gallery/04.jpg',
-  ],
-
-  amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-  medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
-
   createdAtMs: 1607644800000
 }
 
 export const ROOMS = [
   SerenityRoom,
+  TeleMedRoom,
+  ConferenceRoom,
+  TheRejuvenationRetreatRoom,
   TheRadianceRoom,
-  TheRejuvenationRetreatRoom
 ];
 
 //#endregion ROOMS

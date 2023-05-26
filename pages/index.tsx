@@ -25,6 +25,7 @@ const roomsCardsSizes = [
   { width: "auto", height: "253px" }
 ]
 const roomsCategories = [
+  { category: "any", title: "all" },
   { category: "medical", title: "Medical Rooms" },
   { category: "spa", title: "SPA Rooms" },
   { category: "business", title: "Business" },
@@ -39,11 +40,12 @@ const roomsCategoriesMobile = roomsCategories.map(x => ({
 
 const IndexPage = () => {
   const processSteps = HOMEPAGE_PROCESS_STEPS;
-  const [activeCategory, setActiveCategory] = useState("medical");
+  const [activeCategory, setActiveCategory] = useState("all");
   const [selectedRoom, setSelectedRoom] = useState<EntityWithId<IRoomEntity> | null>(null);
   const [isThankYouModalVisible, setIsThankYouModalVisible] = useState(false)
   const allRooms = useMemo(() => ROOMS, []);
   const filteredRooms = useMemo(() => {
+    if (activeCategory === "all") return allRooms;
     return allRooms.filter(x => x.category === activeCategory);
   }, [activeCategory, allRooms])
   const chunkedRooms = useMemo(() => {
