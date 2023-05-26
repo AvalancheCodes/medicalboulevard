@@ -25,7 +25,7 @@ const roomsCardsSizes = [
   { width: "auto", height: "253px" }
 ]
 const roomsCategories = [
-  { category: "any", title: "all" },
+  { category: "all", title: "all" },
   { category: "medical", title: "Medical Rooms" },
   { category: "spa", title: "SPA Rooms" },
   { category: "business", title: "Business" },

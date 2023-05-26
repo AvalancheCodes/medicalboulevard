@@ -239,7 +239,8 @@ const SerenityRoom: EntityWithId<IRoomEntity> = {
   type: "medical examination room",
   sizeSqf: 95,
   pricePerHour: 275,
-  excerpt: "Elevate patient care in a spacious, sunlit setting",
+  excerpt: "Spacious, sunlit space",
+  hasDoubleSink:true,
   descriptionHtml: `
     <h1>
         Overview
@@ -258,7 +259,6 @@ const SerenityRoom: EntityWithId<IRoomEntity> = {
       responsible for providing their own specialised tools and instruments as needed.
     </p>
   `,
-  // TODO: Replace with actual description for this room.
   descriptionShort: "The Glamour Suite offers a luxurious experience with a spa chair, two sinks, and abundant natural light through its wide windows.",
   badges: [
     { bgColor: "#9371A3", textColor: "white", text: "Verified" },
@@ -267,53 +267,71 @@ const SerenityRoom: EntityWithId<IRoomEntity> = {
 
   mainImageUrl: "/images/rooms/serenity-1.png",
   extraImagesUrls: [
-    '/images/car-finder/single/gallery/02.jpg',
-    '/images/car-finder/single/gallery/03.jpg',
-    '/images/car-finder/single/gallery/04.jpg',
+    '/images/rooms/serenity-3.png',
+    '/images/rooms/serenity-2.png',
+    '/images/rooms/serenity-4.png',
   ],
 
   amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
   createdAtMs: 1607644800000
 }
-const TeleMedRoom: EntityWithId<IRoomEntity> = {
+
+const TeleMedicineRoom: EntityWithId<IRoomEntity> = {
   _id: "the-telemedicine-room",
-  name: "The Tele-Medicine Room",
-  slug: "conference-room",
-  category: "medical",
-  type: "medical examination room",
-  sizeSqf: 85,
-  pricePerHour: 250,
-  excerpt: "Elevate patient care in a spacious, sunlit setting",
+  name: "The Telemedicine Room",
+  slug: "the-telemedicine-room",
+  category: "business",
+  type: "medical business room",
+  sizeSqf: 105,
+  pricePerHour: 125,
+  excerpt: "Consult, Create, Broadcast",
   descriptionHtml: `
     <h1>
         Overview
     </h1>
                   
     <p>
-      Experience seamless efficiency in our sleek Rejuvenation Room, meticulously crafted for medical professionals. 
-      This modern and tranquil space fosters a sense of confidence and assurance, elevating the overall treatment experience 
-      for your patients. Benefit from the room's state-of-the-art layout, 
-      thoughtfully designed to facilitate smooth consultations and procedures in an elegant, professional environment
+      Experience the future of healthcare with Medical Boulevard's professional telemedicine station. 
+      Designed for virtual appointments, our telemedicine room provides a seamless interface for 
+      remote consultations, ensuring that you can deliver high-quality care to your patients, 
+      no matter where they are. Equipped with state-of-the-art technology, this space 
+      allows healthcare professionals to connect with their patients in a 
+      secure and convenient virtual environment. With Medical Boulevard, 
+      you're not just renting a room, you're embracing the future of healthcare delivery.
     </p>
     
-    <p>
-      <strong>Please note:</strong> While the Rejuvenation Suite offers a wide range of amenities to support your practice, it
-      does not include specialised medical equipment for specific procedures. Medical professionals are
-      responsible for providing their own specialised tools and instruments as needed.
-    </p>
+    
+    <div className='gear-description'>
+    <h2>Telemedicine Room Gear</h2>
+      <ul>
+        <li>
+          <strong>Dell Outlet Precision T7820:</strong> This powerful workstation is designed to meet the demanding needs of healthcare professionals. It features an Intel Xeon Gold 6248R Processor, 2TB PCIe M.2 NVMe Class 40 Solid State Drive, and exceptional processing power and storage capacity.
+        </li>
+        <li>
+          <strong>LG Superwide Monitor (49"):</strong> The large and immersive 49-inch monitor provides healthcare professionals with a wide viewing area, ideal for medical records, diagnostic images, and telemedicine sessions. Its stunning display ensures clarity and detail.
+        </li>
+      </ul>
+      <p>
+        In addition to its telemedicine capabilities, this station empowers healthcare professionals to utilize the advanced gear for editing and broadcasting their work to the outside world. The Dell workstation's precision and performance enable efficient video editing, research, and presentations. The LG Superwide Monitor offers an immersive viewing experience, perfect for showcasing their work with clarity and impact.
+      </p>
+      <p>
+        Leveraging this cutting-edge technology, healthcare professionals can deliver exceptional patient care, collaborate with colleagues, and share their expertise with the broader healthcare community. The telemedicine room serves as a versatile hub where medical professionals can conduct remote consultations, as well as engage in productive editing and broadcasting activities.
+      </p>
+    </div>
+
   `,
-  descriptionShort: "TODO: add description short",
+  descriptionShort: "Tech-enabled telemedicine room empowers healthcare professionals to collaborate, edit, and broadcast their work seamlessly.",
   badges: [
     { bgColor: "#9371A3", textColor: "white", text: "Verified" },
     { bgColor: "#1E1E1E", textColor: "white", text: "New" },
   ],
 
-  mainImageUrl: "/images/rooms/radiance-1.png",
+  mainImageUrl: "/images/rooms/tele-med.png",
   extraImagesUrls: [
-    '/images/car-finder/single/gallery/02.jpg',
-    '/images/car-finder/single/gallery/03.jpg',
-    '/images/car-finder/single/gallery/04.jpg',
+    '/images/rooms/tele-med-2.png',
+    '/images/rooms/tele-med-3.png',
+    '/images/rooms/tele-med-4.png',
   ],
 
   amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
@@ -325,47 +343,73 @@ const TeleMedRoom: EntityWithId<IRoomEntity> = {
 const ConferenceRoom: EntityWithId<IRoomEntity> = {
   _id: "the-conference-room",
   name: "The Conference Room",
-  slug: "conference-room",
-  category: "medical",
-  type: "business room",
-  sizeSqf: 85,
-  pricePerHour: 250,
-  excerpt: "Host your medical event",
+  slug: "the-conference-room",
+  category: "business",
+  type: "medical business room",
+  sizeSqf: 210,
+  pricePerHour: 150,
+  excerpt: "Versatile, Professional, Convenient, Modern",
   descriptionHtml: `
     <h1>
         Overview
     </h1>
                   
-    <p>
-      Experience seamless efficiency in our sleek Rejuvenation Room, meticulously crafted for medical professionals. 
-      This modern and tranquil space fosters a sense of confidence and assurance, elevating the overall treatment experience 
-      for your patients. Benefit from the room's state-of-the-art layout, 
-      thoughtfully designed to facilitate smooth consultations and procedures in an elegant, professional environment
-    </p>
+   <p>Experience the versatility of our fully equipped conference room at Medical Boulevard, 
+   located in the heart of Beverly Hills. This on-demand space can comfortably accommodate 
+   up to seven people, making it an ideal setting for a variety of professional interactions. 
+   Whether you're conducting staff interviews, hosting a small conference, or running a 
+   training class, our conference room provides the perfect environment to 
+   facilitate productive and meaningful discussions.</p>
+
+    <p>Designed with the needs of healthcare professionals in mind, our conference room goes 
+    beyond the traditional meeting space. It can be transformed into a patient consultation 
+    room for group sessions, a networking hub for industry events, or a media center for 
+    press briefings. With state-of-the-art technology, it also supports teleconferencing, 
+    allowing you to connect with colleagues or patients remotely. At Medical Boulevard, 
+    we provide the space for you to focus on what matters most - 
+    delivering exceptional care to your patients.</p>
     
-    <p>
-      <strong>Please note:</strong> While the Rejuvenation Suite offers a wide range of amenities to support your practice, it
-      does not include specialised medical equipment for specific procedures. Medical professionals are
-      responsible for providing their own specialised tools and instruments as needed.
-    </p>
+    <ul>
+      <li>Conduct staff interviews</li>
+      <li>Host small conferences or meetings</li>
+      <li>Run training classes or workshops</li>
+      <li>Facilitate patient group consultations</li>
+      <li>Organize networking events</li>
+      <li>Hold media briefings or press conferences</li>
+      <li>Support teleconferencing</li>
+      <li>Host product demonstrations or informational sessions</li>
+    </ul>
+
   `,
-  descriptionShort: "TODO: add description short",
+  descriptionShort: "Versatile conference room in Beverly Hills for meetings, training, patient consultations, networking events, and teleconferencing in healthcare",
   badges: [
     { bgColor: "#9371A3", textColor: "white", text: "Verified" },
     { bgColor: "#1E1E1E", textColor: "white", text: "New" },
   ],
 
-  mainImageUrl: "/images/rooms/radiance-1.png",
+  mainImageUrl: "/images/rooms/conference-1.png",
   extraImagesUrls: [
-    '/images/car-finder/single/gallery/02.jpg',
-    '/images/car-finder/single/gallery/03.jpg',
-    '/images/car-finder/single/gallery/04.jpg',
+    '/images/rooms/conference-2.png',
+    '/images/rooms/conference-3.png',
+    '/images/rooms/conference-4.png',
   ],
 
   amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
 
-  createdAtMs: 1607644800000
+  createdAtMs: 1607644800000,
+//   Rental hours details
+  rentalDetails:{
+    hourlyRent: 50,
+    type: "medical examination room",
+    area: 210,
+    totalHours: 8,
+    startDate: "2023-02-14",
+    endDate: "2023-02-14",
+    guests: 3,
+    parkingValidation: 1,
+    totalRent: 400, // Calculated based on hourlyRent * totalHours
+  }
 }
 
 const TheRejuvenationRetreatRoom: EntityWithId<IRoomEntity> = {
@@ -463,7 +507,7 @@ const TheRadianceRoom: EntityWithId<IRoomEntity> = {
 
 export const ROOMS = [
   SerenityRoom,
-  TeleMedRoom,
+  TeleMedicineRoom,
   ConferenceRoom,
   TheRejuvenationRetreatRoom,
   TheRadianceRoom,
