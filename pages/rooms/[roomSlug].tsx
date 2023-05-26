@@ -28,6 +28,7 @@ import {
   firestoreRoomAmenitiesService,
   firestoreRoomsService
 } from "../../core/client/services/firebase";
+import currencyFormatter from "../../utils/currencyFormatter";
 
 
 interface IProps {
@@ -72,6 +73,14 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
       { title: "Guests/patients", text: room.rentalDetails.guests.toString() },
       { title: "Parking Validation", text: `${room.rentalDetails.parkingValidation} car` },
     ];
+  }, [room])
+
+  const requestedPeriodRentFormatted = useMemo(() => {
+    if (!room?.pricePerHour || !room?.rentalDetails?.totalHours) {
+      console.error(`Unable to calculate requestedPeriodRent: pricePerHour is "${room?.pricePerHour}", totalHours: "${room?.rentalDetails?.totalHours}"`);
+      return "-/-";
+    }
+    return currencyFormatter.format(room.pricePerHour * room.rentalDetails.totalHours);
   }, [room])
 
   useEffect(() => {
@@ -160,11 +169,11 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
                     </p>
                     <div className='d-flex flex-row'>
                       {room.hasDoubleSink ? (
-                          <p className='me-4'>
-                            <i className="fa-solid fa-sink"></i>
-                            <i className="fa-solid fa-sink"></i>
-                            &nbsp;Double Sink
-                          </p>
+                        <p className='me-4'>
+                          <i className="fa-solid fa-sink"></i>
+                          <i className="fa-solid fa-sink"></i>
+                          &nbsp;Double Sink
+                        </p>
                       ) : null}
                       <p className='me-4'>
                         <i className="fa-solid fa-sun me-1"></i>
@@ -193,7 +202,7 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
                 <Col>
                   <h1>Medical Space Coordinator
 
-                                      </h1>
+                  </h1>
                 </Col>
               </Row>
               <Row>
@@ -222,7 +231,10 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
             <Row className='my-4'>
               <Col>
                 <h1 className='h5'>Requested period rent</h1>
-                <h2 className='mb-0'>$1,100 <span className='fw-light fs-sm'>/month</span></h2>
+                <h2 className='mb-0'>
+                  {requestedPeriodRentFormatted}{" "}
+                  <span className='fw-light fs-sm'>/{room?.rentalDetails?.totalHours}hrs</span>
+                </h2>
               </Col>
             </Row>
 
