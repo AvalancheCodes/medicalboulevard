@@ -144,7 +144,7 @@ const RealEstatePageLayout = ({ pageTitle, activeNav, navbarExtraClass, children
             <Navbar.Toggle aria-controls='navbarNav' className='ms-auto'/>
 
             {/* Display content depending on user auth status  */}
-            {isAuthReady && (
+            {/* {isAuthReady && (
               <>
                 {user ? (
                   <Dropdown className='d-none d-lg-block order-lg-3 my-n2 me-3'>
@@ -210,9 +210,9 @@ const RealEstatePageLayout = ({ pageTitle, activeNav, navbarExtraClass, children
                   </Button>
                 )}
               </>
-            )}
+            )} */}
 
-            <OverlayTrigger
+            {/* <OverlayTrigger
               trigger='click'
               placement='auto'
               overlay={
@@ -230,7 +230,7 @@ const RealEstatePageLayout = ({ pageTitle, activeNav, navbarExtraClass, children
                        style={{ fontSize: '0.4rem', right: '5px', top: '7px' }}
                 > 1 </Badge>
               </Button>
-            </OverlayTrigger>
+            </OverlayTrigger> */}
 
 
             <ScheduleTourButton className={"order-lg-3"}/>
