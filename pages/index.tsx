@@ -27,9 +27,9 @@ const roomsCardsSizes = [
 const roomsCategories = [
   { category: "all", title: "all" },
   { category: "medical", title: "Medical Rooms" },
-  { category: "spa", title: "SPA Rooms" },
+  // { category: "spa", title: "SPA Rooms" },
   { category: "business", title: "Business" },
-  { category: "desks", title: "Desks" },
+  // { category: "desks", title: "Desks" },
 ]
 
 const roomsCategoriesMobile = roomsCategories.map(x => ({

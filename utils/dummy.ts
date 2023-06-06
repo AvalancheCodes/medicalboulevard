@@ -274,7 +274,18 @@ const SerenityRoom: EntityWithId<IRoomEntity> = {
 
   amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
-  createdAtMs: 1607644800000
+  createdAtMs: 1607644800000,
+  rentalDetails:{
+    hourlyRent: 275,
+    type: "medical examination room",
+    area: 210,
+    totalHours: 4,
+    startDate: "2023-02-14",
+    endDate: "2023-02-14",
+    guests: 3,
+    parkingValidation: 2,
+    totalRent: 400, // Calculated based on hourlyRent * totalHours
+  }
 }
 
 const TeleMedicineRoom: EntityWithId<IRoomEntity> = {
@@ -337,7 +348,18 @@ const TeleMedicineRoom: EntityWithId<IRoomEntity> = {
   amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
 
-  createdAtMs: 1607644800000
+  createdAtMs: 1607644800000,
+  rentalDetails:{
+    hourlyRent: 150,
+    type: "medical examination room",
+    area: 110,
+    totalHours: 2,
+    startDate: "2023-02-14",
+    endDate: "2023-02-14",
+    guests: 8,
+    parkingValidation: 2,
+    totalRent: 400, // Calculated based on hourlyRent * totalHours
+  }
 }
 
 const ConferenceRoom: EntityWithId<IRoomEntity> = {
@@ -398,7 +420,7 @@ const ConferenceRoom: EntityWithId<IRoomEntity> = {
   medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
 
   createdAtMs: 1607644800000,
-//   Rental hours details
+  //   Rental hours details
   rentalDetails:{
     hourlyRent: 50,
     type: "medical examination room",
@@ -406,8 +428,8 @@ const ConferenceRoom: EntityWithId<IRoomEntity> = {
     totalHours: 8,
     startDate: "2023-02-14",
     endDate: "2023-02-14",
-    guests: 3,
-    parkingValidation: 1,
+    guests: 8,
+    parkingValidation: 2,
     totalRent: 400, // Calculated based on hourlyRent * totalHours
   }
 }
@@ -415,7 +437,7 @@ const ConferenceRoom: EntityWithId<IRoomEntity> = {
 const TheRejuvenationRetreatRoom: EntityWithId<IRoomEntity> = {
   _id: "the-rejuvenation-retreat-room-id",
   name: "The Rejuvenation Retreat Room",
-  slug: "rejuvenation-room",
+  slug: "the-rejuvenation-room",
   category: "medical",
   type: "medical examination room",
   sizeSqf: 85,
@@ -445,23 +467,79 @@ const TheRejuvenationRetreatRoom: EntityWithId<IRoomEntity> = {
     { bgColor: "#1E1E1E", textColor: "white", text: "New" },
   ],
 
-  mainImageUrl: "/images/rooms/conference-2.png",
+  mainImageUrl: "/images/rooms/rejuvenation-1.png",
   extraImagesUrls: [
-    '/images/rooms/conference-4.png',
-    '/images/rooms/conference-3.png',
-    '/images/rooms/conference-1.png',
+    '/images/rooms/rejuvination-2.png',
   ],
 
   amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
 
-  createdAtMs: 1607644800000
+  createdAtMs: 1607644800000,
+  rentalDetails:{
+    hourlyRent: 50,
+    type: "medical examination room",
+    area: 210,
+    totalHours: 8,
+    startDate: "2023-02-14",
+    endDate: "2023-02-14",
+    guests: 8,
+    parkingValidation: 2,
+    totalRent: 400, // Calculated based on hourlyRent * totalHours
+  }
 }
 
 const TheRadianceRoom: EntityWithId<IRoomEntity> = {
   _id: "the-radiance-room-id",
-  name: "The Radiance Room Room",
+  name: "The Radiance Room",
   slug: "radiance-room",
+  category: "medical",
+  type: "medical examination room",
+  sizeSqf: 85,
+  pricePerHour: 250,
+  excerpt: "Elevate patient care in a spacious, sunlit setting",
+  descriptionHtml: `
+    <h1>
+        Overview
+    </h1>
+                  
+    <p>
+      Discover unparalleled sophistication in our chic Radiance Room, 
+      expertly designed for discerning medical professionals. This refined and 
+      inviting space inspires a sense of prestige and trust, enriching the overall 
+      treatment experience for your patients. Benefit from the room's advanced layout, 
+      purposefully constructed to support seamless consultations and procedures 
+      in a stylish, professional setting.
+    </p>
+    
+    <p>
+      <strong>Please note:</strong> While the Rejuvenation Suite offers a wide range of amenities to support your practice, it
+      does not include specialised medical equipment for specific procedures. Medical professionals are
+      responsible for providing their own specialised tools and instruments as needed.
+    </p>
+  `,
+  descriptionShort: "TODO: add description short",
+  badges: [
+    { bgColor: "#9371A3", textColor: "white", text: "Verified" },
+    { bgColor: "#1E1E1E", textColor: "white", text: "New" },
+  ],
+
+  mainImageUrl: "/images/rooms/med-conference.png",
+  extraImagesUrls: [
+    '/images/car-finder/single/gallery/02.jpg',
+    '/images/car-finder/single/gallery/03.jpg',
+    '/images/car-finder/single/gallery/04.jpg',
+  ],
+
+  amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+  medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
+  createdAtMs: 1607644800000
+}
+
+const TheSpaRoom: EntityWithId<IRoomEntity> = {
+  _id: "the-spa-room-id",
+  name: "The SPA Room",
+  slug: "spa-room",
   category: "medical",
   type: "medical examination room",
   sizeSqf: 85,
@@ -511,6 +589,7 @@ export const ROOMS = [
   ConferenceRoom,
   TheRejuvenationRetreatRoom,
   TheRadianceRoom,
+  TheSpaRoom
 ];
 
 //#endregion ROOMS

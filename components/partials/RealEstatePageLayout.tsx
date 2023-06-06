@@ -246,10 +246,10 @@ const RealEstatePageLayout = ({ pageTitle, activeNav, navbarExtraClass, children
                 <Nav.Item>
                   <Nav.Link active={activeNav === '/services'} href="/services">Services</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
+                <Nav.Item className={"d-none"}>
                   <Nav.Link active={activeNav === '/directory'} href="/directory">Directory</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
+                <Nav.Item className={"d-none"}>
                   <Nav.Link active={activeNav === '/blog'} href="/blog">Blog</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
@@ -348,17 +348,17 @@ const RealEstatePageLayout = ({ pageTitle, activeNav, navbarExtraClass, children
                     />
                   </Link>
                   <div className="pt-2 d-flex flex-row justify-content-center">
-                    <Button as={Link as any} href="#" className="btn-social-icon">
+                    <Button as={Link as any} href="https://www.facebook.com/medicalblvd" className="btn-social-icon">
                       <i className="fa-brands fa-facebook"></i>
                     </Button>
-                    <Button as={Link as any} href="#" className="btn-social-icon">
+                    <Button as={Link as any} href="https://twitter.com/medboulevard" className="btn-social-icon">
                       <i className="fa-brands fa-twitter"></i>
                     </Button>
-                    <Button as={Link as any} href="#" className="btn-social-icon">
-                      <i className="fa-brands fa-github"></i>
+                    <Button as={Link as any} href="https://www.instagram.com/medicalboulevard/" className="btn-social-icon">
+                      <i className="fa-brands fa-instagram"></i>
                     </Button>
-                    <Button as={Link as any} href="#" className="btn-social-icon">
-                      <i className="fa-brands fa-slack"></i>
+                    <Button as={Link as any} href="https://www.linkedin.com/company/medicalblvd" className="btn-social-icon">
+                      <i className="fa-brands fa-linkedin"></i>
                     </Button>
                   </div>
                 </div>
