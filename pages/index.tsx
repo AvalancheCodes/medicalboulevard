@@ -93,7 +93,7 @@ const IndexPage = () => {
               prime Beverly Hills. Our ad-hoc medical examination rooms and business rooms, including conference and
               media rooms, offer a unique opportunity for practitioners to rent rooms that meet their needs.
             </p>
-            <ScheduleTourButton/>
+            <ScheduleTourButton />
           </Col>
           <Col md={5} lg={6} xl={7} className='mb-4 mb-lg-3'>
             <ImageLoader
@@ -156,7 +156,7 @@ const IndexPage = () => {
             </div>
 
             <Button as={Link as any} href="/rooms"
-                    variant='link fw-normal d-none d-lg-block p-0'>
+              variant='link fw-normal d-none d-lg-block p-0'>
               View all
               <i className='fi-arrow-long-right ms-2'></i>
             </Button>
@@ -196,7 +196,7 @@ const IndexPage = () => {
           Built-in access
         </h3>
         <h2>
-          Simple 3-Step Process to Rent Your Ideal <br/>
+          Simple 3-Step Process to Rent Your Ideal <br />
           Medical Space
         </h2>
         <p className="fs-lg fw-normal">
@@ -221,9 +221,44 @@ const IndexPage = () => {
 
       {/* Subscribe banner */}
       <Container as='section' fluid className='my-5 py-4'>
-        <SubscribeHero/>
+        <SubscribeHero />
       </Container>
+      <Container as='section' className='my-5 py-4'>
+        <h2 className='h1 mb-4 text-center'>Our Teams</h2>
+        <Row className='g-4 team'>
+          <Col md={4} className="text-center">
+            <div className="member">
+              <img src="/images/teams/team-1.jpg" alt="" />
+              <h4>Walter White</h4>
+              <span>Chief Executive Officer</span>
+              <p>
+                Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui
+              </p>
+            </div>
+          </Col>
+          <Col md={4} className="text-center">
+            <div className="member">
+              <img src="/images/teams/team-2.jpg" alt="" />
+              <h4>Sarah Jhinson</h4>
+              <span>Product Manager</span>
+              <p>
+                Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus
+              </p>
+            </div>
+          </Col>
+          <Col md={4} className="text-center">
+            <div className="member">
+              <img src="/images/teams/team-3.jpg" alt="" />
+              <h4>William Anderson</h4>
+              <span>CTO</span>
+              <p>
+                Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
+              </p>
+            </div>
+          </Col>
 
+        </Row>      
+      </Container>
       {selectedRoom && !isThankYouModalVisible && (
         <ReserveRoomModal
           show={true}
