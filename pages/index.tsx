@@ -12,6 +12,8 @@ import PropertyCardOverlay from '../components/PropertyCardOverlay'
 import RealEstatePageLayout from '../components/partials/RealEstatePageLayout'
 import ScheduleTourButton from "../components/ScheduleTourButton";
 import HowItWorksLineItem from "../components/HowItWorksLineItem";
+import TeamMember from "../components/TeamMember";
+
 import SubscribeHero from "../components/SubscribeHero";
 import ReserveRoomModal from "../components/partials/ReserveRoomModal";
 import ReserveRoomThankYouModal from "../components/partials/ReserveRoomThankYouModal";
@@ -31,7 +33,11 @@ const roomsCategories = [
   { category: "business", title: "Business" },
   // { category: "desks", title: "Desks" },
 ]
-
+const teams = [
+  {name:"Walter White", image:"/images/teams/team-1.jpg", role:"Chief Executive Officer", description:"Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui"},
+  {name:"Sarah Jhinson", image:"/images/teams/team-2.jpg", role:"Product Manager", description:"Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus"},
+  {name:"William Anderson", image:"/images/teams/team-3.jpg", role:"CTO", description:"Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara"}
+];
 const roomsCategoriesMobile = roomsCategories.map(x => ({
   icon: null,
   title: x.title,
@@ -226,37 +232,17 @@ const IndexPage = () => {
       <Container as='section' className='my-5 py-4'>
         <h2 className='h1 mb-4 text-center'>Our Teams</h2>
         <Row className='g-4 team'>
-          <Col md={4} className="text-center">
-            <div className="member">
-              <img src="/images/teams/team-1.jpg" alt="" />
-              <h4>Walter White</h4>
-              <span>Chief Executive Officer</span>
-              <p>
-                Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui
-              </p>
-            </div>
-          </Col>
-          <Col md={4} className="text-center">
-            <div className="member">
-              <img src="/images/teams/team-2.jpg" alt="" />
-              <h4>Sarah Jhinson</h4>
-              <span>Product Manager</span>
-              <p>
-                Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus
-              </p>
-            </div>
-          </Col>
-          <Col md={4} className="text-center">
-            <div className="member">
-              <img src="/images/teams/team-3.jpg" alt="" />
-              <h4>William Anderson</h4>
-              <span>CTO</span>
-              <p>
-                Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara
-              </p>
-            </div>
-          </Col>
+          {teams.map((item, i) => (
+            <Col md={4} className="text-center">
+                              <TeamMember
+                  image={item.image}
+                  name={item.name}
+                  role={item.role}
+                  description={item.description}
+                />
 
+            </Col>            
+          ))}
         </Row>      
       </Container>
       {selectedRoom && !isThankYouModalVisible && (

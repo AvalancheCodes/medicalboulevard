@@ -28,7 +28,6 @@ const footerLinks = [
       { title: "Medical Rooms", href: "/rooms" },
       { title: "Services", href: "/services" },
       { title: "Blog", href: "/" },
-      { title: "Directory", href: "/" },
     ]
   }],
   [{
