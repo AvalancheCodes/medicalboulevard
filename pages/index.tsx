@@ -34,9 +34,9 @@ const roomsCategories = [
   // { category: "desks", title: "Desks" },
 ]
 const teams = [
-  {name:"Walter White", image:"/images/teams/team-1.jpg", role:"Chief Executive Officer", description:"Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui"},
-  {name:"Sarah Jhinson", image:"/images/teams/team-2.jpg", role:"Product Manager", description:"Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus"},
-  {name:"William Anderson", image:"/images/teams/team-3.jpg", role:"CTO", description:"Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara"}
+  { name: "Walter White", image: "/images/teams/team-1.jpg", role: "Chief Executive Officer", description: "Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui" },
+  { name: "Sarah Jhinson", image: "/images/teams/team-2.jpg", role: "Product Manager", description: "Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum temporibus" },
+  { name: "William Anderson", image: "/images/teams/team-3.jpg", role: "CTO", description: "Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des clara" }
 ];
 const roomsCategoriesMobile = roomsCategories.map(x => ({
   icon: null,
@@ -234,16 +234,15 @@ const IndexPage = () => {
         <Row className='g-4 team'>
           {teams.map((item, i) => (
             <Col md={4} className="text-center">
-                              <TeamMember
-                  image={item.image}
-                  name={item.name}
-                  role={item.role}
-                  description={item.description}
-                />
-
-            </Col>            
+              <TeamMember
+                image={item.image}
+                name={item.name}
+                role={item.role}
+                description={item.description}
+              />
+            </Col>
           ))}
-        </Row>      
+        </Row>
       </Container>
       {selectedRoom && !isThankYouModalVisible && (
         <ReserveRoomModal
