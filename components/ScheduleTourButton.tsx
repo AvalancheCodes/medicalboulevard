@@ -24,11 +24,12 @@ const ScheduleTourButton = ({ className }: IProps) => {
     utmTerm: 'Spring'
   }
   const [isOpen, setIsOpen] = useState(false);
+
   const openCalendlyModal = () => {
     setIsOpen(true);
   }
   // Render markup
-  if (typeof document !== 'undefined') {
+  // if (typeof document !== 'undefined') {
     return (
       <>
       {/* <Button as={Link as any} href='/real-estate/add-property' size='sm' className={className} onClick={openCalendlyModal}>
@@ -48,10 +49,8 @@ const ScheduleTourButton = ({ className }: IProps) => {
           rootElement={document.getElementById("__next")}
         />
       </>
-
     )
-  
-  }
+  // }
 }
 
 export default ScheduleTourButton
