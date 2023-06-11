@@ -1,22 +1,20 @@
 import React from 'react';
 import Image from 'next/image'
 import happyDoctors from "../public/images/real-estate/happydoctors.png";
-import Col from "react-bootstrap/Col";
-import FormGroup from "./FormGroup";
-import InputGroup from "react-bootstrap/InputGroup";
-import FormControl from "react-bootstrap/FormControl";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
+import MailchimpSubscribe from 'react-mailchimp-subscribe';
+import NewsletterForm from "./NewsletterForm";
 
 const SubscribeHero = () => {
+  const MAILCHIMP_URL = process.env.NEXT_PUBLIC_MAILCHIMP_URL;
   return (
     <Card className='text-center'>
       <Card.Img
         as={Image}
         src={happyDoctors}
         alt={'Happy Doctors hero image'}
-        sizes="100vw"/>
+        sizes="100vw" />
       <Card.ImgOverlay
         className={"d-flex flex-column"}
         style={{
@@ -24,18 +22,31 @@ const SubscribeHero = () => {
         }}>
         <Container className={"m-auto opacity-0"}>
           <h1 className={"mt-2 mb-2 text-white pt-4"}>
-            Join Our Community and Get Exclusive <br/>
+            Join Our Community and Get Exclusive <br />
             Room Rental Offers
           </h1>
-          <FormGroup className={"w-50 text-center mx-auto mt-5"}>
+          <MailchimpSubscribe
+            url={MAILCHIMP_URL}
+            render={(props) => {
+              const { subscribe, status, message } = props || {};
+              return (
+                <NewsletterForm
+                  status={status}
+                  message={message}
+                  onValidated={formData => subscribe(formData)}
+                />
+              );
+            }}
+          />
+          {/* <FormGroup className={"w-50 text-center mx-auto mt-5"}>
             <InputGroup size='sm'>
               <InputGroup.Text className='text-muted'>
                 <i className='fi-mail'></i>
               </InputGroup.Text>
-              <FormControl placeholder='Your email'/>
+              <FormControl placeholder='Your email' />
             </InputGroup>
             <Button variant='primary'>Subscribe</Button>
-          </FormGroup>
+          </FormGroup> */}
         </Container>
       </Card.ImgOverlay>
     </Card>
