@@ -67,11 +67,11 @@ const MedicalRoomIdPage = ({ room }: IProps) => {
     return [
       { title: "Type", text: room.type },
       { title: "Area", text: `${room.sizeSqf} sq.f` },
-      { title: "Total hours", text: room.rentalDetails.totalHours.toString() },
-      { title: "Start Date", text: room.rentalDetails.startDate },
-      { title: "End Date", text: room.rentalDetails.endDate },
-      { title: "Guests/patients", text: room.rentalDetails.guests.toString() },
-      { title: "Parking Validation", text: `${room.rentalDetails.parkingValidation} car` },
+      { title: "Total hours", text: room.rentalDetails?.totalHours?.toString() || "" },
+      { title: "Start Date", text: room.rentalDetails?.startDate  || ""},
+      { title: "End Date", text: room.rentalDetails?.endDate  || ""},
+      { title: "Guests/patients", text: room.rentalDetails?.guests?.toString() || ""},
+      { title: "Parking Validation", text: `${room.rentalDetails?.parkingValidation || "0"} car` },
     ];
   }, [room])
 

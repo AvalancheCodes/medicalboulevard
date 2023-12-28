@@ -240,7 +240,7 @@ const SerenityRoom: EntityWithId<IRoomEntity> = {
   sizeSqf: 95,
   pricePerHour: 275,
   excerpt: "Spacious, sunlit space",
-  hasDoubleSink:true,
+  hasDoubleSink: true,
   descriptionHtml: `
     <h1>
         Overview
@@ -275,7 +275,7 @@ const SerenityRoom: EntityWithId<IRoomEntity> = {
   amenitiesIds: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
   medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
   createdAtMs: 1607644800000,
-  rentalDetails:{
+  rentalDetails: {
     hourlyRent: 275,
     type: "medical examination room",
     area: 210,
@@ -349,7 +349,7 @@ const TeleMedicineRoom: EntityWithId<IRoomEntity> = {
   medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
 
   createdAtMs: 1607644800000,
-  rentalDetails:{
+  rentalDetails: {
     hourlyRent: 150,
     type: "medical examination room",
     area: 110,
@@ -421,7 +421,7 @@ const ConferenceRoom: EntityWithId<IRoomEntity> = {
 
   createdAtMs: 1607644800000,
   //   Rental hours details
-  rentalDetails:{
+  rentalDetails: {
     hourlyRent: 50,
     type: "medical examination room",
     area: 210,
@@ -476,7 +476,7 @@ const TheRejuvenationRetreatRoom: EntityWithId<IRoomEntity> = {
   medicalSpaceCoordinatorId: "mds-kristin-johnson-id",
 
   createdAtMs: 1607644800000,
-  rentalDetails:{
+  rentalDetails: {
     hourlyRent: 50,
     type: "medical examination room",
     area: 210,

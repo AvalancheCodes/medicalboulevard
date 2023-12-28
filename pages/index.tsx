@@ -233,7 +233,7 @@ const IndexPage = () => {
         <h2 className='h1 mb-4 text-center'>Our Teams</h2>
         <Row className='g-4 team'>
           {teams.map((item, i) => (
-            <Col md={4} className="text-center">
+            <Col md={4} className="text-center" key={item.name}>
               <TeamMember
                 image={item.image}
                 name={item.name}
