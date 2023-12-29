@@ -147,6 +147,7 @@ const RecentlyViewed = ({ currentRoomId, className }: IRecentlyViewedProps) => {
               loop={false}
               grabCursor
               slidesPerView={3}
+              spaceBetween={30}
             >
               {recentlyViewedRooms?.map(x => (
                 <SwiperSlide key={x.slug}>

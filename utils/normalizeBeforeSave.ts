@@ -45,5 +45,5 @@ export default function normalizeBeforeSave(obj) {
     removeIdRecursively,
     removeFunctionsRecursively,
     trimStringsRecursively
-  ].reduce((fn, acc) => fn(acc), obj);
+  ].reduce((acc, fn) => fn(acc), obj);
 }

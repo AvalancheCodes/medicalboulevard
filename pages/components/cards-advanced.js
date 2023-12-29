@@ -11,7 +11,6 @@ import Button from 'react-bootstrap/Button'
 import Collapse from 'react-bootstrap/Collapse'
 import Code from '../../components/Code'
 import PropertyCard from '../../components/PropertyCard'
-import PropertyCardOverlay from '../../components/PropertyCardOverlay'
 import VenueCard from '../../components/VenueCard'
 import VenueCardOverlay from '../../components/VenueCardOverlay'
 import VehicleCard from '../../components/VehicleCard'
@@ -303,70 +302,6 @@ const CardsAdvancedPage = () => {
 />`}</Code>
         </Tab.Pane>
       </ComponentPageSection>
-
-
-      {/* Property card with content overlay */}
-      <ComponentPageSection id='card-property-overlay' title='Property card with content overlay'>
-        <Tab.Pane eventKey='preview'>
-          <PropertyCardOverlay
-            img={{
-              src: '/images/real-estate/recent/02.jpg',
-              alt: 'Background image'
-            }}
-            href='#'
-            title='Duplex with Garage'
-            category='For sale'
-            location='21 Pulaski Road Kings Park, NY 11754'
-            overlay
-            badges={[
-              ['info', 'New']
-            ]}
-            button={{
-              href: '#',
-              title: '$200,410',
-              variant: 'primary',
-              props: {
-                onClick: () => alert('Another action via onClick prop')
-              },
-              wishlistProps: {
-                onClick: () => alert('You\'ve added Duplex with Garage property to your wishlist!')
-              }
-            }}
-            style={{maxWidth: '640px'}}
-          />
-        </Tab.Pane>
-        <Tab.Pane eventKey='code'>
-          <Code language='jsx'>{`import PropertyCardOverlay from '../components/PropertyCardOverlay'
-
-{/* Property card with content overlay example */}
-<PropertyCardOverlay
-  img={{
-    src: '/images/real-estate/recent/02.jpg',
-    alt: 'Background image'
-  }}
-  href='#'
-  title='Duplex with Garage'
-  category='For sale'
-  location='21 Pulaski Road Kings Park, NY 11754'
-  overlay
-  badges={[
-    ['info', 'New']
-  ]}
-  button={{
-    href: '#',
-    title: '$200,410',
-    variant: 'primary',
-    props: {
-      onClick: () => alert('Another action via onClick prop')
-    },
-    wishlistProps: {
-      onClick: () => alert('You\'ve added Duplex with Garage property to your wishlist!')
-    }
-  }}
-/>`}</Code>
-        </Tab.Pane>
-      </ComponentPageSection>
-
 
       {/* Venue card */}
       <ComponentPageSection id='card-venue' title='Venue card'>
@@ -1660,4 +1595,5 @@ const [open, setOpen] = useState(false)
   )
 }
 
-export default CardsAdvancedPage
+export default CardsAdvancedPage;
+

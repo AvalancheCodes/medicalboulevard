@@ -47,7 +47,11 @@ const HomePage = () => {
         </h1>
         <h2 className='h4 fw-light'>
           Our mission is to provide fully equipped medical examination rooms and comprehensive support services to
+<<<<<<< HEAD
           optimise medical professionals&rsquo; time with patients.
+=======
+          optimise medical professionals&apos; time with patients.
+>>>>>>> pillars
         </h2>
       </Container>
 

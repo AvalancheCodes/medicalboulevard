@@ -2,6 +2,20 @@ import IBaseEntity from "./abstractions/IBaseEntity";
 import ICreatedAt from "./abstractions/ICreatedAt";
 import IBadgeEntity from "./IBadgeEntity";
 
+interface IRentalDetails {
+  hourlyRent: number;
+  type: string;
+  area: number;
+  totalHours: number;
+  startDate: string;
+  endDate: string;
+  guests: number;
+  parkingValidation: number;
+
+  // Calculated property
+  totalRent: number;
+}
+
 export default interface IRoomEntity extends IBaseEntity, ICreatedAt {
   name: string;
   slug: string;
@@ -12,6 +26,11 @@ export default interface IRoomEntity extends IBaseEntity, ICreatedAt {
   badges?: IBadgeEntity[];
 
   excerpt: string;
+
+  hasSink?: boolean;
+  hasDoubleSink?:boolean;
+  gearDescription?: string;
+  hasNaturalLight?:boolean;
 
   mainImageUrl?: string;
   extraImagesUrls?: string[];
@@ -24,4 +43,6 @@ export default interface IRoomEntity extends IBaseEntity, ICreatedAt {
   medicalSpaceCoordinatorId: string;
 
   createdAtMs: number;
+
+  rentalDetails?:IRentalDetails;
 }
