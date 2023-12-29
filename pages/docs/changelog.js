@@ -34,13 +34,13 @@ const ChangelogPage = () => (
       </li>
       <li className='d-flex align-items-start mb-3'>
         <span className='badge bg-warning fs-sm pt-1 me-3'>Fixed</span>
-<<<<<<< HEAD
+
         <div>Compatibility issue with the updated Next.js <code>Image</code> component. Dependant Finder <code>ImageLoader</code> component has to fall back to the legacy <code>Image</code> component that properly supports custom animated svg <code>placeholder</code>. We&apos;ll switch to the new <code>Image</code> component as soon as Nex.js fixed the issue. Read the <a href='https://github.com/vercel/next.js/issues/42140' target='_blank' rel='noreferrer'>issue thread here</a>.</div>
       </li>
       <li className='d-flex align-items-start mb-3'>
         <span className='badge bg-warning fs-sm pt-1 me-3'>Fixed</span>
         <div>Page <code>title</code> that breaks the page after updating to Next.js 13. The error message: &rdquo;A title element received an array with more than 1 element as children&rdquo;. Read the <a href='https://github.com/vercel/next.js/discussions/38256' target='_blank' rel='noreferrer'>issue thread here</a>.</div>
-=======
+
         <div>
           Compatibility issue with the updated Next.js <code>Image</code> component.
           Dependant Finder <code>ImageLoader</code> component has to fall back to the legacy <code>Image</code>
@@ -56,7 +56,7 @@ const ChangelogPage = () => (
           &quot;A title element received an array with more than 1 element as children&quot;.
           Read the <a href='https://github.com/vercel/next.js/discussions/38256' target='_blank' rel='noreferrer'>issue thread here</a>.
         </div>
->>>>>>> pillars
+
       </li>
     </ul>
 

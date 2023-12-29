@@ -31,7 +31,7 @@ const MicroBlog = ({className, microBlogId}:IProps) => {
             .catch((error) => {
                 console.error("Sanity fetch error:", error);
             });
-    }, [client]); // Add client to the dependency array
+    }, [client, microBlogId]); // Add client to the dependency array
 
     return (
         <Container as='section' className='my-5 py-4'>
