@@ -5,10 +5,10 @@ import CalendlyModal from "./CalendlyModal";
 
 interface IProps {
   className?: string;
-
+  action_text?: string;
 }
 
-const ScheduleTourButton = ({ className }: IProps) => {
+const ScheduleTourButton = ({ className, action_text }: IProps) => {
 
   const [requestTourShow, setRequestTourShow] = useState(false)
   const handleRequestTourShow = () => setRequestTourShow(true)
@@ -29,7 +29,7 @@ const ScheduleTourButton = ({ className }: IProps) => {
       </Button> */}
       <Button size='sm' className={className} onClick={handleRequestTourShow}>
         <i className='fi-plus me-2'></i>
-        Schedule a Tour
+        {action_text || ""}
       </Button>
 
       </>
