@@ -36,12 +36,14 @@ const MicroBlog = ({className, microBlogId}:IProps) => {
     return (
         <Container as='section' className='my-5 py-4'>
             <Row className='g-3 g-xl-4'>
+                {microBlogData && (
                 <Col className="m-0 mx-4 text-center">
                     <h2 className='h1 mb-4'>{microBlogData.title}</h2>
                     <p className="fs-5 fw-normal">
                         {extractBodyText(microBlogData.body)}
                     </p>
                 </Col>
+                )}
             </Row>
         </Container>
     );
