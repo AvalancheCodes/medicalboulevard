@@ -29,7 +29,7 @@ const ScheduleTourButton = ({ className, action_text }: IProps) => {
       </Button> */}
       <Button size='sm' className={className} onClick={handleRequestTourShow}>
         <i className='fi-plus me-2'></i>
-        {action_text || ""}
+        {action_text || "Schedule a Tour"}
       </Button>
 
       </>

@@ -21,6 +21,7 @@ import { HOMEPAGE_PROCESS_STEPS, ROOMS } from "../utils/dummy";
 import IRoomEntity from "../core/shared/entities/IRoomEntity";
 import { EntityWithId } from "../core/shared/entities/utils/EntityWithId";
 import StarterHero from "./mb-components/StarterHero";
+import MicroBlog from "./mb-components/micro-blog";
 
 
 const roomsCardsSizes = [
@@ -92,21 +93,7 @@ const IndexPage = () => {
       <StarterHero />
 
       {/* Our Mission */}
-      <Container as='section' className='my-5 py-4'>
-        <Row className='g-3 g-xl-4'>
-          <Col className="m-0 mx-4 text-center">
-            <h2 className='h1 mb-4'>Our Mission</h2>
-            <p className="fs-5 fw-normal">
-              At Medical Boulevard, our mission is to empower healthcare professionals specialised in non-invasive
-              cosmetic procedures and wellness therapies by providing flexible, fully-equipped medical spaces in a prime
-              Beverly Hills location. We are dedicated to fostering a supportive community that encourages collaboration
-              and growth, allowing practitioners to focus on delivering exceptional patient care while we handle the
-              complexities of establishing and maintaining a thriving practice. Together, we are revolutionising the
-              healthcare industry, one innovative practice at a time.
-            </p>
-          </Col>
-        </Row>
-      </Container>
+      <MicroBlog microBlogId="70e46d96-5e87-450c-b299-5a1456753742" />
 
       {/* Grid of properties */}
       <Container fluid as='section' className='my-5 py-4'>
