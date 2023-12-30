@@ -23,7 +23,7 @@ const ScheduleTourButton = ({ className, action_text }: IProps) => {
         show={requestTourShow}
         onHide={handleRequestTourClose}
       />
-      {/* <Button as={Link as any} href='/real-estate/add-property' size='sm' className={className} onClick={openCalendlyModal}>
+      {/* <Button schemas={Link schemas any} href='/real-estate/add-property' size='sm' className={className} onClick={openCalendlyModal}>
         <i className='fi-plus me-2'></i>
         Schedule a Tour
       </Button> */}

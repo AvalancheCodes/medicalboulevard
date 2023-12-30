@@ -147,7 +147,7 @@ const RealEstatePageLayout = ({ pageTitle, activeNav, navbarExtraClass, children
               <>
                 {user ? (
                   <Dropdown className='d-none d-lg-block order-lg-3 my-n2 me-3'>
-                    <Dropdown.Toggle as={Link} href='/real-estate/account-info'
+                    <Dropdown.Toggle schemas={Link} href='/real-estate/account-info'
                                      className='nav-link dropdown-toggle-flush d-flex py-1 px-0'
                                      style={{ width: '40px' }}>
                       <ImageLoader
@@ -173,33 +173,33 @@ const RealEstatePageLayout = ({ pageTitle, activeNav, navbarExtraClass, children
                           </div>
                         </div>
                       </div>
-                      <Dropdown.Item as={Link} href='/real-estate/account-info'>
+                      <Dropdown.Item schemas={Link} href='/real-estate/account-info'>
                         <i className='fi-lock opacity-60 me-2'></i>
                         Personal Info
                       </Dropdown.Item>
-                      <Dropdown.Item as={Link} href='/real-estate/account-security'>
+                      <Dropdown.Item schemas={Link} href='/real-estate/account-security'>
                         <i className='fi-heart opacity-60 me-2'></i>
                         Password &amp; Security
                       </Dropdown.Item>
-                      <Dropdown.Item as={Link} href='/real-estate/account-properties'>
+                      <Dropdown.Item schemas={Link} href='/real-estate/account-properties'>
                         <i className='fi-home opacity-60 me-2'></i>
                         My Properties
                       </Dropdown.Item>
-                      <Dropdown.Item as={Link} href='/real-estate/account-wishlist'>
+                      <Dropdown.Item schemas={Link} href='/real-estate/account-wishlist'>
                         <i className='fi-heart opacity-60 me-2'></i>
                         Wishlist
                       </Dropdown.Item>
-                      <Dropdown.Item as={Link} href='/real-estate/account-reviews'>
+                      <Dropdown.Item schemas={Link} href='/real-estate/account-reviews'>
                         <i className='fi-star opacity-60 me-2'></i>
                         Reviews
                       </Dropdown.Item>
-                      <Dropdown.Item as={Link} href='/real-estate/account-notifications'>
+                      <Dropdown.Item schemas={Link} href='/real-estate/account-notifications'>
                         <i className='fi-bell opacity-60 me-2'></i>
                         Notifications
                       </Dropdown.Item>
                       <Dropdown.Divider/>
-                      <Dropdown.Item as={Link} href='/real-estate/help-center'>Help</Dropdown.Item>
-                      <Dropdown.Item as={Button} onClick={logout}>Sign Out</Dropdown.Item>
+                      <Dropdown.Item schemas={Link} href='/real-estate/help-center'>Help</Dropdown.Item>
+                      <Dropdown.Item schemas={Button} onClick={logout}>Sign Out</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 ) : (

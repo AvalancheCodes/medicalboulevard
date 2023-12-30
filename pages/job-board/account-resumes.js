@@ -135,7 +135,7 @@ const AccountResumesPage = () => {
                   dropdown={[
                     { icon: 'fi-edit', label: 'Edit' },
                     { icon: 'fi-flame', label: 'Promote' },
-                    { icon: 'fi-download-file', label: 'Download as PDF' },
+                    { icon: 'fi-download-file', label: 'Download schemas PDF' },
                     { icon: 'fi-power', label: 'Activate' },
                     {
                       icon: 'fi-trash',
