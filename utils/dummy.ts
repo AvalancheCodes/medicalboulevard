@@ -15,13 +15,13 @@ export const HOMEPAGE_PROCESS_STEPS = [
   },
   {
     title: "Check Availability and Pricing",
-    text: "Once you've found the right space, simply fill out our easy-to-use online form to check availability and pricing. We'll get back to you within 24 hours with all the information you need to move forward with your rental.",
+    text: "Once you've found the right property, simply fill out our easy-to-use online form to check availability and pricing. We'll get back to you within 24 hours with all the information you need to move forward with your rental.",
     url: "/features",
     urlText: "Features",
   },
   {
     title: "Schedule a Tour or Virtual Tour",
-    text: "If the space you requested is available, we'll work with you to schedule a tour or virtual tour so you can see it for yourself. If it's not available, we'll help you find a time that works with your schedule. With our simple 3-step process, renting your ideal medical space has never been easier.",
+    text: "If the property you requested is available, we'll work with you to schedule a tour or virtual tour so you can see it for yourself. If it's not available, we'll help you find a time that works with your schedule. With our simple 3-step process, renting your ideal medical property has never been easier.",
     url: "/dashboard",
     urlText: "Dashboard",
   }
@@ -200,7 +200,7 @@ export const SERVICES_FLEXIBLE_SPACE_AND_SCHEDULING_FEEDBACK_ITEMS = [
     authorPhoto: "/images/avatars/30.jpg"
   },
   {
-    quote: "I was thrilled to discover Medical Boulevard's MSO services. As a nurse practitioner just starting out, I needed affordable and flexible options for renting space and using medical equipment. Thanks to Medical Boulevard, I was able to build my practice and expand my services much faster than I ever thought possible",
+    quote: "I was thrilled to discover Medical Boulevard's MSO services. As a nurse practitioner just starting out, I needed affordable and flexible options for renting property and using medical equipment. Thanks to Medical Boulevard, I was able to build my practice and expand my services much faster than I ever thought possible",
     authorName: "John",
     authorJobTitle: "Director of Sales",
     authorCompany: "Vidados",
@@ -239,7 +239,7 @@ const SerenityRoom: EntityWithId<IRoomEntity> = {
   type: "medical examination room",
   sizeSqf: 95,
   pricePerHour: 275,
-  excerpt: "Spacious, sunlit space",
+  excerpt: "Spacious, sunlit property",
   hasDoubleSink: true,
   descriptionHtml: `
     <h1>

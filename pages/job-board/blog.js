@@ -171,7 +171,7 @@ const BlogPage = () => {
       activeNav='Pages'
     >
 
-      {/* Page content */}
+      {/* Index content */}
       <Container as='section' className='mt-5 mb-md-4 py-5'>
 
         {/* Breadcrumbs */}
@@ -180,7 +180,7 @@ const BlogPage = () => {
           <Breadcrumb.Item active>Blog</Breadcrumb.Item>
         </Breadcrumb>
 
-        {/* Page title */}
+        {/* Index title */}
         <h1 className='pb-3'>Blog</h1>
         <Row>
           <Col lg={8}>

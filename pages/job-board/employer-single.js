@@ -201,7 +201,7 @@ const EmployerSinglePage = () => {
 
   return (
     <JobBoardPageLayout
-      pageTitle='Employer / Company Page'
+      pageTitle='Employer / Company Index'
       activeNav='Account'
       userLoggedIn
     >
@@ -273,7 +273,7 @@ const EmployerSinglePage = () => {
       </Modal>
 
 
-      {/* Page content */}
+      {/* Index content */}
       <section className='py-5'>
         <Container className='pt-5 pb-lg-5'>
 

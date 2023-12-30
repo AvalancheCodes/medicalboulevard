@@ -137,7 +137,7 @@ const BlogSinglePage = () => {
       activeNav='Pages'
     >
 
-      {/* Page content */}
+      {/* Index content */}
       <Container as='section' className='mt-5 mb-md-4 py-5'>
 
         {/* Breadcrumb */}
@@ -147,7 +147,7 @@ const BlogSinglePage = () => {
           <Breadcrumb.Item active>This Year is All About New Harley Davidson</Breadcrumb.Item>
         </Breadcrumb>
 
-        {/* Page title */}
+        {/* Index title */}
         <h1 className='h2 text-light pb-3'>This Year is All About New Harley Davidson</h1>
         <ImageLoader
           src='/images/car-finder/blog/10.jpg'

@@ -239,7 +239,7 @@ const VendorPage = () => {
 
   return (
     <CarFinderPageLayout
-      pageTitle='Vendor Page'
+      pageTitle='Vendor Index'
       activeNav='Vendor'
       userLoggedIn
     >

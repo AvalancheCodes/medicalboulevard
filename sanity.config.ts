@@ -1,7 +1,8 @@
 import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
 import {apiVersion} from "@sanity/preview-url-secret/src/constants";
-// import {visionTool} from '@sanity/vision'
+import {schemaTypes} from "./schemas";
+import {visionTool} from "@sanity/vision";
 // import {schemaTypes} from './schemas'
 
 const sanityStudioConfig = defineConfig({
@@ -11,10 +12,10 @@ const sanityStudioConfig = defineConfig({
     dataset: 'production',
     apiVersion: "2023-12/29",
     basePath:"/studio",
-    plugins: [deskTool()]
-    // schema: {
-    //     types: schemaTypes,
-    // },
+    plugins: [deskTool(), visionTool()],
+    schema: {
+        types: schemaTypes,
+    },
 })
 
 export default sanityStudioConfig;

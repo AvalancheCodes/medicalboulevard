@@ -254,7 +254,7 @@ const VendorPropertiesPage = () => {
         </Modal.Body>
       </Modal>
 
-      {/* Page container */}
+      {/* Index container */}
       <Container className='mt-5 mb-md-4 py-5'>
 
         {/* Breadcrumb */}
@@ -333,7 +333,7 @@ const VendorPropertiesPage = () => {
           </Col>
 
 
-          {/* Page content */}
+          {/* Index content */}
           <Col md={8} lg={9}>
             <h1 className='h2 text-center text-sm-start mb-4'>Property offers</h1>
             <div className='d-flex flex-column flex-sm-row align-items-center justify-content-between mb-4'>

@@ -163,7 +163,7 @@ const BlogPage = () => {
       activeNav='Pages'
     >
 
-      {/* Page content */}
+      {/* Index content */}
       <Container className='pt-5 pb-lg-4 my-5'>
 
         {/* Breadcrumb */}
@@ -172,7 +172,7 @@ const BlogPage = () => {
           <Breadcrumb.Item active>News &amp; reviews</Breadcrumb.Item>
         </Breadcrumb>
 
-        {/* Page title */}
+        {/* Index title */}
         <h1 className='text-light mb-4'>News &amp; reviews</h1>
 
         {/* Sorting, filters and search */}

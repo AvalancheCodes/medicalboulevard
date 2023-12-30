@@ -23,10 +23,10 @@ const JobBoardAccountLayout = ({ accountPageTitle, activeAccountNav, children })
 
   return (
     <>
-      {/* Page overlay */}
+      {/* Index overlay */}
       <div className='position-absolute top-0 start-0 w-100 bg-dark' style={{height: '398px'}}></div>
 
-      {/* Page content */}
+      {/* Index content */}
       <Container as='section' className='content-overlay mt-5 mb-md-4 py-5'>
 
         {/* Breadcrumb */}
@@ -36,7 +36,7 @@ const JobBoardAccountLayout = ({ accountPageTitle, activeAccountNav, children })
           <Breadcrumb.Item active>{accountPageTitle}</Breadcrumb.Item>
         </Breadcrumb>
 
-        {/* Page card like wrapper */}
+        {/* Index card like wrapper */}
         <div className='bg-light shadow-sm rounded-3 p-4 p-md-5 mb-2'>
 
           {/* Account header */}

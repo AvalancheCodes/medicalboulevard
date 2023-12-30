@@ -133,7 +133,7 @@ const AboutPage = () => {
         </Breadcrumb>
       </Container>
 
-      {/* Page header */}
+      {/* Index header */}
       <Container as='section' className='mb-5 pb-lg-5'>
         <Row className='align-items-center justify-content-lg-start justify-content-center flex-lg-nowrap gy-4'>
           <Col xs={12} lg={9}>

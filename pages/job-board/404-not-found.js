@@ -35,7 +35,7 @@ const NotFoundPage = () => {
         <title>Finder | Job Board - 404 Not Found</title>
       </Head>
 
-      {/* Page content */}
+      {/* Index content */}
       <main className='page-wrapper'>
         <section
           className='d-flex align-items-center position-relative min-vh-100 pt-sm-5 pt-4 pb-5'

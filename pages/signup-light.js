@@ -37,7 +37,7 @@ const SignupLightPage = () => {
         <title>Finder | Sing Up Page</title>
       </Head>
 
-      {/* Page wrapper */}
+      {/* Index wrapper */}
       <main className='page-wrapper'>
 
         <div className='container-fluid d-flex h-100 align-items-center justify-content-center py-4 py-sm-5'>

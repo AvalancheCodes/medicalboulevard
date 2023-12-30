@@ -77,10 +77,10 @@ const AccountNotificationsPage = () => {
       userLoggedIn
     >
       
-      {/* Page container */}
+      {/* Index container */}
       <Container className='mt-5 mb-md-4 py-5'>
 
-        {/* Page header */}
+        {/* Index header */}
         <CityGuideAccountHeader breadcrumb='Reviews' />
         
         <Card className='shadow-sm'>
@@ -89,7 +89,7 @@ const AccountNotificationsPage = () => {
             {/* Account navigation */}
             <CityGuideAccountNav activeNav='/city-guide/account-notifications' />
 
-            {/* Page content */}
+            {/* Index content */}
             <h1 className='h3 mb-4 py-2'>Notifications</h1>
             
             <div className='border-bottom mb-3 pb-3'>

@@ -32,7 +32,7 @@ const NotFoundPage = () => {
         <title>Finder | Real Estate - 404 Not Found</title>
       </Head>
 
-      {/* Page content */}
+      {/* Index content */}
       <main className='page-wrapper'>
         <section className='d-flex align-items-lg-center align-items-end position-relative min-vh-100 py-lg-5 py-0'>
           <span className='position-absolute top-0 start-0 d-lg-block d-none w-100 h-100 zindex-1 bg-dark rounded-4 rounded-start-0' style={{maxWidth: '43.6vw'}}></span>

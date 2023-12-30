@@ -325,7 +325,7 @@ const SinglePropertyPage = () => {
       </Modal>
 
 
-      {/* Page header */}
+      {/* Index header */}
       <Container as='section' className='pt-5 mt-5 pb-1'>
 
         {/* Breadcrumb */}

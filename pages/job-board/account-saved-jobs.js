@@ -99,7 +99,7 @@ const AccountJobsPage = () => {
         activeAccountNav='/job-board/account-saved-jobs'
       >
 
-        {/* Page title */}
+        {/* Index title */}
         <div className='d-flex align-items-center justify-content-between py-4 mt-3 mb-2'>
           <h1 className='h3 mb-0'>Saved jobs</h1>
           <a

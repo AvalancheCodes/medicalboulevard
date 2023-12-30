@@ -18,7 +18,7 @@ const PromotionPage = () => {
       userLoggedIn
     >
 
-      {/* Page container */}
+      {/* Index container */}
       <Container className='mt-5 mb-md-4 py-5'>
 
         {/* Breadcrumb */}
@@ -28,7 +28,7 @@ const PromotionPage = () => {
           <Breadcrumb.Item active>Promotion page</Breadcrumb.Item>
         </Breadcrumb>
 
-        {/* Page title */}
+        {/* Index title */}
         <h1 className='h2 mb-4 text-light'>Promotion page</h1>
         <h2 className='h3 pb-2 mb-4 text-light'>Select your perfect plan to promote your ad</h2>
 

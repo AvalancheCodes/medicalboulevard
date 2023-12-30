@@ -140,7 +140,7 @@ const AboutPage = () => {
       </Container>
 
 
-      {/* Page header */}
+      {/* Index header */}
       <Container as='section' className='mb-5 pb-2'>
         <Row className='gy-4 align-items-center justify-content-center'>
 

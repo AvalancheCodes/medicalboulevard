@@ -119,7 +119,7 @@ const RealEstatePageLayout = ({ pageTitle, activeNav, navbarExtraClass, children
       />}
 
 
-      {/* Page wrapper for sticky footer
+      {/* Index wrapper for sticky footer
       Wraps everything except footer to push footer to the bottom of the page if there is little content */}
       <main className='page-wrapper'>
 
@@ -321,7 +321,7 @@ const RealEstatePageLayout = ({ pageTitle, activeNav, navbarExtraClass, children
           </Container>
         </Navbar>
 
-        {/* Page content, py-5 to skip navbar */}
+        {/* Index content, py-5 to skip navbar */}
         <div className={'py-5'}>
           {children}
         </div>

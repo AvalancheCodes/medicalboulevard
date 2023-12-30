@@ -204,7 +204,7 @@ const ComponentPageLayout = (props) => {
               </SimpleBar>
             </Offcanvas>
 
-            {/* Page title + description */}
+            {/* Index title + description */}
             <div className='border-bottom mb-5 pt-5'>
               <h1 className='mt-5 pt-4'>{props.pageTitle}</h1>
               <div className='d-flex flex-wrap flex-md-nowrap justify-content-between'>
@@ -223,7 +223,7 @@ const ComponentPageLayout = (props) => {
               </div>
             </div>
 
-            {/* Page content */}
+            {/* Index content */}
             {props.children}
           </Col>
 

@@ -121,12 +121,12 @@ const DocsPageLayout = (props) => {
               </SimpleBar>
             </Offcanvas>
 
-            {/* Page title */}
+            {/* Index title */}
             <div className='border-bottom mb-5 pt-5'>
               <h1 className='mt-5 pt-4 pb-2'>{props.pageTitle}</h1>
             </div>
 
-            {/* Page content */}
+            {/* Index content */}
             {props.children}
           </Col>
         </Row>

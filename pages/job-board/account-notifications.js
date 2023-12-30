@@ -69,12 +69,12 @@ const AccountNotificationsPage = () => {
         activeAccountNav='/job-board/account-notifications'
       >
 
-        {/* Page title */}
+        {/* Index title */}
         <div className='d-flex align-items-center justify-content-between py-4 mt-3 mb-2'>
           <h1 className='h3 mb-0'>Notifications</h1>
         </div>
 
-        {/* Page content */}
+        {/* Index content */}
         <div className='border-bottom mb-3 pb-3'>
           <FormCheck
             type='switch'

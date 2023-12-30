@@ -73,10 +73,10 @@ const AccountReviewsPage = () => {
       userLoggedIn
     >
       
-      {/* Page container */}
+      {/* Index container */}
       <Container className='mt-5 mb-md-4 py-5'>
 
-        {/* Page header */}
+        {/* Index header */}
         <CityGuideAccountHeader breadcrumb='Reviews' />
         
         <Card className='shadow-sm'>
@@ -85,7 +85,7 @@ const AccountReviewsPage = () => {
             {/* Account navigation */}
             <CityGuideAccountNav activeNav='/city-guide/account-reviews' />
 
-            {/* Page title + Sorting */}
+            {/* Index title + Sorting */}
             <div className='d-flex flex-md-row flex-column align-items-md-center justify-content-md-between mb-4 py-2'>
               <h1 className='h3 mb-md-0'>Your reviews</h1>
               <div className='d-flex align-items-sm-center align-items-end'>

@@ -43,7 +43,7 @@ const JobBoardPostResumeLayout = ({
       <Row className='justify-content-center pb-sm-2'>
         <Col lg={11} xl={10}>
 
-          {/* Page title */}
+          {/* Index title */}
           <div className='text-center pb-4 mb-3'>
             <h1 className='h2 mb-4'>Create online resume</h1>
             <p className='mb-4'>Save time by uploading a resume to prefill some of the fields below. Please, use PDF format.</p>
@@ -66,7 +66,7 @@ const JobBoardPostResumeLayout = ({
             </Steps>
           </div>
           
-          {/* Page content */}
+          {/* Index content */}
           <div className='bg-light rounded-3 p-4 p-md-5 mb-3'>
             {children}
           </div>

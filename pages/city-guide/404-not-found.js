@@ -31,7 +31,7 @@ const NotFoundPage = () => {
         <title>Finder | City Guide - 404 Not Found</title>
       </Head>
 
-      {/* Page content */}
+      {/* Index content */}
       <main className='page-wrapper'>
         <section className='d-flex align-items-center min-vh-100 py-5 bg-secondary'>
           <Container className='d-flex justify-content-center text-center'>

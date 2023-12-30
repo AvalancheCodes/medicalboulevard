@@ -126,7 +126,7 @@ const CatalogPage = () => {
       <section className='bg-dark pt-5'>
         <Container className='py-5'>
 
-          {/* Page title */}
+          {/* Index title */}
           <h1 className='text-light pt-1 pt-md-3 mb-4'>Find jobs</h1>
 
           {/* Search form */}
@@ -258,7 +258,7 @@ const CatalogPage = () => {
       </section>
 
 
-      {/* Page content */}
+      {/* Index content */}
       <section className='position-relative bg-white rounded-xxl-4 zindex-5' style={{marginTop: '-30px'}}>
         <Container className='pt-4 pb-5 mb-md-4'>
 

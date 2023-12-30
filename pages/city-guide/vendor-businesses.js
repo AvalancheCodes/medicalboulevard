@@ -72,7 +72,7 @@ const VendorBusinessesPage = () => {
       userLoggedIn
     >
       
-      {/* Page container */}
+      {/* Index container */}
       <Container className='mt-5 mb-md-4 py-5'>
 
         {/* Breadcrumb */}
@@ -81,7 +81,7 @@ const VendorBusinessesPage = () => {
           <Breadcrumb.Item active>My businesses</Breadcrumb.Item>
         </Breadcrumb>
 
-        {/* Page title + Sorting */}
+        {/* Index title + Sorting */}
         <div className='d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch justify-content-between pb-4 mb-2 mb-md-3'>
           <h1 className='h2 mb-sm-0'>My businesses</h1>
           <Form.Group controlId='sortby' className='d-flex align-items-center ms-sm-4'>

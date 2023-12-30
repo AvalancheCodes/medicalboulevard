@@ -334,11 +334,11 @@ const AddPropertyPage = () => {
       </Modal>
 
       
-      {/* Page container */}
+      {/* Index container */}
       <Container className='mt-5 mb-md-4 py-5'>
         <Row>
 
-          {/* Page content */}
+          {/* Index content */}
           <Col lg={8}>
 
             {/* Breadcrumb */}

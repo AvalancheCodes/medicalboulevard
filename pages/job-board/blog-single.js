@@ -136,7 +136,7 @@ const BlogSinglePage = () => {
       activeNav='Pages'
     >
 
-      {/* Page content */}
+      {/* Index content */}
       <Container as='section' className='mt-5 mb-md-4 py-5'>
 
         {/* Breadcrumbs */}
@@ -146,7 +146,7 @@ const BlogSinglePage = () => {
           <Breadcrumb.Item active>Single post</Breadcrumb.Item>
         </Breadcrumb>
 
-        {/* Page title */}
+        {/* Index title */}
         <h1 className='h2 pb-3'>15 Tips for a Better Resume</h1>
         <div className='mb-4'>
           <ImageLoader src='/images/job-board/blog/14.jpg' width={1296} height={600} alt='Cover' className='rounded-3' />

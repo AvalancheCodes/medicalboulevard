@@ -69,7 +69,7 @@ const CityGuidePageLayout = (props) => {
       />}
 
 
-      {/* Page wrapper for sticky footer
+      {/* Index wrapper for sticky footer
       Wraps everything except footer to push footer to the bottom of the page if there is little content */}
       <main className='page-wrapper'>
 
@@ -289,7 +289,7 @@ const CityGuidePageLayout = (props) => {
         </Navbar>
 
 
-        {/* Page content */}
+        {/* Index content */}
         {props.children}
       </main>
 

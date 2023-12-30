@@ -42,7 +42,7 @@ const HelpCenterPage = () => {
       </Container>
 
 
-      {/* Page header */}
+      {/* Index header */}
       <Container as='section' className='mb-4 pb-lg-5'>
         <h1 className='mx-auto mb-4 pb-2 text-center' style={{maxWidth: '856px'}}>Hi, how can we help?</h1>
 
@@ -72,7 +72,7 @@ const HelpCenterPage = () => {
       </Container>
 
 
-      {/* Page content */}
+      {/* Index content */}
       <Container as='section' className='mb-md-5 mb-4 pb-lg-5'>
         <Row>
 

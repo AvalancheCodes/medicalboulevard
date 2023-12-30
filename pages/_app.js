@@ -13,7 +13,7 @@ import {sanityClient} from "../state/SanityProvider/SanityClient";
 
 const Finder = ({Component, pageProps}) => {
 
-  // Bind NProgress to Next Router events (Page loading animation)
+  // Bind NProgress to Next Router events (Index loading animation)
   Router.events.on('routeChangeStart', () => NProgress.start())
   Router.events.on('routeChangeComplete', () => NProgress.done())
   Router.events.on('routeChangeError', () => NProgress.done())

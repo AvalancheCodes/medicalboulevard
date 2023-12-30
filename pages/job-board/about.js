@@ -33,7 +33,7 @@ const AboutPage = () => {
             <Breadcrumb.Item active>About</Breadcrumb.Item>
           </Breadcrumb>
 
-          {/* Page title */}
+          {/* Index title */}
           <div className='mb-lg-5 mx-auto text-center' style={{maxWidth: '856px'}}>
             <h1 className='display-5 text-light mb-4 pb-lg-2'>
               We help people find the <span className='text-primary'>dream job</span>

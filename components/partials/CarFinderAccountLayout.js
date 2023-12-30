@@ -123,7 +123,7 @@ const CarFinderAccountLayout = ({ accountPageTitle, children }) => {
           </div>
         </Col>
 
-        {/* Page content */}
+        {/* Index content */}
         <Col md={7} lg={8} className='mb-5'>
           {children}
         </Col>

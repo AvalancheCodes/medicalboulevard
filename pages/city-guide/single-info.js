@@ -112,7 +112,7 @@ const SingleInfoPage = () => {
       activeNav='Catalog'
     >
       
-      {/* Page header */}
+      {/* Index header */}
       <CityGuideSingleHeader
         title='Berlin Business Hotel'
         activeNav='/city-guide/single-info'

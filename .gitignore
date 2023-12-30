@@ -35,4 +35,4 @@ tsconfig.json
 !.env.example
 .env
 .env.*
-.env.local
+.env

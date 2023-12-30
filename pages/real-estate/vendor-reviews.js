@@ -265,7 +265,7 @@ const VendorReviewsPage = () => {
       </Modal>
 
 
-      {/* Page container */}
+      {/* Index container */}
       <Container className='mt-5 mb-md-4 py-5'>
 
         {/* Breadcrumb */}
@@ -344,7 +344,7 @@ const VendorReviewsPage = () => {
           </Col>
 
 
-          {/* Page content */}
+          {/* Index content */}
           <Col md={8} lg={9}>
 
             {/* Title */}

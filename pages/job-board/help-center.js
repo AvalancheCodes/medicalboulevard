@@ -28,7 +28,7 @@ const HelpCenterPage = () => (
           <Breadcrumb.Item active>Help Center</Breadcrumb.Item>
         </Breadcrumb>
 
-        {/* Page title */}
+        {/* Index title */}
         <div className='mb-lg-5 mx-auto text-center' style={{maxWidth: '856px'}}>
           <h1 className='mb-2 pb-1 text-light'>Need help?</h1>
           <p className='mb-5 fs-3 text-light'>All answers are already here</p>

@@ -192,7 +192,7 @@ const SingleItemPage = () => {
 
   return (
     <CarFinderPageLayout
-      pageTitle='Car Single Page'
+      pageTitle='Car Single Index'
       activeNav='Catalog'
     >
       <Container className='mt-5 mb-md-4 py-5'>

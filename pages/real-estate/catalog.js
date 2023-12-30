@@ -581,7 +581,7 @@ const CatalogPage = () => {
       activeNav='Catalog'
     >
 
-      {/* Page container */}
+      {/* Index container */}
       <Container fluid className='mt-5 pt-5 p-0'>
         <Row className='g-0 mt-n3'>
 

@@ -524,7 +524,7 @@ const CatalogPage = () => {
               <Breadcrumb.Item active>Used cars</Breadcrumb.Item>
             </Breadcrumb>
             
-            {/* Page title */}
+            {/* Index title */}
             <div className='d-flex align-items-center justify-content-between pb-4 mb-2'>
               <h1 className='text-light me-3 mb-0'>Used cars</h1>
               <div className='text-light'>

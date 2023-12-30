@@ -49,7 +49,7 @@ const ContactsPage = () => {
       activeNav='Pages'
     >
 
-      {/* Page container */}
+      {/* Index container */}
       <Container className='my-5 py-lg-5 py-4'>
 
         {/* Breadcrumb */}

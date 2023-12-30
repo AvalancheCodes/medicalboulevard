@@ -30,7 +30,7 @@ const HelpCenterSinglePage = () => (
           <Breadcrumb.Item active>For job seekers</Breadcrumb.Item>
         </Breadcrumb>
 
-        {/* Page title */}
+        {/* Index title */}
         <div className='mb-lg-5 mx-auto text-center' style={{maxWidth: '856px'}}>
           <h1 className='mb-4 pb-3 text-light'>For job seekers</h1>
 
@@ -52,7 +52,7 @@ const HelpCenterSinglePage = () => (
     </section>
 
 
-    {/* Page content */}
+    {/* Index content */}
     <section className='position-relative bg-white rounded-xxl-4 mb-5 pt-md-3 pb-lg-5 zindex-5' style={{marginTop: '-30px'}}>
       <Container className='pt-5'>
         <Row>

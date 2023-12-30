@@ -74,10 +74,10 @@ const AccountInfoPage = () => {
       userLoggedIn
     >
       
-      {/* Page container */}
+      {/* Index container */}
       <Container className='mt-5 mb-md-4 py-5'>
 
-        {/* Page header */}
+        {/* Index header */}
         <CityGuideAccountHeader breadcrumb='Personal info' />
         
         <Card className='shadow-sm'>
@@ -86,7 +86,7 @@ const AccountInfoPage = () => {
             {/* Account navigation */}
             <CityGuideAccountNav activeNav='/city-guide/account-info' />
 
-            {/* Page content */}
+            {/* Index content */}
             <h1 className='h3 mb-4 pt-2'>Personal Info</h1>
             <Accordion className='border rounded-3 p-3 mb-2'>
 

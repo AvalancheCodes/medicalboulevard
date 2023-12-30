@@ -1,7 +1,7 @@
 export default class FirestorePathsService {
   private readonly _userProfilesCollectionName: string = "user-profiles";
   private readonly _hireUsCollectionName: string = "hire-us"
-  private readonly _medicalSpaceCoordinatorsCollectionName: string = "medical-space-coordinators";
+  private readonly _medicalSpaceCoordinatorsCollectionName: string = "medical-property-coordinators";
 
   //#region UserProfiles
   getUserProfilesCollectionPath(): string {

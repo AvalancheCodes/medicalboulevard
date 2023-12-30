@@ -217,7 +217,7 @@ const SinglePropertyAltPage = () => {
                 <SwiperGallery />
               </div>
 
-              {/* Page title + Amenities */}
+              {/* Index title + Amenities */}
               <div className='order-lg-2 order-1 pt-lg-2'>
                 <h1 className='h2 mb-2'>Pine Apartments</h1>
                 <p className='mb-2 pb-1 fs-lg'>28 Jackson Ave Long Island City, NY 67234</p>

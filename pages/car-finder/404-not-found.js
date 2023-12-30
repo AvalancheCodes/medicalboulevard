@@ -38,7 +38,7 @@ const NotFoundPage = () => {
         <title>Finder | Car Finder - 404 Not Found</title>
       </Head>
 
-      {/* Page content */}
+      {/* Index content */}
       <main className='page-wrapper'>
         <section className='d-flex align-items-center position-relative min-vh-100 py-5'>
           <span className='position-absolute top-50 start-50 translate-middle zindex-1 rounded-circle mt-sm-0 mt-n5' style={{width: '50vw', height: '50vw', backgroundColor: 'rgba(83, 74, 117, 0.3)', filter: 'blur(6.4vw)'}}></span>

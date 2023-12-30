@@ -86,10 +86,10 @@ const AccountFavoritesPage = () => {
       userLoggedIn
     >
       
-      {/* Page container */}
+      {/* Index container */}
       <Container className='mt-5 mb-md-4 py-5'>
 
-        {/* Page header */}
+        {/* Index header */}
         <CityGuideAccountHeader breadcrumb='Favorites' />
         
         <Card className='shadow-sm'>
@@ -98,7 +98,7 @@ const AccountFavoritesPage = () => {
             {/* Account navigation */}
             <CityGuideAccountNav activeNav='/city-guide/account-favorites' />
 
-            {/* Page title + Sorting */}
+            {/* Index title + Sorting */}
             <div className='d-flex flex-md-row flex-column align-items-md-center justify-content-md-between mb-4 pt-2'>
               <h1 className='h3 mb-md-0'>Favorite Listings</h1>
               <div className='d-flex align-items-sm-center align-items-end'>

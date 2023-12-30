@@ -96,7 +96,7 @@ const BlogSinglePage = () => {
       activeNav='Pages'
     >
 
-      {/* Page container */}
+      {/* Index container */}
       <Container className='mt-5 mb-md-3 mb-lg-4 py-5'>
 
         {/* Breadcrumb */}
@@ -106,7 +106,7 @@ const BlogSinglePage = () => {
           <Breadcrumb.Item active>Air Travel in the Time of COVID-19</Breadcrumb.Item>
         </Breadcrumb>
 
-        {/* Page title */}
+        {/* Index title */}
         <h1 className='h2 pb-3'>Air Travel in the Time of COVID-19</h1>
 
         {/* Main post image */}

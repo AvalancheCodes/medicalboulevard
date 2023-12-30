@@ -26,7 +26,7 @@ const HelpCenterSinglePage = () => {
       activeNav='Pages'
     >
 
-      {/* Page content */}
+      {/* Index content */}
       <Container as='section' className='my-5 pt-lg-5 pt-4 pb-lg-4'>
 
         {/* Breadcrumb */}
